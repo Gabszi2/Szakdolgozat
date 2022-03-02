@@ -9,7 +9,6 @@ public class QuestionsEntity {
 
     public QuestionsEntity(String[] questions,String kitchen) {
         this.questions = questions;
-        this.kitchen=kitchen;
     }
 
     public QuestionsEntity() {
@@ -21,14 +20,6 @@ public class QuestionsEntity {
 
     public void setQuestions(String[] questions) {
         this.questions = questions;
-    }
-
-    public String getKitchen() {
-        return kitchen;
-    }
-
-    public void setKitchen(String kitchen) {
-        this.kitchen = kitchen;
     }
 
     @Override

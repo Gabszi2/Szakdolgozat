@@ -13,7 +13,7 @@ public class AnswerEntity {
         this.foodName = foodName;
         this.answers = answers;
         this.restaurants = restaurants;
-        this.kitchen=kitchen;
+
     }
 
     public AnswerEntity() {
@@ -41,14 +41,6 @@ public class AnswerEntity {
 
     public void setRestaurants(String[] restaurants) {
         this.restaurants = restaurants;
-    }
-
-    public String getKitchen() {
-        return kitchen;
-    }
-
-    public void setKitchen(String kitchen) {
-        this.kitchen = kitchen;
     }
 
     @Override
