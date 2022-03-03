@@ -6,12 +6,12 @@ import java.util.Objects;
 
 public class AnswerEntity {
     private String foodName;
-    private Boolean[] answers;
+    private Boolean[] answer;
     private String[] restaurants;
 
     public AnswerEntity(String foodName, Boolean[] answers, String[] restaurants) {
         this.foodName = foodName;
-        this.answers = answers;
+        this.answer = answers;
         this.restaurants = restaurants;
 
     }
@@ -27,12 +27,12 @@ public class AnswerEntity {
         this.foodName = foodName;
     }
 
-    public Boolean[] getAnswers() {
-        return answers;
+    public Boolean[] getAnswer() {
+        return answer;
     }
 
-    public void setAnswers(Boolean[] answers) {
-        this.answers = answers;
+    public void setAnswer(Boolean[] answer) {
+        this.answer = answer;
     }
 
     public String[] getRestaurants() {
@@ -47,7 +47,7 @@ public class AnswerEntity {
     public String toString() {
         return "AnswerEntity{" +
                 "foodName='" + foodName + '\'' +
-                ", answers=" + Arrays.toString(answers) +
+                ", answers=" + Arrays.toString(answer) +
                 ", restaurants=" + Arrays.toString(restaurants) +
                 '}';
     }
@@ -57,13 +57,13 @@ public class AnswerEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AnswerEntity that = (AnswerEntity) o;
-        return Objects.equals(foodName, that.foodName) && Arrays.equals(answers, that.answers) && Arrays.equals(restaurants, that.restaurants);
+        return Objects.equals(foodName, that.foodName) && Arrays.equals(answer, that.answer) && Arrays.equals(restaurants, that.restaurants);
     }
 
     @Override
     public int hashCode() {
         int result = Objects.hash(foodName);
-        result = 31 * result + Arrays.hashCode(answers);
+        result = 31 * result + Arrays.hashCode(answer);
         result = 31 * result + Arrays.hashCode(restaurants);
         return result;
     }
