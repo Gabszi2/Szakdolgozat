@@ -4,7 +4,7 @@ package hu.uni.miskolc.s9njk6.foodchooser.repository;
 import java.util.Arrays;
 
 public class QuestionsEntity {
-    private String[] questions;
+    private String[] questions; //TODO csak 1 question
 
 
     public QuestionsEntity(String[] questions) {
