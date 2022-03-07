@@ -7,22 +7,17 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class JsonHandler {
-    private String town;
-    private String kitchen;
     private final String path;
     private  final String dbJsonName;
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     //answers construktor
     public JsonHandler(String town, String kitchen) {
-        this.town = town;
-        this.kitchen = kitchen;
         path="src/main/resources/"+town+"_"+kitchen+"_answers.json";
         dbJsonName="answers";
 
@@ -30,7 +25,7 @@ public class JsonHandler {
 
     //questions construktor
     public JsonHandler(String kitchen) {
-        this.kitchen = kitchen;
+
         path = "src/main/resources/" + kitchen + "_questions.json";
         dbJsonName="questions";
     }
@@ -48,11 +43,7 @@ public class JsonHandler {
 
             array = (JSONArray) jsonObject.get(dbJsonName);
         } catch (
-                FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
+                IOException | ParseException e) {
             e.printStackTrace();
         }
         return array;
@@ -64,10 +55,10 @@ public class JsonHandler {
         JSONObject completeContent=new JSONObject();
         completeContent.put(dbJsonName,entityAsJsonArray);
 
-        try {
-            FileWriter file=new FileWriter(path);
+        try (FileWriter file=new FileWriter(path)){
             file.write(gson.toJson(completeContent));
             file.flush();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
