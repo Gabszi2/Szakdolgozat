@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 
-
+//Iterator-nál hiba lehet majd a <JsonObject>
 @Component
 public class AdminRepositoryImpl implements AdminRepository {
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
