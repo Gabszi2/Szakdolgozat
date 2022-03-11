@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+
 public class JsonHandler {
     private final String path;
     private  final String dbJsonName;
@@ -18,7 +19,7 @@ public class JsonHandler {
 
     //answers construktor
     public JsonHandler(String town, String kitchen) {
-        path="src/main/resources/"+town+"_"+kitchen+"_answers.json";
+        path="src/main/resources/"+town.toLowerCase()+"_"+kitchen.toLowerCase()+"_answers.json";
         dbJsonName="answers";
 
     }
@@ -26,7 +27,7 @@ public class JsonHandler {
     //questions construktor
     public JsonHandler(String kitchen) {
 
-        path = "src/main/resources/" + kitchen + "_questions.json";
+        path = "src/main/resources/" + kitchen.toLowerCase() + "_questions.json";
         dbJsonName="questions";
     }
 

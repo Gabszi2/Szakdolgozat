@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class AnswerEntity {
-    private String foodName;
     private Boolean[] answer;
+    private String foodName;
     private String[] restaurants;
 
     public AnswerEntity(String foodName, Boolean[] answers, String[] restaurants) {

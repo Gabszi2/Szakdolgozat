@@ -1,6 +1,6 @@
 {
   "questions": [
-     {
+    {
       "question": "Do you like soup?"
     },
     {
@@ -21,12 +21,11 @@
     {
       "question": "Do you eat bean/beasprout?"
     },
-     {
+    {
       "question": "Do you eat mushroom?"
     },
-     {
+    {
       "question": "Do you like hot food?"
     }
-
   ]
 }

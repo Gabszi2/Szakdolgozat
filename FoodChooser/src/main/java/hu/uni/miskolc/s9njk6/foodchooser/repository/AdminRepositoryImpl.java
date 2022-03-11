@@ -15,8 +15,6 @@ import java.util.Iterator;
 @Component
 public class AdminRepositoryImpl implements AdminRepository {
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
-    private static final String ANSWER ="answer";
-    private static final String QUESTION ="question";
 
     @Override
     public void saveFoodToTownAndKitchen(AnswerEntity answerEntity, String town, String kitchen) {
@@ -26,19 +24,23 @@ public class AdminRepositoryImpl implements AdminRepository {
 
             for (AnswerEntity entity:inAll
                  ) {
-                JSONObject jsonObject=new JSONObject();
+
                 if (!entity.getFoodName().equals(answerEntity.getFoodName())){
-                    jsonObject.put(ANSWER,entity);
+
+                    outToWrite.add(entity);
+                    counter++;
                 }else {
-                    jsonObject.put(ANSWER,answerEntity);
+
+                    outToWrite.add(answerEntity);
                 }
-                counter++;
-                outToWrite.add(jsonObject);
+
+
             }
-            if (counter!=inAll.size()){
-                JSONObject jsonObject=new JSONObject();
-                jsonObject.put(ANSWER,answerEntity);
-                outToWrite.add(jsonObject);
+
+            if (counter==inAll.size()){
+
+
+                outToWrite.add(answerEntity);
             }
 
         new JsonHandler(town,kitchen).writeJsonArrayToFile(outToWrite);
@@ -60,20 +62,22 @@ public class AdminRepositoryImpl implements AdminRepository {
 
         for (QuestionEntity entity: inAll
              ) {
-            JSONObject jsonObject=new JSONObject();
+
             if(!entity.getQuestion().equals(oldQuestion.getQuestion())){
-                jsonObject.put(QUESTION,entity);
+
+                outToWrite.add(entity);
+                counter++;
             }else {
-                jsonObject.put(QUESTION, newQuestion);
+
+                outToWrite.add(newQuestion);
             }
-            counter++;
-           outToWrite.add(jsonObject);
+
+
         }
-        if (counter!=inAll.size()){
+
+        if (counter==inAll.size()){
             newQuestion=oldQuestion;
-            JSONObject jsonObject=new JSONObject();
-            jsonObject.put(QUESTION,newQuestion);
-            outToWrite.add(jsonObject);
+            outToWrite.add(newQuestion);
         }
         new JsonHandler(kitchen).writeJsonArrayToFile(outToWrite);
     }
@@ -85,11 +89,10 @@ public class AdminRepositoryImpl implements AdminRepository {
 
         for (AnswerEntity entity:inAll
         ) {
-            JSONObject jsonObject=new JSONObject();
             if (!entity.getFoodName().equals(answerEntity.getFoodName())){
-                jsonObject.put(ANSWER,entity);
+                outToWrite.add(entity);
             }
-            outToWrite.add(jsonObject);
+
 
         }
         new JsonHandler(town,kitchen).writeJsonArrayToFile(outToWrite);
@@ -104,11 +107,10 @@ public class AdminRepositoryImpl implements AdminRepository {
 
         for (QuestionEntity entity: inAll
         ) {
-            JSONObject jsonObject=new JSONObject();
             if(!entity.getQuestion().equals(question.getQuestion())){
-                jsonObject.put(QUESTION,entity);
+                outToWrite.add(entity);
             }
-            outToWrite.add(jsonObject);
+
         }
         new JsonHandler(kitchen).writeJsonArrayToFile(outToWrite);
     }
