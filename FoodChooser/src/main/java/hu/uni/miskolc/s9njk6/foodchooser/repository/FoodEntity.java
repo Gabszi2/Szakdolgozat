@@ -4,19 +4,19 @@ package hu.uni.miskolc.s9njk6.foodchooser.repository;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class AnswerEntity {
+public class FoodEntity {
     private Boolean[] answer;
     private String foodName;
     private String[] restaurants;
 
-    public AnswerEntity(String foodName, Boolean[] answers, String[] restaurants) {
+    public FoodEntity(String foodName, Boolean[] answers, String[] restaurants) {
         this.foodName = foodName;
         this.answer = answers;
         this.restaurants = restaurants;
 
     }
 
-    public AnswerEntity() {
+    public FoodEntity() {
     }
 
     public String getFoodName() {
@@ -56,7 +56,7 @@ public class AnswerEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AnswerEntity that = (AnswerEntity) o;
+        FoodEntity that = (FoodEntity) o;
         return Objects.equals(foodName, that.foodName) && Arrays.equals(answer, that.answer) && Arrays.equals(restaurants, that.restaurants);
     }
 

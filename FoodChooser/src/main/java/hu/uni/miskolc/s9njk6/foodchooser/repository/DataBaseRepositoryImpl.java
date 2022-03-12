@@ -13,25 +13,25 @@ import java.util.Iterator;
 
 //Iterator-nál hiba lehet majd a <JsonObject>
 @Component
-public class AdminRepositoryImpl implements AdminRepository {
+public class DataBaseRepositoryImpl implements DataBaseRepository {
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     @Override
-    public void saveFoodToTownAndKitchen(AnswerEntity answerEntity, String town, String kitchen) {
-        Collection<AnswerEntity> inAll= getAllFoodFromTownAndKitchen(town,kitchen);
+    public void saveFoodToTownAndKitchen(FoodEntity foodEntity, String town, String kitchen) {
+        Collection<FoodEntity> inAll= getAllFoodFromTownAndKitchen(town,kitchen);
         JSONArray outToWrite=new JSONArray();
         int counter=0;
 
-            for (AnswerEntity entity:inAll
+            for (FoodEntity entity:inAll
                  ) {
 
-                if (!entity.getFoodName().equals(answerEntity.getFoodName())){
+                if (!entity.getFoodName().equals(foodEntity.getFoodName())){
 
                     outToWrite.add(entity);
                     counter++;
                 }else {
 
-                    outToWrite.add(answerEntity);
+                    outToWrite.add(foodEntity);
                 }
 
 
@@ -40,7 +40,7 @@ public class AdminRepositoryImpl implements AdminRepository {
             if (counter==inAll.size()){
 
 
-                outToWrite.add(answerEntity);
+                outToWrite.add(foodEntity);
             }
 
         new JsonHandler(town,kitchen).writeJsonArrayToFile(outToWrite);
@@ -83,13 +83,13 @@ public class AdminRepositoryImpl implements AdminRepository {
     }
 
     @Override
-    public void deleteFoodFromTownAndKitchen(AnswerEntity answerEntity, String town, String kitchen) {
-        Collection<AnswerEntity> inAll= getAllFoodFromTownAndKitchen(town,kitchen);
+    public void deleteFoodFromTownAndKitchen(FoodEntity foodEntity, String town, String kitchen) {
+        Collection<FoodEntity> inAll= getAllFoodFromTownAndKitchen(town,kitchen);
         JSONArray outToWrite=new JSONArray();
 
-        for (AnswerEntity entity:inAll
+        for (FoodEntity entity:inAll
         ) {
-            if (!entity.getFoodName().equals(answerEntity.getFoodName())){
+            if (!entity.getFoodName().equals(foodEntity.getFoodName())){
                 outToWrite.add(entity);
             }
 
@@ -116,8 +116,8 @@ public class AdminRepositoryImpl implements AdminRepository {
     }
 
     @Override
-    public Collection<AnswerEntity> getAllFoodFromTownAndKitchen(String town, String kitchen) {
-        Collection<AnswerEntity> output=new ArrayList<>();
+    public Collection<FoodEntity> getAllFoodFromTownAndKitchen(String town, String kitchen) {
+        Collection<FoodEntity> output=new ArrayList<>();
         JsonHandler jsonHandler=new JsonHandler(town, kitchen);
         JSONArray jsonArray=jsonHandler.arrayParser();
 
@@ -125,8 +125,8 @@ public class AdminRepositoryImpl implements AdminRepository {
         while (i.hasNext()){
 
             JSONObject answerJsonEntity=i.next();
-            AnswerEntity answerEntity=gson.fromJson(answerJsonEntity.toString(),AnswerEntity.class);
-            output.add(answerEntity);
+            FoodEntity foodEntity =gson.fromJson(answerJsonEntity.toString(), FoodEntity.class);
+            output.add(foodEntity);
 
         }
 
@@ -152,15 +152,15 @@ public class AdminRepositoryImpl implements AdminRepository {
     }
 
     @Override
-    public AnswerEntity getFoodFromTownAndKitchen(String foodName, String town, String kitchen) {
-        AnswerEntity output=new AnswerEntity();
+    public FoodEntity getFoodFromTownAndKitchen(String foodName, String town, String kitchen) {
+        FoodEntity output=new FoodEntity();
         boolean found=false;
         JsonHandler jsonHandler=new JsonHandler(town, kitchen);
         JSONArray jsonArray=jsonHandler.arrayParser();
         Iterator<JSONObject> i= jsonArray.iterator();
         while (i.hasNext()||!found){
             JSONObject answer= i.next();
-            AnswerEntity check=gson.fromJson(answer.toString(),AnswerEntity.class);
+            FoodEntity check=gson.fromJson(answer.toString(), FoodEntity.class);
             if (check.getFoodName().equals(foodName)){
                 found=true;
                 output=check;
