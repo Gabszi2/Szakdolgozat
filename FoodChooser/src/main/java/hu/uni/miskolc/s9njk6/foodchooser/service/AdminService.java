@@ -1,12 +1,11 @@
 package hu.uni.miskolc.s9njk6.foodchooser.service;
 
-import hu.uni.miskolc.s9njk6.foodchooser.repository.FoodEntity;
 
 import java.util.Collection;
 
 public interface AdminService {
 
-    String[] allQuestions(String kitchen);
+    Iterable<String> allQuestions(String kitchen);
     void deleteQuestion(String question,String kitchen);
     String createQuestion(String question,String kitchen);
     void saveQuestion(String oldQuestion,String newQuestion,String kitchen);
