@@ -1,7 +1,7 @@
 package hu.uni.miskolc.s9njk6.foodchooser.service;
 
 
-import java.util.Collection;
+
 
 public interface AdminService {
 
@@ -10,7 +10,7 @@ public interface AdminService {
     String createQuestion(String question,String kitchen);
     void saveQuestion(String oldQuestion,String newQuestion,String kitchen);
 
-    Collection<FoodDto> allFood(String town, String kitchen);
+    Iterable<FoodDto> allFood(String town, String kitchen);
     FoodDto createFood(FoodDto foodDto, String town, String kitchen);
     void saveFood(FoodDto foodDto, String town, String kitchen);
     void deleteFood(FoodDto foodDto,String town,String kitchen);

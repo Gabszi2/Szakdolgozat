@@ -8,7 +8,6 @@ import hu.uni.miskolc.s9njk6.foodchooser.service.exceptions.NoSuchEntityExceptio
 
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 
@@ -56,7 +55,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public Collection<FoodDto> allFood(String town, String kitchen) {
+    public Iterable<FoodDto> allFood(String town, String kitchen) {
         List<FoodDto> output=new ArrayList<>();
         for (FoodEntity foodEntity:dataBaseRepository.getAllFoodFromTownAndKitchen(town, kitchen)
              ) {

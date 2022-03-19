@@ -5,11 +5,11 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class FoodEntity {
-    private Boolean[] answer;
+    private boolean[] answer;
     private String foodName;
     private String[] restaurants;
 
-    public FoodEntity(String foodName, Boolean[] answers, String[] restaurants) {
+    public FoodEntity(String foodName, boolean[] answers, String[] restaurants) {
         this.foodName = foodName;
         this.answer = answers;
         this.restaurants = restaurants;
@@ -27,11 +27,11 @@ public class FoodEntity {
         this.foodName = foodName;
     }
 
-    public Boolean[] getAnswer() {
+    public boolean[] getAnswer() {
         return answer;
     }
 
-    public void setAnswer(Boolean[] answer) {
+    public void setAnswer(boolean[] answer) {
         this.answer = answer;
     }
 
