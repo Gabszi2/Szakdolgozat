@@ -6,9 +6,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.*;
 
 
 //Iterator-nál hiba lehet majd a <JsonObject>
@@ -50,12 +48,12 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
 
     /**
 
-     * @param oldQuestion question you want to change (for adding new question this should be the same as the newQuestion, this will be added)
-     * @param newQuestion question you want to change the old one (for adding new question this should be the same as the oldQuestion)
+     * @param oldQuestion question you want to change (for adding new question this should be the same as the newQuestion)
+     * @param newQuestion question you want to change the old one (for adding new question this should be the same as the oldQuestion, this will be added)
      * @param kitchen
      */
     @Override
-    public void saveQuestionsToKitchen(QuestionEntity oldQuestion, QuestionEntity newQuestion, String kitchen) {
+    public QuestionEntity saveQuestionsToKitchen(QuestionEntity oldQuestion, QuestionEntity newQuestion, String kitchen) {
         Collection<QuestionEntity> inAll=getAllQuestionFromKitchen(kitchen);
         JSONArray outToWrite=new JSONArray();
         int counter=0;
@@ -76,10 +74,12 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
         }
 
         if (counter==inAll.size()){
-            newQuestion=oldQuestion;
+
             outToWrite.add(newQuestion);
         }
         new JsonHandler(kitchen).writeJsonArrayToFile(outToWrite);
+        return newQuestion;
+
     }
 
     @Override
@@ -153,21 +153,27 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
 
     @Override
     public FoodEntity getFoodFromTownAndKitchen(String foodName, String town, String kitchen) {
-        FoodEntity output=new FoodEntity();
-        boolean found=false;
-        JsonHandler jsonHandler=new JsonHandler(town, kitchen);
-        JSONArray jsonArray=jsonHandler.arrayParser();
-        Iterator<JSONObject> i= jsonArray.iterator();
-        while (i.hasNext()||!found){
-            JSONObject answer= i.next();
-            FoodEntity check=gson.fromJson(answer.toString(), FoodEntity.class);
-            if (check.getFoodName().equals(foodName)){
-                found=true;
-                output=check;
+        Collection<FoodEntity> allFood=getAllFoodFromTownAndKitchen(town,kitchen);
+
+        for (FoodEntity foodEntity:allFood
+             ) {
+            if (foodEntity.getFoodName().equals(foodName)){
+                return foodEntity;
             }
-
         }
+        return null;
+    }
 
-        return output;
+    @Override
+    public QuestionEntity getQuestionFromKitchen(String question, String kitchen) {
+        Collection<QuestionEntity> allQuestion=getAllQuestionFromKitchen(kitchen);
+
+        for (QuestionEntity questionEntity:allQuestion
+             ) {
+            if (questionEntity.getQuestion().equals(question)){
+                return questionEntity;
+            }
+        }
+        return null;
     }
 }
