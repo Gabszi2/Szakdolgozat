@@ -7,7 +7,7 @@ import java.util.Collection;
 public interface DataBaseRepository {
 
     //create
-    void saveFoodToTownAndKitchen(FoodEntity foodEntity, String town, String kitchen);
+    FoodEntity saveFoodToTownAndKitchen(FoodEntity foodEntity, String town, String kitchen);
     QuestionEntity saveQuestionsToKitchen(QuestionEntity oldQuestion,QuestionEntity newQuestion, String kitchen);
     //delete
     void deleteFoodFromTownAndKitchen(FoodEntity foodEntity, String town, String kitchen);

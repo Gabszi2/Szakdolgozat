@@ -15,14 +15,14 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     @Override
-    public void saveFoodToTownAndKitchen(FoodEntity foodEntity, String town, String kitchen) {
+    public FoodEntity saveFoodToTownAndKitchen(FoodEntity foodEntity, String town, String kitchen) {
         Collection<FoodEntity> inAll= getAllFoodFromTownAndKitchen(town,kitchen);
         JSONArray outToWrite=new JSONArray();
         int counter=0;
 
             for (FoodEntity entity:inAll
                  ) {
-
+                //update
                 if (!entity.getFoodName().equals(foodEntity.getFoodName())){
 
                     outToWrite.add(entity);
@@ -34,7 +34,7 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
 
 
             }
-
+            //create
             if (counter==inAll.size()){
 
 
@@ -43,6 +43,7 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
 
         new JsonHandler(town,kitchen).writeJsonArrayToFile(outToWrite);
 
+        return foodEntity;
 
     }
 
