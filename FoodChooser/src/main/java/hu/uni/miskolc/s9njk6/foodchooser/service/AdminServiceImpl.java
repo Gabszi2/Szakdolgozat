@@ -4,13 +4,13 @@ import hu.uni.miskolc.s9njk6.foodchooser.repository.DataBaseRepository;
 import hu.uni.miskolc.s9njk6.foodchooser.repository.FoodEntity;
 import hu.uni.miskolc.s9njk6.foodchooser.repository.QuestionEntity;
 import hu.uni.miskolc.s9njk6.foodchooser.service.exceptions.NoSuchEntityException;
-
+import org.springframework.stereotype.Service;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Service
 public class AdminServiceImpl implements AdminService {
     private final DataBaseRepository dataBaseRepository;
 
