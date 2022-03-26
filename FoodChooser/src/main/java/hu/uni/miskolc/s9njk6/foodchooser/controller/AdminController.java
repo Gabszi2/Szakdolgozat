@@ -57,7 +57,7 @@ return adminService.createQuestion(question, kitchen);
     void deleteFood(@RequestBody @Valid FoodDto foodDto,@PathVariable("town") String town,@PathVariable("kitchen") String kitchen){
         adminService.deleteFood(foodDto.toServiceFoodDto(),town,kitchen);
     }
-    @PostMapping("/food{town}{kitchen}")
+    @PostMapping(value = "/food{town}{kitchen}",consumes = "application/json")
     FoodDto createFood(@RequestBody @Valid FoodDto foodDto,@PathVariable("town") String town,@PathVariable("kitchen") String kitchen){
         return new FoodDto( adminService.createFood(foodDto.toServiceFoodDto(),town,kitchen));
     }
