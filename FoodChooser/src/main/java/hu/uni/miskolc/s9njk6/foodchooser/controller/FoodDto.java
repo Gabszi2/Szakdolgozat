@@ -19,7 +19,9 @@ public class FoodDto {
         this.foodName = foodDto.getFoodName();
         this.restaurants = foodDto.getRestaurants();
     }
-
+    public hu.uni.miskolc.s9njk6.foodchooser.service.FoodDto toServiceFoodDto(){
+    return new hu.uni.miskolc.s9njk6.foodchooser.service.FoodDto(answer,foodName,restaurants);
+    }
     public boolean[] getAnswer() {
         return answer;
     }
