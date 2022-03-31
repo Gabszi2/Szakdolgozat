@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AdminController {
     private final AdminService adminService;
 
@@ -34,7 +35,7 @@ public class AdminController {
     void deleteQuestion(@RequestParam("question") String question,@PathVariable("kitchen")String kitchen){
         adminService.deleteQuestion(question, kitchen);
     }
-    @PostMapping("/question/{kitchen}",consumes = "application/json")
+    @PostMapping("/question/{kitchen}")
     String createQuestion(@RequestParam("question") String question,@PathVariable("kitchen") String kitchen){
 return adminService.createQuestion(question, kitchen);
     }
