@@ -20,7 +20,7 @@ public class AdminController {
 
 
     //Question Requests
-    @GetMapping("/questions{kitchen}")
+    @GetMapping("/questions/{kitchen}")
     Iterable<String> allQuestions(@PathVariable("kitchen") String kitchen){
         List<String> out=new ArrayList<>();
         for (String s:adminService.allQuestions(kitchen)
@@ -34,7 +34,7 @@ public class AdminController {
     void deleteQuestion(@RequestParam("question") String question,@PathVariable("kitchen")String kitchen){
         adminService.deleteQuestion(question, kitchen);
     }
-    @PostMapping("/question/{kitchen}")
+    @PostMapping("/question/{kitchen}",consumes = "application/json")
     String createQuestion(@RequestParam("question") String question,@PathVariable("kitchen") String kitchen){
 return adminService.createQuestion(question, kitchen);
     }
