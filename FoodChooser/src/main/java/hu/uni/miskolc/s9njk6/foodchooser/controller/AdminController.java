@@ -1,6 +1,8 @@
 package hu.uni.miskolc.s9njk6.foodchooser.controller;
 
 import hu.uni.miskolc.s9njk6.foodchooser.service.AdminService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -9,26 +11,23 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
-@CrossOrigin(origins = "http://localhost:4200")
+
 public class AdminController {
     private final AdminService adminService;
 
     public AdminController(AdminService adminService) {
         this.adminService = adminService;
     }
-    //PathVariable-t a town és kitchen-hez
-//Post-hoz application/json kell majd headerbe a cliens oldalon
-
-
+    
     //Question Requests
     @GetMapping("/questions/{kitchen}")
-    Iterable<String> allQuestions(@PathVariable("kitchen") String kitchen){
+   ResponseEntity< List<String>> allQuestions(@PathVariable("kitchen") String kitchen){
         List<String> out=new ArrayList<>();
         for (String s:adminService.allQuestions(kitchen)
              ) {
             out.add(s);
         }
-        return out;
+        return new ResponseEntity<>(out, HttpStatus.OK);
     }
 
     @DeleteMapping("/question/{kitchen}")
@@ -36,8 +35,8 @@ public class AdminController {
         adminService.deleteQuestion(question, kitchen);
     }
     @PostMapping("/question/{kitchen}")
-    String createQuestion(@RequestParam("question") String question,@PathVariable("kitchen") String kitchen){
-return adminService.createQuestion(question, kitchen);
+    ResponseEntity<String> createQuestion(@RequestParam("question") String question,@PathVariable("kitchen") String kitchen){
+return new ResponseEntity<>(adminService.createQuestion(question, kitchen),HttpStatus.CREATED);
     }
     @PutMapping("question/{kitchen}")
     void saveQuestion(@RequestBody @Valid QuestionSaveDto questionSaveDto,@PathVariable("kitchen") String kitchen){
@@ -46,21 +45,21 @@ return adminService.createQuestion(question, kitchen);
 
     //Food Requests
     @GetMapping("/foods/{town}/{kitchen}")
-    Iterable<FoodDto> allFood(@PathVariable("town") String town,@PathVariable("kitchen") String kitchen){
+    ResponseEntity<List<FoodDto>> allFood(@PathVariable("town") String town,@PathVariable("kitchen") String kitchen){
         List<FoodDto> out=new ArrayList<>();
         for (hu.uni.miskolc.s9njk6.foodchooser.service.FoodDto foodDto:adminService.allFood(town, kitchen)
              ) {
             out.add(new FoodDto(foodDto));
         }
-        return out;
+        return new ResponseEntity<>(out,HttpStatus.OK);
     }
     @DeleteMapping("/food/{town}/{kitchen}")
     void deleteFood(@RequestBody @Valid FoodDto foodDto,@PathVariable("town") String town,@PathVariable("kitchen") String kitchen){
         adminService.deleteFood(foodDto.toServiceFoodDto(),town,kitchen);
     }
     @PostMapping(value = "/food/{town}/{kitchen}",consumes = "application/json")
-    FoodDto createFood(@RequestBody @Valid FoodDto foodDto,@PathVariable("town") String town,@PathVariable("kitchen") String kitchen){
-        return new FoodDto( adminService.createFood(foodDto.toServiceFoodDto(),town,kitchen));
+    ResponseEntity<FoodDto> createFood(@RequestBody @Valid FoodDto foodDto,@PathVariable("town") String town,@PathVariable("kitchen") String kitchen){
+        return new ResponseEntity<>(new FoodDto( adminService.createFood(foodDto.toServiceFoodDto(),town,kitchen)),HttpStatus.CREATED);
     }
 @PutMapping("/food/{town}/{kitchen}")
     void saveFood(@RequestBody @Valid FoodDto foodDto,@PathVariable("town") String town,@PathVariable("kitchen") String kitchen){
