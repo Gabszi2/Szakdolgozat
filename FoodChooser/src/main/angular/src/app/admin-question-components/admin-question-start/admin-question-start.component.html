@@ -1,1 +1,13 @@
-<p>admin-question-start works!</p>
+<p class="text-center">Choose kitchen</p>
+<div
+  class="border d-flex align-items-center justify-content-center"
+  style="height: 350px;"
+>
+  <div>
+<label for="kitchen">Select a kitchen</label>
+  <select [(ngModel)]="selectedKitchen" id="kitchen" class="form-control">
+    <option *ngFor="let kitchen of kitchens" value="{{kitchen}}">{{kitchen.charAt(0).toUpperCase()+kitchen.slice(1)}}</option>
+  </select>
+    <button class="btn btn-primary btn-md" [hidden]="!selectedKitchen" routerLink="/admin/question-list/{{selectedKitchen}}">Select</button>
+  </div>
+</div>

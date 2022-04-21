@@ -1,1 +1,13 @@
-<p>admin-question-add works!</p>
+<p class="text-center">Question add to {{kitchen.charAt(0).toUpperCase()+kitchen.slice(1)}}</p>
+<div
+  class="border d-flex align-items-center justify-content-center"
+  style="height: 350px;"
+>
+  <div>
+<form [formGroup]="questionForm">
+    <label for="question">Type in the question:</label>
+    <input type="text" id="question" class="form-control" formControlName="question">
+    <button class="btn btn-primary btn-md"  (click)="questionAdd()">Add</button>
+</form>
+  </div>
+</div>

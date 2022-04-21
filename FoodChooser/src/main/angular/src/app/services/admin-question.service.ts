@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 
 import {QuestionSaveModel} from "../models/question-save-model";
+import {lastValueFrom} from "rxjs";
 
 
 @Injectable({
@@ -15,20 +16,22 @@ export class AdminQuestionService {
     this.adminUrl = 'http://localhost:8080/admin'
   }
 
-  getAllFood(kitchen: string) {
-    return this.http.get<String[]>(this.adminUrl + '/questions/' + kitchen);
+  async getAllQuestion(kitchen: string) {
+    return lastValueFrom(this.http.get<string[]>(this.adminUrl + '/questions/' + kitchen));
   }
 
-  deleteFood(kitchen: string, question: string) {
-    this.http.request('delete', this.adminUrl + '/question/' + kitchen, {body: question});
+  async deleteQuestion(kitchen: string, question: string) {
+    let httpParams = new HttpParams().set('question', question);
+    let options = { params: httpParams };
+   return  lastValueFrom(this.http.delete(this.adminUrl + '/question/' + kitchen,options ));
   }
 
-  addFood(kitchen: string, question: string) {
-
-    return this.http.post(this.adminUrl + '/question/' + kitchen, question);
+  async addQuestion(kitchen: string, question: string) {
+    let httpParams = new HttpParams().set('question', question);
+    return lastValueFrom(this.http.post(this.adminUrl + '/question/' + kitchen, null,{params: httpParams,responseType:"text" }));
   }
 
-  updateFood(kitchen: string, questionSave: QuestionSaveModel) {
-    return this.http.post<String>(this.adminUrl + '/question/' + kitchen, questionSave);
+  async updateQuestion(kitchen: string, questionSave: QuestionSaveModel) {
+    return lastValueFrom(this.http.put(this.adminUrl + '/question/' + kitchen, questionSave));
   }
 }
