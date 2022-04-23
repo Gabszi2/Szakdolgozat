@@ -18,7 +18,7 @@ public class AdminController {
     public AdminController(AdminService adminService) {
         this.adminService = adminService;
     }
-    
+
     //Question Requests
     @GetMapping("/questions/{kitchen}")
    ResponseEntity< List<String>> allQuestions(@PathVariable("kitchen") String kitchen){

@@ -19,7 +19,7 @@ export class AdminFoodService {
   }
 
   async deleteFood(town: string, kitchen: string, food: FoodModel) {
-    return lastValueFrom(this.http.request('delete', this.adminUrl + '/food/' + town + '/' + kitchen, {body: food}));
+    return lastValueFrom(this.http.delete( this.adminUrl + '/food/' + town + '/' + kitchen, {body: food}));
   }
 
   async addFood(town: string, kitchen: string, food: FoodModel) {
