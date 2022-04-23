@@ -1,1 +1,14 @@
-<p>admin-question-modify works!</p>
+<p class="text-center">Modify question</p>
+<div
+  class="border d-flex align-items-center justify-content-center"
+  style="height: 350px;"
+>
+  <div>
+    <form [formGroup]="questionForm">
+      <p>Old question: {{oldQuestion}}</p>
+      <label for="question">Type in the modified question:</label>
+      <input type="text" id="question" class="form-control" formControlName="question">
+      <button class="btn btn-primary btn-md"  (click)="questionModify()">Modify</button>
+    </form>
+  </div>
+</div>
