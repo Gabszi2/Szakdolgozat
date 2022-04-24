@@ -1,2 +1,12 @@
-<p>admin-food-modify works!{{routeState}}</p>
+<p class="text-center">Food modify {{foodName}}</p>
+<div
+  class="border d-flex align-items-center justify-content-center"
+  style="height: 350px;"
+>
+<div class="col-md-3">
+    <button routerLink="/admin/food-modify-answers/{{town}}/{{kitchen}}/{{foodName}}" class="btn btn-sm btn-primary">Answers</button>
+</div>
 
+<button routerLink="/admin/food-modify-restaurants/{{town}}/{{kitchen}}/{{foodName}}" class="btn btn-sm btn-success">Restaurants</button>
+
+</div>

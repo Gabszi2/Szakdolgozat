@@ -8,7 +8,7 @@ public class FoodDto {
     private boolean[] answer;
     @NotEmpty
     private String foodName;
-    @NotEmpty
+  //  @NotEmpty
     private String[] restaurants;
 
     public FoodDto() {

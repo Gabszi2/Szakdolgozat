@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -63,7 +64,14 @@ public class AdminServiceImpl implements AdminService {
         }
         return output;
     }
-
+    @Override
+    public FoodDto getFood(String town, String kitchen,String foodName){
+        FoodEntity foodEntity=dataBaseRepository.getFoodFromTownAndKitchen(foodName,town,kitchen);
+        if (foodEntity==null){
+            throw new NoSuchEntityException(foodName);
+        }
+        return new FoodDto(foodEntity) ;
+    }
     @Override
     public FoodDto createFood(FoodDto foodDto, String town, String kitchen) {
         return new FoodDto(dataBaseRepository.saveFoodToTownAndKitchen(foodDto.toEntity(),town,kitchen));

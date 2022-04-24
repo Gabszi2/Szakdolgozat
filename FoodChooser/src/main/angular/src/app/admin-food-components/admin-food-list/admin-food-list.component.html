@@ -8,7 +8,7 @@
         {{food.foodName.charAt(0).toUpperCase()+food.foodName.slice(1)}}
       </div>
       <div class="text-end">
-        <button class="btn btn-sm btn-primary" type="button" routerLink="/admin/food-modify/{{town}}/{{kitchen}}">Modify</button>
+        <button class="btn btn-sm btn-primary" type="button" routerLink="/admin/food-modify/{{town}}/{{kitchen}}/{{food.foodName}}">Modify</button>
       </div>
       <div class="text-end">
         <button (click)="deleteFood(food)" class="btn btn-sm btn-danger">Delete</button>

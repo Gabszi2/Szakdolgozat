@@ -22,6 +22,8 @@ import {
 import {AppRoutingModule} from './app-routing.module';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { AdminFoodModifyAnswersComponent } from './admin-food-components/admin-food-modify-answers/admin-food-modify-answers.component';
+import { AdminFoodModifyRestaurantsComponent } from './admin-food-components/admin-food-modify-restaurants/admin-food-modify-restaurants.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     AdminQuestionModifyComponent,
     AdminQuestionAddComponent,
     AdminQuestionListComponent,
-    AdminQuestionStartComponent
+    AdminQuestionStartComponent,
+    AdminFoodModifyAnswersComponent,
+    AdminFoodModifyRestaurantsComponent
   ],
   imports: [
     BrowserModule,

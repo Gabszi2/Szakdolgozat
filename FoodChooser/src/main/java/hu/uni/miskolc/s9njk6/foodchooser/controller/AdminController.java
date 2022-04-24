@@ -53,6 +53,11 @@ return new ResponseEntity<>(adminService.createQuestion(question, kitchen),HttpS
         }
         return new ResponseEntity<>(out,HttpStatus.OK);
     }
+    @GetMapping("/food/{town}/{kitchen}/{foodName}")
+    ResponseEntity<FoodDto> getFood(@PathVariable("town") String town,@PathVariable("kitchen") String kitchen,@PathVariable("foodName") String foodName){
+
+        return new ResponseEntity<>(new FoodDto(adminService.getFood(town,kitchen,foodName)),HttpStatus.OK);
+    }
     @DeleteMapping("/food/{town}/{kitchen}")
     void deleteFood(@RequestBody @Valid FoodDto foodDto,@PathVariable("town") String town,@PathVariable("kitchen") String kitchen){
         adminService.deleteFood(foodDto.toServiceFoodDto(),town,kitchen);

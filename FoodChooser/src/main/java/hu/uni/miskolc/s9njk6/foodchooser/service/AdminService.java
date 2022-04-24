@@ -11,6 +11,7 @@ public interface AdminService {
     void saveQuestion(String oldQuestion,String newQuestion,String kitchen);
 
     Iterable<FoodDto> allFood(String town, String kitchen);
+    FoodDto getFood(String town,String kitchen,String foodName);
     FoodDto createFood(FoodDto foodDto, String town, String kitchen);
     void saveFood(FoodDto foodDto, String town, String kitchen);
     void deleteFood(FoodDto foodDto,String town,String kitchen);

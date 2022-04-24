@@ -20,10 +20,7 @@ kitchen!:string;
     this.kitchen=<string>this.route.snapshot.paramMap.get('kitchen');
     this.foodAll=await  this.service.getAllFood(this.town,this.kitchen);
   }
-  toModify(food:FoodModel){
 
-    this.router.navigate(['admin/food-modify/'+this.town+'/'+this.kitchen]);
-  }
 async deleteFood(food:FoodModel){
 await this.service.deleteFood(this.town,this.kitchen,food);
 this.foodAll=await this.service.getAllFood(this.town,this.kitchen)

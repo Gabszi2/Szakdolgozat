@@ -10,15 +10,19 @@ import {FoodModel} from "../../models/food-model";
   styleUrls: ['./admin-food-modify.component.css']
 })
 export class AdminFoodModifyComponent implements OnInit {
-foodUpdate=<FoodModel>{};
-routeState!:any;
-  constructor(private service:AdminFoodService,private formBuilder:FormBuilder,private router:Router,private route:ActivatedRoute) {
+foodUpdate!:FoodModel;
+  town!:string;
+  kitchen!:string;
+  foodName!:string
+  constructor(private service:AdminFoodService,private route:ActivatedRoute) {
 
   }
 
-  ngOnInit(): void {
-
-
+ async ngOnInit(){
+    this.town=<string>this.route.snapshot.paramMap.get('town');
+    this.kitchen=<string>this.route.snapshot.paramMap.get('kitchen');
+    this.foodName=<string>this.route.snapshot.paramMap.get('foodName');
+    this.foodUpdate=await this.service.getFood(this.town,this.kitchen,this.foodName);
   }
 
 }
