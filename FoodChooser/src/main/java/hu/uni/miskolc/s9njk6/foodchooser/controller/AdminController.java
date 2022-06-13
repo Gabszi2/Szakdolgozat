@@ -34,7 +34,7 @@ public class AdminController {
     void deleteQuestion(@RequestParam("question") String question,@PathVariable("kitchen")String kitchen){
         adminService.deleteQuestion(question, kitchen);
     }
-    @PostMapping("/question/{kitchen}")
+    @PostMapping(value = "/question/{kitchen}")
     ResponseEntity<String> createQuestion(@RequestParam("question") String question,@PathVariable("kitchen") String kitchen){
 return new ResponseEntity<>(adminService.createQuestion(question, kitchen),HttpStatus.CREATED);
     }

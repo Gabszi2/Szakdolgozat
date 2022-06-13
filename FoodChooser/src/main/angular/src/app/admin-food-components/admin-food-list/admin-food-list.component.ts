@@ -12,7 +12,7 @@ export class AdminFoodListComponent implements OnInit {
 foodAll!:FoodModel[];
 town!:string;
 kitchen!:string;
-  constructor(private service:AdminFoodService,private route: ActivatedRoute,private router:Router ) {
+  constructor(private service:AdminFoodService,private route: ActivatedRoute) {
   }
 
   async ngOnInit(){
