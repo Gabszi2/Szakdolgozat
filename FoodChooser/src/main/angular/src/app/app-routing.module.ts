@@ -22,6 +22,12 @@ import {
 import {
   AdminFoodModifyRestaurantsComponent
 } from "./admin-food-components/admin-food-modify-restaurants/admin-food-modify-restaurants.component";
+import {
+  AdminFoodAddAnswersComponent
+} from "./admin-food-components/admin-food-add-answers/admin-food-add-answers.component";
+import {
+  AdminFoodAddRestaurantsComponent
+} from "./admin-food-components/admin-food-add-restaurants/admin-food-add-restaurants.component";
 
 
 const routes: Routes = [
@@ -36,7 +42,9 @@ const routes: Routes = [
   {path:'admin/food-modify/:town/:kitchen/:foodName',component:AdminFoodModifyComponent},
   {path:'admin/food-add/:town/:kitchen',component:AdminFoodAddComponent},
   {path:'admin/food-modify-answers/:town/:kitchen/:foodName',component:AdminFoodModifyAnswersComponent},
-  {path:'admin/food-modify-restaurants/:town/:kitchen/:foodName',component:AdminFoodModifyRestaurantsComponent}
+  {path:'admin/food-modify-restaurants/:town/:kitchen/:foodName',component:AdminFoodModifyRestaurantsComponent},
+  {path:'admin/food-add-answers/:town/:kitchen/:foodName',component:AdminFoodAddAnswersComponent},
+  {path:'admin/food-add-restaurants/:town/:kitchen/:foodName',component:AdminFoodAddRestaurantsComponent}
 ];
 
 @NgModule({

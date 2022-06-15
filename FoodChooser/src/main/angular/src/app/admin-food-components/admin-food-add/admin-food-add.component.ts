@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AdminFoodService} from "../../services/admin-food.service";
 import {AdminQuestionService} from "../../services/admin-question.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {FoodModel} from "../../models/food-model";
 
 @Component({
   selector: 'app-admin-food-add',
@@ -12,36 +13,24 @@ import {ActivatedRoute} from "@angular/router";
 export class AdminFoodAddComponent implements OnInit {
   town!:string;
   kitchen!:string;
-questions!:string[];
-questionAnswers!:boolean[];
+  foodForm!:FormGroup;
 
-answersForm=this.fb.group({
-  answers:this.fb.array([])
-});
-
-  answerForm():FormGroup{
-    return this.fb.group({
-      answer:''
-    })
-  };
-  constructor(private fb:FormBuilder,private foodService:AdminFoodService,private questionService:AdminQuestionService,private route: ActivatedRoute) {
+  constructor(private foodService:AdminFoodService,private route: ActivatedRoute,private formBuilder:FormBuilder,private router:Router) {
   }
 
   async ngOnInit(){
     this.town=<string>this.route.snapshot.paramMap.get('town');
     this.kitchen=<string>this.route.snapshot.paramMap.get('kitchen');
-    this.questions= await this.questionService.getAllQuestion(this.kitchen);
-    for(let question in this.questions){
-      this.addAnswer();
-    }
+    this.foodForm=this.formBuilder.group({
+      name:['',Validators.required]
+    })
   }
-get answers():FormArray{
-    return this.answersForm.get("answers") as FormArray;
-}
-addAnswer(){
-    this.answers.push(this.answerForm());
-}
-done() {
 
+async foodAdd() {
+  const name = this.foodForm.get('name')?.value;
+  const food=<FoodModel>{};
+  food.foodName=name;
+  await this.foodService.addFood(this.town, this.kitchen, food);
+  await this.router.navigate(['/admin/food-add-answers/' + this.town+'/'+this.kitchen+'/'+name])
 }
 }
