@@ -40,7 +40,7 @@ public class AdminServiceImpl implements AdminService {
         }
         dataBaseRepository.deleteQuestionFromKitchen(questionEntity,kitchen);
     }
-
+//TODO Already exist exception
     @Override
     public String createQuestion(String question, String kitchen) {
         return dataBaseRepository.saveQuestionsToKitchen(new QuestionEntity(question),new QuestionEntity(question),kitchen).getQuestion();
