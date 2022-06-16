@@ -1,0 +1,21 @@
+<p class="text-center">Food add restaurants</p>
+<p  class="text-center">
+  <span *ngFor="let restaurant of restaurants">
+    {{restaurant}}|
+  </span>
+</p>
+<div
+  class="border d-flex align-items-center justify-content-center"
+  style="height: 350px;"
+>
+
+  <div>
+    <form [formGroup]="restaurantForm">
+      <label for="restaurant">Type in the restaurant name:</label>
+      <input type="text" id="restaurant" class="form-control" formControlName="name">
+      <button class="btn btn-primary btn-md"  (click)="restaurantAdd()">Add</button>
+    </form>
+
+  </div>
+</div>
+<button class="btn btn-warning btn-md"  (click)="done()">Done</button>
