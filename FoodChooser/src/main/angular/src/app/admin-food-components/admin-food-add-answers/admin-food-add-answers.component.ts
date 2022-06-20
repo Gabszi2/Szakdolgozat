@@ -16,7 +16,7 @@ export class AdminFoodAddAnswersComponent implements OnInit {
   foodName!:string;
   food!:FoodModel;
   questions!:string[];
-  questionAnswers!:boolean[];
+
 
 
   answersForm=this.fb.group({
