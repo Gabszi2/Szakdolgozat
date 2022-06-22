@@ -14,7 +14,7 @@
           </div>
         </div>
       </div>
-      <button (click)="done()" class="btn btn-sm btn-success">Submit</button>
+      <button (click)="done()" class="btn btn-sm btn-success" [hidden]="answersForm.invalid">Submit</button>
     </form>
   </div>
 </div>

@@ -1,21 +1,22 @@
-<p class="text-center">Food add restaurants</p>
-<p  class="text-center">
-  <span *ngFor="let restaurant of restaurants">
-    {{restaurant}}|
-  </span>
-</p>
-<div
-  class="border d-flex align-items-center justify-content-center"
-  style="height: 350px;"
->
 
-  <div>
-    <form [formGroup]="restaurantForm">
-      <label for="restaurant">Type in the restaurant name:</label>
-      <input type="text" id="restaurant" class="form-control" formControlName="name">
-      <button class="btn btn-primary btn-md"  (click)="restaurantAdd()">Add</button>
+<p class="text-center ">Modify Food restaurants {{foodName}}</p>
+<div class="row justify-content-center text-center h-100">
+  <div class="col-sm-auto text-center my-auto">
+    <button (click)="addRestaurant()" class="btn-warning btn btn-md">Add restaurant</button>
+    <form [formGroup]="restaurantsForm" >
+      <div formArrayName="restaurants" >
+        <div *ngFor="let restaurant of restaurants.controls;let i=index">
+          <div [formGroupName]="i">
+            <input type="text" formControlName="restaurant" class="form-control"  >
+
+          </div>
+          <div class="text-end">
+            <button (click)="delete(i)" class="btn btn-danger btn-sm ">Delete</button>
+          </div>
+        </div>
+      </div>
+      <button (click)="done()" class="btn btn-sm btn-success" [hidden]="restaurantsForm.invalid">Submit</button>
     </form>
-
   </div>
 </div>
-<button class="btn btn-warning btn-md"  (click)="done()">Done</button>
+{{this.restaurantsForm.value | json}}

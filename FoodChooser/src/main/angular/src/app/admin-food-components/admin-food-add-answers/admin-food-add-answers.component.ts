@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
+import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AdminFoodService} from "../../services/admin-food.service";
 import {AdminQuestionService} from "../../services/admin-question.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -25,7 +25,7 @@ export class AdminFoodAddAnswersComponent implements OnInit {
 
   answerForm():FormGroup{
     return this.fb.group({
-      answer:''
+      answer:['',Validators.required]
     })
   };
   constructor(private fb:FormBuilder,private foodService:AdminFoodService,private questionService:AdminQuestionService,private route: ActivatedRoute,private router:Router) {

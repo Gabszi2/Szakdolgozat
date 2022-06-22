@@ -3,7 +3,7 @@ import {FoodModel} from "../../models/food-model";
 import {AdminFoodService} from "../../services/admin-food.service";
 import {AdminQuestionService} from "../../services/admin-question.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-admin-food-add-restaurants',
@@ -15,31 +15,51 @@ export class AdminFoodAddRestaurantsComponent implements OnInit {
   kitchen!:string;
   foodName!:string;
   food!:FoodModel;
-  restaurants:string[]=[];
-  restaurantForm=this.formBuilder.group({
-    name:['',Validators.required]
+
+  restaurantsForm=this.fb.group({
+    restaurants:this.fb.array([])
   });
-  constructor(private foodService:AdminFoodService,private route: ActivatedRoute,private router:Router,private formBuilder:FormBuilder) { }
+
+  restaurantForm():FormGroup{
+    return this.fb.group({
+      restaurant:['',Validators.required]
+    })
+  };
+
+  constructor(private foodService:AdminFoodService,private route: ActivatedRoute,private router:Router,private fb:FormBuilder) { }
 
   async ngOnInit(){
-    this.town=<string>this.route.snapshot.paramMap.get('town');
-    this.kitchen=<string>this.route.snapshot.paramMap.get('kitchen');
-    this.foodName=<string>this.route.snapshot.paramMap.get('foodName');
-    this.food=await this.foodService.getFood(this.town, this.kitchen, this.foodName);
+    this.town = <string>this.route.snapshot.paramMap.get('town');
+    this.kitchen = <string>this.route.snapshot.paramMap.get('kitchen');
+    this.foodName = <string>this.route.snapshot.paramMap.get('foodName');
+    this.food = await this.foodService.getFood(this.town, this.kitchen, this.foodName);
+
+    for (let question in this.food.restaurants) {
+      this.addRestaurant();
+    }
+
 
   }
 
-  async restaurantAdd() {
-    const restaurant = this.restaurantForm.get('name')?.value;
-
-      this.restaurants.push(restaurant);
-
-
+  get restaurants():FormArray{
+    return this.restaurantsForm.get("restaurants") as FormArray;
+  }
+  addRestaurant(){
+    this.restaurants.push(this.restaurantForm());
   }
   async done() {
+    let restaurants=[];
+    for (let i =0; i< this.restaurants.length; i++) {
+      const element = this.restaurants.at(i).get("restaurant")?.value;
+      restaurants.push(element);
+    }
 
-    this.food.restaurants=this.restaurants;
-    await this.foodService.updateFood(this.town, this.kitchen, this.food);
-    await this.router.navigate(['/admin/food-list/' + this.town+'/'+this.kitchen]);
+    this.food.restaurants=restaurants;
+
+    await this.foodService.updateFood(this.town,this.kitchen,this.food);
+    await this.router.navigate(['/admin/food-list/' + this.town+'/'+this.kitchen])
+  }
+  async delete(index:number){
+    this.restaurants.removeAt(index);
   }
 }
