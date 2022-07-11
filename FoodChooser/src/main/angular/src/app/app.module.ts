@@ -24,8 +24,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { AdminFoodModifyAnswersComponent } from './admin-food-components/admin-food-modify-answers/admin-food-modify-answers.component';
 import { AdminFoodModifyRestaurantsComponent } from './admin-food-components/admin-food-modify-restaurants/admin-food-modify-restaurants.component';
-import { AdminFoodAddAnswersComponent } from './admin-food-components/admin-food-add-answers/admin-food-add-answers.component';
-import { AdminFoodAddRestaurantsComponent } from './admin-food-components/admin-food-add-restaurants/admin-food-add-restaurants.component';
+
 
 @NgModule({
   declarations: [
@@ -41,9 +40,7 @@ import { AdminFoodAddRestaurantsComponent } from './admin-food-components/admin-
     AdminQuestionListComponent,
     AdminQuestionStartComponent,
     AdminFoodModifyAnswersComponent,
-    AdminFoodModifyRestaurantsComponent,
-    AdminFoodAddAnswersComponent,
-    AdminFoodAddRestaurantsComponent
+    AdminFoodModifyRestaurantsComponent
   ],
   imports: [
     BrowserModule,

@@ -13,24 +13,71 @@ import {FoodModel} from "../../models/food-model";
 export class AdminFoodAddComponent implements OnInit {
   town!:string;
   kitchen!:string;
-  foodForm!:FormGroup;
+  questions!:string[];
 
-  constructor(private foodService:AdminFoodService,private route: ActivatedRoute,private formBuilder:FormBuilder,private router:Router) {
-  }
+  foodForm= this.formBuilder.group({
+    foodName:['',Validators.required],
+    foodAnswers:this.formBuilder.array([]),
+    foodRestaurants:this.formBuilder.array([])
+  });
 
-  async ngOnInit(){
+  answerForm():FormGroup{
+    return this.formBuilder.group({
+      foodAnswer:['',Validators.required]
+    })
+  };
+
+  restaurantForm():FormGroup{
+    return this.formBuilder.group({
+      foodRestaurant:['',Validators.required]
+    })
+  };
+  constructor(private foodService:AdminFoodService,private route: ActivatedRoute,private formBuilder:FormBuilder,private router:Router,private questionService:AdminQuestionService) { }
+
+  async ngOnInit() {
     this.town=<string>this.route.snapshot.paramMap.get('town');
     this.kitchen=<string>this.route.snapshot.paramMap.get('kitchen');
-    this.foodForm=this.formBuilder.group({
-      name:['',Validators.required]
-    })
+    this.questions= await this.questionService.getAllQuestion(this.kitchen);
+    for(let question in this.questions){
+      this.addAnswer();
+    }
   }
+  get foodRestaurants():FormArray{
+    return this.foodForm.get("foodRestaurants") as FormArray;
+  }
+  addRestaurant(){
+    this.foodRestaurants.push(this.restaurantForm());
+  }
+  addAnswer(){
+    this.foodAnswers.push(this.answerForm());
+  }
+  get foodAnswers():FormArray{
+    return this.foodForm.get("foodAnswers") as FormArray;
+  }
+  async delete(index:number){
+    this.foodRestaurants.removeAt(index);
+  }
+  async foodAdd() {
+    const name = this.foodForm.get('foodName')?.value;
 
-async foodAdd() {
-  const name = this.foodForm.get('name')?.value;
-  const food=<FoodModel>{};
-  food.foodName=name;
-  await this.foodService.addFood(this.town, this.kitchen, food);
-  await this.router.navigate(['/admin/food-add-answers/' + this.town+'/'+this.kitchen+'/'+name])
-}
+    let answers=[];
+    for (let i =0;i< this.foodAnswers.length;i++) {
+      const element = this.foodAnswers.at(i).get("foodAnswer")?.value;
+      answers.push(element);
+    }
+
+    let restaurants=[];
+    for (let i =0; i< this.foodRestaurants.length; i++) {
+      const element = this.foodRestaurants.at(i).get("foodRestaurant")?.value;
+      restaurants.push(element);
+    }
+    const food=<FoodModel>{};
+    food.foodName=name;
+    food.answer=answers;
+    food.restaurants=restaurants;
+
+    await this.foodService.addFood(this.town,this.kitchen,food)
+    await this.router.navigate(['/admin/food-list/' + this.town+'/'+this.kitchen])
+
+  }
 }

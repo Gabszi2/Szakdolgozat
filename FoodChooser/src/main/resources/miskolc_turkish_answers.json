@@ -12,7 +12,7 @@
         true,
         true
       ],
-      "name": "döner"
+      "foodName": "döner"
     },
     {
       "answer": [
@@ -26,7 +26,7 @@
         true,
         false
       ],
-      "name": "dolma"
+      "foodName": "dolma"
     },
     {
       "answer": [
@@ -40,7 +40,7 @@
         true,
         true
       ],
-      "name": "köfte"
+      "foodName": "köfte"
     },
     {
       "answer": [
@@ -54,7 +54,7 @@
         true,
         false
       ],
-      "name": "baklava"
+      "foodName": "baklava"
     },
     {
       "answer": [
@@ -68,7 +68,7 @@
         false,
         false
       ],
-      "name": "gyros"
+      "foodName": "gyros"
     },
     {
       "answer": [
@@ -82,7 +82,7 @@
         true,
         true
       ],
-      "name": "kebab"
+      "foodName": "kebab"
     }
   ]
 }
