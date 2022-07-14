@@ -3,13 +3,14 @@ package hu.uni.miskolc.s9njk6.foodchooser.service;
 import hu.uni.miskolc.s9njk6.foodchooser.repository.DataBaseRepository;
 import hu.uni.miskolc.s9njk6.foodchooser.repository.FoodEntity;
 import hu.uni.miskolc.s9njk6.foodchooser.repository.QuestionEntity;
+import hu.uni.miskolc.s9njk6.foodchooser.service.exceptions.EntityAlreadyExistsException;
 import hu.uni.miskolc.s9njk6.foodchooser.service.exceptions.NoSuchEntityException;
 import org.springframework.stereotype.Service;
 
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -40,10 +41,16 @@ public class AdminServiceImpl implements AdminService {
         }
         dataBaseRepository.deleteQuestionFromKitchen(questionEntity,kitchen);
     }
-//TODO Already exist exception
+
     @Override
-    public String createQuestion(String question, String kitchen) {
-        return dataBaseRepository.saveQuestionsToKitchen(new QuestionEntity(question),new QuestionEntity(question),kitchen).getQuestion();
+    public String createQuestion(String question, String kitchen) throws EntityAlreadyExistsException {
+        QuestionEntity questionEntity=dataBaseRepository.getQuestionFromKitchen(question, kitchen);
+
+        if (questionEntity==null){
+
+            return dataBaseRepository.saveQuestionsToKitchen(new QuestionEntity(question),new QuestionEntity(question),kitchen).getQuestion();
+        }
+        throw new EntityAlreadyExistsException(question);
     }
 
     @Override
@@ -73,8 +80,12 @@ public class AdminServiceImpl implements AdminService {
         return new FoodDto(foodEntity) ;
     }
     @Override
-    public FoodDto createFood(FoodDto foodDto, String town, String kitchen) {
-        return new FoodDto(dataBaseRepository.saveFoodToTownAndKitchen(foodDto.toEntity(),town,kitchen));
+    public FoodDto createFood(FoodDto foodDto, String town, String kitchen) throws EntityAlreadyExistsException {
+        FoodEntity foodEntity=dataBaseRepository.getFoodFromTownAndKitchen(foodDto.getFoodName(),town,kitchen);
+        if(foodEntity==null){
+            return new FoodDto(dataBaseRepository.saveFoodToTownAndKitchen(foodDto.toEntity(),town,kitchen));
+        }
+       throw new EntityAlreadyExistsException(foodDto.getFoodName());
     }
 
     @Override

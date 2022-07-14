@@ -1,6 +1,7 @@
 package hu.uni.miskolc.s9njk6.foodchooser.controller;
 
 import hu.uni.miskolc.s9njk6.foodchooser.service.AdminService;
+import hu.uni.miskolc.s9njk6.foodchooser.service.exceptions.EntityAlreadyExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ public class AdminController {
         adminService.deleteQuestion(question, kitchen);
     }
     @PostMapping(value = "/question/{kitchen}")
-    ResponseEntity<String> createQuestion(@RequestParam("question") String question,@PathVariable("kitchen") String kitchen){
+    ResponseEntity<String> createQuestion(@RequestParam("question") String question,@PathVariable("kitchen") String kitchen) throws EntityAlreadyExistsException {
 return new ResponseEntity<>(adminService.createQuestion(question, kitchen),HttpStatus.CREATED);
     }
     @PutMapping("question/{kitchen}")
@@ -63,7 +64,7 @@ return new ResponseEntity<>(adminService.createQuestion(question, kitchen),HttpS
         adminService.deleteFood(foodDto.toServiceFoodDto(),town,kitchen);
     }
     @PostMapping(value = "/food/{town}/{kitchen}",consumes = "application/json")
-    ResponseEntity<FoodDto> createFood(@RequestBody @Valid FoodDto foodDto,@PathVariable("town") String town,@PathVariable("kitchen") String kitchen){
+    ResponseEntity<FoodDto> createFood(@RequestBody @Valid FoodDto foodDto,@PathVariable("town") String town,@PathVariable("kitchen") String kitchen) throws EntityAlreadyExistsException {
         return new ResponseEntity<>(new FoodDto( adminService.createFood(foodDto.toServiceFoodDto(),town,kitchen)),HttpStatus.CREATED);
     }
 @PutMapping("/food/{town}/{kitchen}")
