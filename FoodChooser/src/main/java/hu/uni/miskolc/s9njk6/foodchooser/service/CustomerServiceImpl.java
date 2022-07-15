@@ -33,7 +33,7 @@ public class CustomerServiceImpl implements CustomerService {
 
         for (FoodEntity foodEntity:dataBaseRepository.getAllFoodFromTownAndKitchen(town, kitchen)
         ) {
-            if (foodEntity.getAnswer().equals(customerAnswers)){
+            if (foodEntity.getAnswer()==(customerAnswers)){
                 return new FoodDto(foodEntity);
             }
         }
