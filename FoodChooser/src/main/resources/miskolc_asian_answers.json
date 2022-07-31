@@ -14,9 +14,7 @@
       ],
       "foodName": "Curry"
     },
-    {
-      "foodName": "Ramen"
-    },
+
     {
       "answer": [
         false,
@@ -54,7 +52,8 @@
         false,
         false,
         true,
-        false
+        false,
+        true
       ],
       "foodName": "sesame chicken"
     },
@@ -137,6 +136,7 @@
         false,
         false,
         true,
+        false,
         false
       ],
       "foodName": "seafood soup"

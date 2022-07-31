@@ -29,15 +29,32 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public FoodDto findFoodForRecommendation(boolean[] customerAnswers, String town, String kitchen) throws NoSuchFoodException {
-
+    public FoodDto findFoodForRecommendation(boolean[] customerAnswers, String town, String kitchen){
+        List<FoodDto> allFoods=new ArrayList<>();
+        FoodDto output=null;
         for (FoodEntity foodEntity:dataBaseRepository.getAllFoodFromTownAndKitchen(town, kitchen)
         ) {
-            if (foodEntity.getAnswer()==(customerAnswers)){
-                return new FoodDto(foodEntity);
+            allFoods.add(new FoodDto(foodEntity));
+
+        }
+
+       for (FoodDto food:allFoods){
+
+            int good=0;
+
+            for (int i=0;i<food.getAnswer().length;i++){
+if (food.getAnswer()[i]==customerAnswers[i]){
+                good++;}
+            }
+           System.out.println(good);
+           if (good==food.getAnswer().length){
+                output=food;
             }
         }
-        throw new NoSuchFoodException();
 
+        if (output==null){
+            throw new NoSuchFoodException();
+        }
+        return output;
     }
 }

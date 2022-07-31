@@ -31,5 +31,6 @@ public class CustomerController {
     @GetMapping("/result/{town}/{kitchen}")
     ResponseEntity<FoodDto> result(@PathVariable("town") String town, @PathVariable("kitchen") String kitchen, @RequestParam("answers") boolean[] answers) throws NoSuchFoodException {
         return new ResponseEntity<>(new FoodDto(customerService.findFoodForRecommendation(answers,town,kitchen)),HttpStatus.OK);
+
     }
 }

@@ -6,6 +6,6 @@ import hu.uni.miskolc.s9njk6.foodchooser.service.exceptions.NoSuchFoodException;
 public interface CustomerService {
 
     Iterable<String> allQuestions(String kitchen);
-    FoodDto findFoodForRecommendation(boolean[] answers,String town,String kitchen) throws NoSuchFoodException;
+    FoodDto findFoodForRecommendation(boolean[] answers,String town,String kitchen);
     //TODO food and question recommendations from costumers
 }

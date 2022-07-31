@@ -24,6 +24,9 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { AdminFoodModifyAnswersComponent } from './admin-food-components/admin-food-modify-answers/admin-food-modify-answers.component';
 import { AdminFoodModifyRestaurantsComponent } from './admin-food-components/admin-food-modify-restaurants/admin-food-modify-restaurants.component';
+import { CustomerQuestionsFormComponent } from './customer/customer-questions-form/customer-questions-form.component';
+import { CustomerResultsComponent } from './customer/customer-results/customer-results.component';
+import { CustomerStartComponent } from './customer/customer-start/customer-start.component';
 
 
 @NgModule({
@@ -40,7 +43,10 @@ import { AdminFoodModifyRestaurantsComponent } from './admin-food-components/adm
     AdminQuestionListComponent,
     AdminQuestionStartComponent,
     AdminFoodModifyAnswersComponent,
-    AdminFoodModifyRestaurantsComponent
+    AdminFoodModifyRestaurantsComponent,
+    CustomerQuestionsFormComponent,
+    CustomerResultsComponent,
+    CustomerStartComponent
   ],
   imports: [
     BrowserModule,

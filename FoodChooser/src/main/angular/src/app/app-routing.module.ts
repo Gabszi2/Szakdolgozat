@@ -22,10 +22,14 @@ import {
 import {
   AdminFoodModifyRestaurantsComponent
 } from "./admin-food-components/admin-food-modify-restaurants/admin-food-modify-restaurants.component";
+import {CustomerQuestionsFormComponent} from "./customer/customer-questions-form/customer-questions-form.component";
+import {CustomerResultsComponent} from "./customer/customer-results/customer-results.component";
+import {CustomerStartComponent} from "./customer/customer-start/customer-start.component";
 
 
 const routes: Routes = [
   {path: '', component: StartPageComponent},
+  //admin
   {path: 'admin', component: AdminChoiceComponent},
   {path: 'admin/food-start', component: AdminFoodStartComponent},
   {path: 'admin/question-start', component: AdminQuestionStartComponent},
@@ -36,7 +40,11 @@ const routes: Routes = [
   {path:'admin/food-modify/:town/:kitchen/:foodName',component:AdminFoodModifyComponent},
   {path:'admin/food-add/:town/:kitchen',component:AdminFoodAddComponent},
   {path:'admin/food-modify-answers/:town/:kitchen/:foodName',component:AdminFoodModifyAnswersComponent},
-  {path:'admin/food-modify-restaurants/:town/:kitchen/:foodName',component:AdminFoodModifyRestaurantsComponent}
+  {path:'admin/food-modify-restaurants/:town/:kitchen/:foodName',component:AdminFoodModifyRestaurantsComponent},
+  //customer
+  {path:'start',component:CustomerStartComponent},
+  {path:'question-form/:town/:kitchen',component:CustomerQuestionsFormComponent},
+  {path:'results/:town/:kitchen',component:CustomerResultsComponent}
 
 ];
 
