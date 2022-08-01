@@ -18,4 +18,5 @@ public interface DataBaseRepository {
     FoodEntity getFoodFromTownAndKitchen(String foodName, String town, String kitchen);
     QuestionEntity getQuestionFromKitchen(String question, String kitchen);
     //TODO food and question recommendations from costumers
+    //TODO login user database
 }

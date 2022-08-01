@@ -15,3 +15,8 @@ export class StartPageComponent implements OnInit {
   }
 
 }
+//TODO HTML re-haul
+//TODO navbar for admins in HTML
+//TODO admin,customer guard
+//TODO user service
+//TODO question for teach about exception handling in angular (massage)
