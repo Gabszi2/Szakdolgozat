@@ -56,9 +56,9 @@ export class CustomerQuestionsFormComponent implements OnInit {
       answers.push(element);
     }
 
-    let food=await this.service.getResult(answers,this.town,this.kitchen);
 
-    alert(food.foodName)
-   // await this.router.navigate(['/result/' + this.town+'/'+this.kitchen])
+
+
+   await this.router.navigate(['/results/' + this.town+'/'+this.kitchen+'/'+JSON.stringify(answers)])
   }
 }

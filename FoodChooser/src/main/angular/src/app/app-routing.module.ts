@@ -44,7 +44,7 @@ const routes: Routes = [
   //customer
   {path:'start',component:CustomerStartComponent},
   {path:'question-form/:town/:kitchen',component:CustomerQuestionsFormComponent},
-  {path:'results/:town/:kitchen',component:CustomerResultsComponent}
+  {path:'results/:town/:kitchen/:answers',component:CustomerResultsComponent}
 
 ];
 
