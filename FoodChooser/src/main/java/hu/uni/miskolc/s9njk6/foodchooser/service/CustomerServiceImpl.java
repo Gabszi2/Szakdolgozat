@@ -46,7 +46,7 @@ public class CustomerServiceImpl implements CustomerService {
 if (food.getAnswer()[i]==customerAnswers[i]){
                 good++;}
             }
-           System.out.println(good);
+
            if (good==food.getAnswer().length){
                 output=food;
             }

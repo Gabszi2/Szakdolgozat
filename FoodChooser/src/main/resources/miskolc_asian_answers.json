@@ -14,7 +14,6 @@
       ],
       "foodName": "Curry"
     },
-
     {
       "answer": [
         false,
@@ -69,7 +68,11 @@
         false,
         false
       ],
-      "foodName": "Gyoza"
+      "foodName": "Gyoza",
+      "restaurants": [
+        "aaaa",
+        "dddd"
+      ]
     },
     {
       "answer": [
