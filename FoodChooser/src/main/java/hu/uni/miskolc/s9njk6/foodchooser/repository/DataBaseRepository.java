@@ -20,7 +20,7 @@ public interface DataBaseRepository {
     Collection<UserEntity> getAllUser();
     FoodEntity getFoodFromTownAndKitchen(String foodName, String town, String kitchen);
     QuestionEntity getQuestionFromKitchen(String question, String kitchen);
-    UserEntity getUser(String email);
+    UserEntity getUser(String email,String password);
 
     //TODO food and question recommendations from costumers
     //TODO login user database

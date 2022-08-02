@@ -210,12 +210,12 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
     }
 
     @Override
-    public UserEntity getUser(String email) {
+    public UserEntity getUser(String email,String pasword) {
         Collection<UserEntity> allUser=getAllUser();
 
         for (UserEntity user:allUser
         ) {
-            if (user.getEmail().equals(email)){
+            if (user.getEmail().equals(email)&&user.getPassword().equals(pasword)){
                 return user;
             }
         }
