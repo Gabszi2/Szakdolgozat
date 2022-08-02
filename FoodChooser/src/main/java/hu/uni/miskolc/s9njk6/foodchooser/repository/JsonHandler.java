@@ -30,6 +30,11 @@ public class JsonHandler {
         path = "src/main/resources/" + kitchen.toLowerCase() + "_questions.json";
         dbJsonName="questions";
     }
+    //users
+    public JsonHandler() {
+        path="src/main/resources/users.json";
+        dbJsonName="users";
+    }
 
     //returns the content of the file as a JsonArray
     public JSONArray arrayParser(){

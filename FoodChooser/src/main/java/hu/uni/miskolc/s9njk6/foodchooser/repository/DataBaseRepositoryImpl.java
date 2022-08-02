@@ -15,6 +15,29 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     @Override
+    public UserEntity saveUser(UserEntity userEntity) {
+        Collection<UserEntity> inAll=getAllUser();
+        JSONArray outToWrite=new JSONArray();
+        int counter=0;
+
+        for (UserEntity user:inAll){
+            //update
+            if (!user.getEmail().equals(userEntity.getEmail())){
+                outToWrite.add(user);
+                counter++;
+            }else {
+                outToWrite.add(userEntity);
+            }
+        }
+        //create
+        if (counter==inAll.size()){
+            outToWrite.add(userEntity);
+        }
+        new JsonHandler().writeJsonArrayToFile(outToWrite);
+        return userEntity;
+    }
+
+    @Override
     public FoodEntity saveFoodToTownAndKitchen(FoodEntity foodEntity, String town, String kitchen) {
         Collection<FoodEntity> inAll= getAllFoodFromTownAndKitchen(town,kitchen);
         JSONArray outToWrite=new JSONArray();
@@ -51,7 +74,7 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
 
      * @param oldQuestion question you want to change (for adding new question this should be the same as the newQuestion)
      * @param newQuestion question you want to change the old one (for adding new question this should be the same as the oldQuestion, this will be added)
-     * @param kitchen
+
      */
     @Override
     public QuestionEntity saveQuestionsToKitchen(QuestionEntity oldQuestion, QuestionEntity newQuestion, String kitchen) {
@@ -81,6 +104,22 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
         new JsonHandler(kitchen).writeJsonArrayToFile(outToWrite);
         return newQuestion;
 
+    }
+
+    @Override
+    public void deleteUser(UserEntity userEntity) {
+        Collection<UserEntity> inAll= getAllUser();
+        JSONArray outToWrite=new JSONArray();
+
+        for (UserEntity user:inAll
+        ) {
+            if (!user.getEmail().equals(userEntity.getEmail())){
+                outToWrite.add(user);
+            }
+
+
+        }
+        new JsonHandler().writeJsonArrayToFile(outToWrite);
     }
 
     @Override
@@ -117,6 +156,24 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
     }
 
     @Override
+    public Collection<UserEntity> getAllUser() {
+        Collection<UserEntity> output=new ArrayList<>();
+        JsonHandler jsonHandler=new JsonHandler();
+        JSONArray jsonArray=jsonHandler.arrayParser();
+
+        Iterator<JSONObject> i=jsonArray.iterator();
+        while (i.hasNext()){
+
+            JSONObject userJsonEntity=i.next();
+            UserEntity userEntity =gson.fromJson(userJsonEntity.toString(), UserEntity.class);
+            output.add(userEntity);
+
+        }
+
+        return output;
+    }
+
+    @Override
     public Collection<FoodEntity> getAllFoodFromTownAndKitchen(String town, String kitchen) {
         Collection<FoodEntity> output=new ArrayList<>();
         JsonHandler jsonHandler=new JsonHandler(town, kitchen);
@@ -150,6 +207,19 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
 
 
         return output;
+    }
+
+    @Override
+    public UserEntity getUser(String email) {
+        Collection<UserEntity> allUser=getAllUser();
+
+        for (UserEntity user:allUser
+        ) {
+            if (user.getEmail().equals(email)){
+                return user;
+            }
+        }
+        return null;
     }
 
     @Override
