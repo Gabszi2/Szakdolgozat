@@ -4,11 +4,11 @@ import javax.validation.constraints.NotEmpty;
 import java.util.Arrays;
 
 public class FoodDto {
-    //@NotEmpty
+    @NotEmpty
     private boolean[] answer;
     @NotEmpty
     private String foodName;
-  //  @NotEmpty
+   @NotEmpty
     private String[] restaurants;
 
     public FoodDto() {
