@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {RouterModule} from "@angular/router";
-import {StartPageComponent} from './start-page/start-page.component';
+import {LoginComponent} from './login/login.component';
 import {AdminChoiceComponent} from './admin-choice/admin-choice.component';
 import {AdminFoodStartComponent} from './admin-food-components/admin-food-start/admin-food-start.component';
 import {AdminFoodListComponent} from './admin-food-components/admin-food-list/admin-food-list.component';
@@ -27,12 +27,13 @@ import { AdminFoodModifyRestaurantsComponent } from './admin-food-components/adm
 import { CustomerQuestionsFormComponent } from './customer/customer-questions-form/customer-questions-form.component';
 import { CustomerResultsComponent } from './customer/customer-results/customer-results.component';
 import { CustomerStartComponent } from './customer/customer-start/customer-start.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    StartPageComponent,
+    LoginComponent,
     AdminChoiceComponent,
     AdminFoodStartComponent,
     AdminFoodListComponent,
@@ -46,7 +47,8 @@ import { CustomerStartComponent } from './customer/customer-start/customer-start
     AdminFoodModifyRestaurantsComponent,
     CustomerQuestionsFormComponent,
     CustomerResultsComponent,
-    CustomerStartComponent
+    CustomerStartComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

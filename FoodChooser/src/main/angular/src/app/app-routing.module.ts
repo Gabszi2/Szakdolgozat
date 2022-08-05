@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {StartPageComponent} from "./start-page/start-page.component";
+import {LoginComponent} from "./login/login.component";
 import {AdminChoiceComponent} from "./admin-choice/admin-choice.component";
 import {AdminFoodStartComponent} from "./admin-food-components/admin-food-start/admin-food-start.component";
 import {
@@ -25,26 +25,31 @@ import {
 import {CustomerQuestionsFormComponent} from "./customer/customer-questions-form/customer-questions-form.component";
 import {CustomerResultsComponent} from "./customer/customer-results/customer-results.component";
 import {CustomerStartComponent} from "./customer/customer-start/customer-start.component";
+import {RegisterComponent} from "./register/register.component";
+import {AdminGuard} from "./admin.guard";
+import {UserGuard} from "./user.guard";
 
 
 const routes: Routes = [
-  {path: '', component: StartPageComponent},
+  {path: '', redirectTo:'/login',pathMatch:'full'},
+  {path:'login',component:LoginComponent},
+  {path:'register',component:RegisterComponent},
   //admin
-  {path: 'admin', component: AdminChoiceComponent},
-  {path: 'admin/food-start', component: AdminFoodStartComponent},
-  {path: 'admin/question-start', component: AdminQuestionStartComponent},
-  {path:'admin/question-list/:kitchen',component:AdminQuestionListComponent},
-  {path:'admin/question-add/:kitchen',component:AdminQuestionAddComponent},
-  {path:'admin/question-modify/:kitchen/:question',component:AdminQuestionModifyComponent},
-  {path:'admin/food-list/:town/:kitchen',component:AdminFoodListComponent},
-  {path:'admin/food-modify/:town/:kitchen/:foodName',component:AdminFoodModifyComponent},
-  {path:'admin/food-add/:town/:kitchen',component:AdminFoodAddComponent},
-  {path:'admin/food-modify-answers/:town/:kitchen/:foodName',component:AdminFoodModifyAnswersComponent},
-  {path:'admin/food-modify-restaurants/:town/:kitchen/:foodName',component:AdminFoodModifyRestaurantsComponent},
+  {path: 'admin', component: AdminChoiceComponent,canActivate:[AdminGuard]},
+  {path: 'admin/food-start', component: AdminFoodStartComponent,canActivate:[AdminGuard]},
+  {path: 'admin/question-start', component: AdminQuestionStartComponent,canActivate:[AdminGuard]},
+  {path:'admin/question-list/:kitchen',component:AdminQuestionListComponent,canActivate:[AdminGuard]},
+  {path:'admin/question-add/:kitchen',component:AdminQuestionAddComponent,canActivate:[AdminGuard]},
+  {path:'admin/question-modify/:kitchen/:question',component:AdminQuestionModifyComponent,canActivate:[AdminGuard]},
+  {path:'admin/food-list/:town/:kitchen',component:AdminFoodListComponent,canActivate:[AdminGuard]},
+  {path:'admin/food-modify/:town/:kitchen/:foodName',component:AdminFoodModifyComponent,canActivate:[AdminGuard]},
+  {path:'admin/food-add/:town/:kitchen',component:AdminFoodAddComponent,canActivate:[AdminGuard]},
+  {path:'admin/food-modify-answers/:town/:kitchen/:foodName',component:AdminFoodModifyAnswersComponent,canActivate:[AdminGuard]},
+  {path:'admin/food-modify-restaurants/:town/:kitchen/:foodName',component:AdminFoodModifyRestaurantsComponent,canActivate:[AdminGuard]},
   //customer
-  {path:'start',component:CustomerStartComponent},
-  {path:'question-form/:town/:kitchen',component:CustomerQuestionsFormComponent},
-  {path:'results/:town/:kitchen/:answers',component:CustomerResultsComponent}
+  {path:'start',component:CustomerStartComponent,canActivate:[UserGuard]},
+  {path:'question-form/:town/:kitchen',component:CustomerQuestionsFormComponent,canActivate:[UserGuard]},
+  {path:'results/:town/:kitchen/:answers',component:CustomerResultsComponent,canActivate:[UserGuard]}
 
 ];
 
