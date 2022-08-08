@@ -1,1 +1,17 @@
-<p>register works!</p>
+<p class="text-center">Registration</p>
+<button class="btn btn-md btn-primary" routerLink="/register">Register</button>
+<div class="row justify-content-center text-center h-100" ><p>register works!</p>
+  <form [formGroup]="registerForm" class="col-md-auto text-center my-auto">
+    <label for="email">Email address:</label>
+    <input type="email" id="email" class="form-control" formControlName="email">
+    <p></p>
+    <label for="userName">User name:</label>
+    <input type="text" id="userName" class="form-control" formControlName="userName">
+    <p></p>
+    <label for="password">Password:</label>
+    <input type="password" id="password" class="form-control" formControlName="password">
+    <p></p>
+
+    <button (click)="register()" class="btn btn-sm btn-success" [hidden]="registerForm.invalid">Submit</button>
+  </form>
+</div>

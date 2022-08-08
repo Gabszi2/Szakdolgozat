@@ -36,6 +36,4 @@ export class LoginComponent implements OnInit {
 }
 //TODO HTML re-haul
 //TODO navbar for admins in HTML
-//TODO login test
-//TODO register(html) + test
 //TODO question for teach about exception handling in angular (massage)+ routing help
