@@ -34,6 +34,5 @@ export class LoginComponent implements OnInit {
   }
 
 }
-//TODO HTML re-haul
-//TODO navbar for admins in HTML
+//TODO HTML re-haul?
 //TODO question for teach about exception handling in angular (massage)+ routing help

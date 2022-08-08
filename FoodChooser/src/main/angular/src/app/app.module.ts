@@ -28,6 +28,7 @@ import { CustomerQuestionsFormComponent } from './customer/customer-questions-fo
 import { CustomerResultsComponent } from './customer/customer-results/customer-results.component';
 import { CustomerStartComponent } from './customer/customer-start/customer-start.component';
 import { RegisterComponent } from './register/register.component';
+import { NavComponent } from './nav/nav.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { RegisterComponent } from './register/register.component';
     CustomerQuestionsFormComponent,
     CustomerResultsComponent,
     CustomerStartComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,

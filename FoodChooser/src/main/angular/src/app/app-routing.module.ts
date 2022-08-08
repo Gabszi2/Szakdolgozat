@@ -35,7 +35,7 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
   //admin
-  {path: 'admin', component: AdminChoiceComponent,canActivate:[AdminGuard]},
+  {path: 'admin', component: AdminChoiceComponent,canActivate:[AdminGuard]},//TODO nem szükséges?
   {path: 'admin/food-start', component: AdminFoodStartComponent,canActivate:[AdminGuard]},
   {path: 'admin/question-start', component: AdminQuestionStartComponent,canActivate:[AdminGuard]},
   {path:'admin/question-list/:kitchen',component:AdminQuestionListComponent,canActivate:[AdminGuard]},
