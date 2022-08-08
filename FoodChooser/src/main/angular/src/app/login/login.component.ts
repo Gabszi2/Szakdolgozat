@@ -27,9 +27,9 @@ export class LoginComponent implements OnInit {
     await this.userService.login(email,password)
 
     if (this.userService.isAdmin()){
-      await this.router.navigate(['/admin'])
+      await this.router.navigate(['/admin']).then(()=>{window.location.reload()})
     }else {
-      await this.router.navigate(['/start'])
+      await this.router.navigate(['/start']).then(()=>{window.location.reload()})
     }
   }
 

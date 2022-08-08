@@ -49,7 +49,7 @@ const user= await lastValueFrom(this.http.get<UserModel>(this.userUrl+'login/'+e
   logout() {
     this.currentUser = undefined;
     localStorage.clear();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/login']).then(()=>{window.location.reload()});
   }
 
 }
