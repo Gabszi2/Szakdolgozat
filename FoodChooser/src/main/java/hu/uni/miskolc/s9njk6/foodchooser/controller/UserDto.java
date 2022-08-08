@@ -11,7 +11,6 @@ public class UserDto {
     private String userName;
     @NotEmpty
     private String password;
-    @NotEmpty
     private boolean admin;
 
     public UserDto() {
