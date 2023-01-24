@@ -15,6 +15,29 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     @Override
+    public RecommendationEntity saveRecommendation(RecommendationEntity recommendationEntity) {
+        Collection<RecommendationEntity> inAll=getAllRecommendations(false);
+        JSONArray outToWrite=new JSONArray();
+        int counter=0;
+
+        for (RecommendationEntity recommendation:inAll){
+            //update
+            if (recommendation.getId()!=recommendationEntity.getId()){
+                outToWrite.add(recommendation);
+                counter++;
+            }else {
+                outToWrite.add(recommendationEntity);
+            }
+        }
+        //create
+        if (counter==inAll.size()){
+            outToWrite.add(recommendationEntity);
+        }
+        new  JsonHandler(false).writeJsonArrayToFile(outToWrite);
+        return recommendationEntity;
+    }
+
+    @Override
     public UserEntity saveUser(UserEntity userEntity) {
         Collection<UserEntity> inAll=getAllUser();
         JSONArray outToWrite=new JSONArray();
@@ -33,7 +56,7 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
         if (counter==inAll.size()){
             outToWrite.add(userEntity);
         }
-        new JsonHandler().writeJsonArrayToFile(outToWrite);
+        new JsonHandler(true).writeJsonArrayToFile(outToWrite);
         return userEntity;
     }
 
@@ -107,6 +130,19 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
     }
 
     @Override
+    public void deleteRecommendation(RecommendationEntity recommendationEntity) {
+        Collection<RecommendationEntity> inAll=getAllRecommendations(false);
+        JSONArray outToWrite=new JSONArray();
+
+        for (RecommendationEntity recommendation:inAll){
+            if (recommendation.getId()!=recommendationEntity.getId()){
+                outToWrite.add(recommendation);
+            }
+        }
+        new JsonHandler(false).writeJsonArrayToFile(outToWrite);
+    }
+
+    @Override
     public void deleteUser(UserEntity userEntity) {
         Collection<UserEntity> inAll= getAllUser();
         JSONArray outToWrite=new JSONArray();
@@ -119,7 +155,7 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
 
 
         }
-        new JsonHandler().writeJsonArrayToFile(outToWrite);
+        new JsonHandler(true).writeJsonArrayToFile(outToWrite);
     }
 
     @Override
@@ -156,9 +192,34 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
     }
 
     @Override
+    public Collection<RecommendationEntity> getAllRecommendations(boolean approved) {
+        Collection<RecommendationEntity> output=new ArrayList<>();
+        JsonHandler jsonHandler=new JsonHandler(false);
+        JSONArray jsonArray=jsonHandler.arrayParser();
+
+        Iterator<JSONObject>i= jsonArray.iterator();
+        if (approved){
+            while (i.hasNext()){
+                JSONObject recommendationJsonEntity=i.next();
+                RecommendationEntity recommendationEntity=gson.fromJson(recommendationJsonEntity.toString(),RecommendationEntity.class);
+                if (recommendationEntity.isApproved()){
+                    output.add(recommendationEntity);
+                }
+            }
+        }else {
+            while (i.hasNext()){
+                JSONObject recommendationJsonEntity=i.next();
+                RecommendationEntity recommendationEntity=gson.fromJson(recommendationJsonEntity.toString(),RecommendationEntity.class);
+                output.add(recommendationEntity);
+            }
+        }
+        return output;
+    }
+
+    @Override
     public Collection<UserEntity> getAllUser() {
         Collection<UserEntity> output=new ArrayList<>();
-        JsonHandler jsonHandler=new JsonHandler();
+        JsonHandler jsonHandler=new JsonHandler(true);
         JSONArray jsonArray=jsonHandler.arrayParser();
 
         Iterator<JSONObject> i=jsonArray.iterator();
@@ -207,6 +268,17 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
 
 
         return output;
+    }
+
+    @Override
+    public RecommendationEntity getRecommendation(int id) {
+        Collection<RecommendationEntity> allRecommendation=getAllRecommendations(false);
+        for (RecommendationEntity recommendation:allRecommendation){
+            if (recommendation.getId()==id){
+                return recommendation;
+            }
+        }
+        return null;
     }
 
     @Override

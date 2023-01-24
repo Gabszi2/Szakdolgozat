@@ -10,12 +10,12 @@ public interface DataBaseRepository {
     FoodEntity saveFoodToTownAndKitchen(FoodEntity foodEntity, String town, String kitchen);
     QuestionEntity saveQuestionsToKitchen(QuestionEntity oldQuestion,QuestionEntity newQuestion, String kitchen);
     UserEntity saveUser(UserEntity userEntity);
-    RecommendationEntity saveRecommendation(boolean approved);
+    RecommendationEntity saveRecommendation(RecommendationEntity recommendationEntity);
     //delete
     void deleteFoodFromTownAndKitchen(FoodEntity foodEntity, String town, String kitchen);
     void deleteQuestionFromKitchen(QuestionEntity question,String kitchen);
     void deleteUser(UserEntity userEntity);
-    RecommendationEntity deleteRecommendation(boolean approved);
+    void deleteRecommendation(RecommendationEntity recommendationEntity);
     //read
     Collection<FoodEntity> getAllFoodFromTownAndKitchen(String town, String kitchen);
     Collection<QuestionEntity> getAllQuestionFromKitchen(String kitchen);
@@ -25,8 +25,8 @@ public interface DataBaseRepository {
     FoodEntity getFoodFromTownAndKitchen(String foodName, String town, String kitchen);
     QuestionEntity getQuestionFromKitchen(String question, String kitchen);
     UserEntity getUser(String email,String password);
-    RecommendationEntity getRecommendation(boolean approved);
+    RecommendationEntity getRecommendation(int id);
 
-    //TODO food and question recommendations from costumers(save to pending, delete)
+
 
 }

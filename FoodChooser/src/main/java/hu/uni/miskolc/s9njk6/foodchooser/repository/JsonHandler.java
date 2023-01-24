@@ -31,14 +31,15 @@ public class JsonHandler {
         dbJsonName="questions";
     }
     //users construktor
-    public JsonHandler() {
+    public JsonHandler(boolean user) {
+        if (user){
         path="src/main/resources/users.json";
         dbJsonName="users";
-    }
-    //recommendations construktor
-    public JsonHandler(boolean approved) {
-        path="src/main/resources/customer_recommendations.json";
-        dbJsonName="recommendations";
+        }else {
+            path="src/main/resources/customer_recommendations.json";
+            dbJsonName="recommendations";
+        }
+
     }
 
 
