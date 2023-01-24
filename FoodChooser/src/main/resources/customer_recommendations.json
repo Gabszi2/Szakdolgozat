@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    {
+      "id": 1,
+      "type": "food/question/restaurant",
+      "kitchen":"...",
+      "city": "..",
+      "restaurant": "...",
+      "message": "name/question/menu",
+      "approved": false
+    }
+  ]
+}
