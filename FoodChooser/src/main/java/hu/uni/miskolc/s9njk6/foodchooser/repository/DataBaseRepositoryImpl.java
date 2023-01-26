@@ -190,7 +190,12 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
         }
         new JsonHandler(kitchen).writeJsonArrayToFile(outToWrite);
     }
+    /**
 
+     * @param approved false=all recommendations, true=only approved recommendations
+
+
+     */
     @Override
     public Collection<RecommendationEntity> getAllRecommendations(boolean approved) {
         Collection<RecommendationEntity> output=new ArrayList<>();

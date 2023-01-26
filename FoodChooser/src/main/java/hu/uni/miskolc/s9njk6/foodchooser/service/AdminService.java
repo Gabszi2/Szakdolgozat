@@ -2,7 +2,7 @@ package hu.uni.miskolc.s9njk6.foodchooser.service;
 
 
 import hu.uni.miskolc.s9njk6.foodchooser.service.exceptions.EntityAlreadyExistsException;
-
+//TODO recommendations, user controll
 public interface AdminService {
 
     Iterable<String> allQuestions(String kitchen);
@@ -15,5 +15,13 @@ public interface AdminService {
     FoodDto createFood(FoodDto foodDto, String town, String kitchen) throws EntityAlreadyExistsException;
     void saveFood(FoodDto foodDto, String town, String kitchen);
     void deleteFood(FoodDto foodDto,String town,String kitchen);
-    //TODO Food and question recommendations from costumers
+
+
+    Iterable<RecommendationDto> allRecommendations();
+    Iterable<RecommendationDto> allApprovedRecommendation();
+    RecommendationDto getRecommendation(int id);
+    void approveRecommendation(RecommendationDto recommendationDto);
+    void deleteRecommendation(RecommendationDto recommendationDto);
+    //TODO User admin control
+
 }

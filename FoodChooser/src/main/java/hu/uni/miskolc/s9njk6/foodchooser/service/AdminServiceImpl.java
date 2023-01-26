@@ -3,9 +3,11 @@ package hu.uni.miskolc.s9njk6.foodchooser.service;
 import hu.uni.miskolc.s9njk6.foodchooser.repository.DataBaseRepository;
 import hu.uni.miskolc.s9njk6.foodchooser.repository.FoodEntity;
 import hu.uni.miskolc.s9njk6.foodchooser.repository.QuestionEntity;
+import hu.uni.miskolc.s9njk6.foodchooser.repository.RecommendationEntity;
 import hu.uni.miskolc.s9njk6.foodchooser.service.exceptions.EntityAlreadyExistsException;
 import hu.uni.miskolc.s9njk6.foodchooser.service.exceptions.NoSuchEntityException;
 import org.springframework.stereotype.Service;
+
 
 
 import java.util.ArrayList;
@@ -104,5 +106,54 @@ public class AdminServiceImpl implements AdminService {
             throw new NoSuchEntityException(foodDto.getFoodName());
         }
         dataBaseRepository.deleteFoodFromTownAndKitchen(foodDto.toEntity(),town,kitchen);
+    }
+
+    @Override
+    public Iterable<RecommendationDto> allRecommendations() {
+        List<RecommendationDto> output=new ArrayList<>();
+        for (RecommendationEntity recommendationEntity:dataBaseRepository.getAllRecommendations(false)
+             ) {
+            output.add(new RecommendationDto(recommendationEntity));
+        }
+        return output;
+    }
+
+    @Override
+    public Iterable<RecommendationDto> allApprovedRecommendation() {
+        List<RecommendationDto> output=new ArrayList<>();
+        for (RecommendationEntity recommendationEntity:dataBaseRepository.getAllRecommendations(true)
+        ) {
+            output.add(new RecommendationDto(recommendationEntity));
+        }
+        return output;
+    }
+
+    @Override
+    public RecommendationDto getRecommendation(int id) {
+        RecommendationEntity recommendationEntity=dataBaseRepository.getRecommendation(id);
+        if (recommendationEntity==null){
+            throw new NoSuchEntityException(String.valueOf(id));
+        }return new RecommendationDto(recommendationEntity);
+
+    }
+
+    @Override
+    public void approveRecommendation(RecommendationDto recommendationDto) {
+        RecommendationEntity searched=dataBaseRepository.getRecommendation(recommendationDto.getId());
+        if (searched==null){
+            throw new NoSuchEntityException(String.valueOf(recommendationDto.getId()));
+        }
+        dataBaseRepository.saveRecommendation(recommendationDto.toRecommendationEntity());
+
+    }
+
+    @Override
+    public void deleteRecommendation(RecommendationDto recommendationDto) {
+        RecommendationEntity searched=dataBaseRepository.getRecommendation(recommendationDto.getId());
+        if (searched==null){
+            throw new NoSuchEntityException(String.valueOf(recommendationDto.getId()));
+        }
+        dataBaseRepository.deleteRecommendation(recommendationDto.toRecommendationEntity());
+
     }
 }

@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
-
+//TODO recommendations, user controll
 public class AdminController {
     private final AdminService adminService;
 
