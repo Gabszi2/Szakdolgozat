@@ -19,7 +19,7 @@ public interface AdminService {
 
     Iterable<RecommendationDto> allRecommendations();
     Iterable<RecommendationDto> allApprovedRecommendation();
-    RecommendationDto getRecommendation(int id);
+    RecommendationDto getRecommendation(Long id);
     void approveRecommendation(RecommendationDto recommendationDto);
     void deleteRecommendation(RecommendationDto recommendationDto);
     //TODO User admin control

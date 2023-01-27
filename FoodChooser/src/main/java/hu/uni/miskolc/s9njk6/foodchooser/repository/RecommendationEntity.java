@@ -3,7 +3,7 @@ package hu.uni.miskolc.s9njk6.foodchooser.repository;
 import java.util.Objects;
 
 public class RecommendationEntity {
-    private int id;
+    private Long id;
     private String type;
     private String kitchen;
     private String city;
@@ -14,7 +14,7 @@ public class RecommendationEntity {
     public RecommendationEntity() {
     }
 
-    public RecommendationEntity(int id, String type, String kitchen, String city, String restaurant, String message, boolean approved) {
+    public RecommendationEntity(Long id, String type, String kitchen, String city, String restaurant, String message, boolean approved) {
         this.id = id;
         this.type = type;
         this.kitchen = kitchen;
@@ -24,37 +24,11 @@ public class RecommendationEntity {
         this.approved = approved;
     }
 
-    @Override
-    public String toString() {
-        return "RecommendationEntity{" +
-                "id=" + id +
-                ", type='" + type + '\'' +
-                ", kitchen='" + kitchen + '\'' +
-                ", city='" + city + '\'' +
-                ", restaurant='" + restaurant + '\'' +
-                ", message='" + message + '\'' +
-                ", approved=" + approved +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        RecommendationEntity that = (RecommendationEntity) o;
-        return id == that.id && approved == that.approved && Objects.equals(type, that.type) && Objects.equals(kitchen, that.kitchen) && Objects.equals(city, that.city) && Objects.equals(restaurant, that.restaurant) && Objects.equals(message, that.message);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, type, kitchen, city, restaurant, message, approved);
-    }
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -104,5 +78,31 @@ public class RecommendationEntity {
 
     public void setApproved(boolean approved) {
         this.approved = approved;
+    }
+
+    @Override
+    public String toString() {
+        return "RecommendationEntity{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", kitchen='" + kitchen + '\'' +
+                ", city='" + city + '\'' +
+                ", restaurant='" + restaurant + '\'' +
+                ", message='" + message + '\'' +
+                ", approved=" + approved +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RecommendationEntity that = (RecommendationEntity) o;
+        return approved == that.approved && Objects.equals(id, that.id) && Objects.equals(type, that.type) && Objects.equals(kitchen, that.kitchen) && Objects.equals(city, that.city) && Objects.equals(restaurant, that.restaurant) && Objects.equals(message, that.message);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, type, kitchen, city, restaurant, message, approved);
     }
 }

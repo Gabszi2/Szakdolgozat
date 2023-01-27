@@ -5,7 +5,7 @@ import hu.uni.miskolc.s9njk6.foodchooser.repository.RecommendationEntity;
 import java.util.Objects;
 
 public class RecommendationDto {
-    private int id;
+    private Long id;
     private String type;
     private String kitchen;
     private String city;
@@ -16,7 +16,7 @@ public class RecommendationDto {
     public RecommendationDto() {
     }
 
-    public RecommendationDto(int id, String type, String kitchen, String city, String restaurant, String message,boolean approved) {
+    public RecommendationDto(Long id, String type, String kitchen, String city, String restaurant, String message, boolean approved) {
         this.id = id;
         this.type = type;
         this.kitchen = kitchen;
@@ -36,11 +36,11 @@ public class RecommendationDto {
     }
     public RecommendationEntity toRecommendationEntity(){return new RecommendationEntity(id,type,kitchen,city,restaurant,message,approved);}
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

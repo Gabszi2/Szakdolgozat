@@ -4,6 +4,8 @@ import hu.uni.miskolc.s9njk6.foodchooser.repository.DataBaseRepository;
 import hu.uni.miskolc.s9njk6.foodchooser.repository.FoodEntity;
 import hu.uni.miskolc.s9njk6.foodchooser.repository.QuestionEntity;
 
+import hu.uni.miskolc.s9njk6.foodchooser.repository.RecommendationEntity;
+import hu.uni.miskolc.s9njk6.foodchooser.service.exceptions.EntityAlreadyExistsException;
 import hu.uni.miskolc.s9njk6.foodchooser.service.exceptions.NoSuchFoodException;
 import org.springframework.stereotype.Service;
 
@@ -56,5 +58,12 @@ if (food.getAnswer()[i]==customerAnswers[i]){
             throw new NoSuchFoodException();
         }
         return output;
+    }
+
+    @Override
+    public RecommendationDto createRecommendation(RecommendationDto recommendationDto) {
+
+           return new RecommendationDto(dataBaseRepository.saveRecommendation(recommendationDto.toRecommendationEntity()));
+
     }
 }

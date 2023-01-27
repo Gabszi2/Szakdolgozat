@@ -129,7 +129,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public RecommendationDto getRecommendation(int id) {
+    public RecommendationDto getRecommendation(Long id) {
         RecommendationEntity recommendationEntity=dataBaseRepository.getRecommendation(id);
         if (recommendationEntity==null){
             throw new NoSuchEntityException(String.valueOf(id));

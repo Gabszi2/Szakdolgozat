@@ -16,25 +16,36 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
 
     @Override
     public RecommendationEntity saveRecommendation(RecommendationEntity recommendationEntity) {
-        Collection<RecommendationEntity> inAll=getAllRecommendations(false);
         JSONArray outToWrite=new JSONArray();
-        int counter=0;
+        if (recommendationEntity.getId()==null){
+            outToWrite=new JsonHandler(false).arrayParser();
 
-        for (RecommendationEntity recommendation:inAll){
-            //update
-            if (recommendation.getId()!=recommendationEntity.getId()){
-                outToWrite.add(recommendation);
-                counter++;
-            }else {
-                outToWrite.add(recommendationEntity);
-            }
-        }
-        //create
-        if (counter==inAll.size()){
+            Long rndId;
+            do{
+                rndId=1 + (long) (Math.random() * (1000000 - 1));
+
+            }while (getRecommendation(rndId)!=null);
+            recommendationEntity.setId(rndId);
+
             outToWrite.add(recommendationEntity);
+
+        }else {
+            Collection<RecommendationEntity> inAll=getAllRecommendations(false);
+
+
+            for (RecommendationEntity recommendation:inAll){
+                //update
+                if (recommendation.getId()!=recommendationEntity.getId()){
+                    outToWrite.add(recommendation);
+
+                }else {
+                    outToWrite.add(recommendationEntity);
+                }
+            }
         }
         new  JsonHandler(false).writeJsonArrayToFile(outToWrite);
         return recommendationEntity;
+
     }
 
     @Override
@@ -276,7 +287,7 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
     }
 
     @Override
-    public RecommendationEntity getRecommendation(int id) {
+    public RecommendationEntity getRecommendation(Long id) {
         Collection<RecommendationEntity> allRecommendation=getAllRecommendations(false);
         for (RecommendationEntity recommendation:allRecommendation){
             if (recommendation.getId()==id){
