@@ -2,7 +2,7 @@ package hu.uni.miskolc.s9njk6.foodchooser.service;
 
 
 import hu.uni.miskolc.s9njk6.foodchooser.service.exceptions.EntityAlreadyExistsException;
-//TODO recommendations, user controll
+
 public interface AdminService {
 
     Iterable<String> allQuestions(String kitchen);

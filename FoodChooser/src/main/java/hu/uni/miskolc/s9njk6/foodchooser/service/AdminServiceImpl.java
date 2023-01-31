@@ -143,11 +143,7 @@ public class AdminServiceImpl implements AdminService {
         if (searched==null){
             throw new NoSuchEntityException(String.valueOf(id));
         }
-        if (searched.isApproved()){
-            searched.setApproved(false);
-        }else {
-            searched.setApproved(true);
-        }
+        searched.setApproved(!searched.isApproved());
         dataBaseRepository.saveRecommendation(searched);
 
     }

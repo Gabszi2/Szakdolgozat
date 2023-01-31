@@ -1,14 +1,13 @@
 package hu.uni.miskolc.s9njk6.foodchooser.controller;
 
 import hu.uni.miskolc.s9njk6.foodchooser.service.CustomerService;
+import hu.uni.miskolc.s9njk6.foodchooser.service.exceptions.EntityAlreadyExistsException;
 import hu.uni.miskolc.s9njk6.foodchooser.service.exceptions.NoSuchFoodException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,5 +31,9 @@ public class CustomerController {
     ResponseEntity<FoodDto> result(@PathVariable("town") String town, @PathVariable("kitchen") String kitchen, @RequestParam("answers") boolean[] answers) throws NoSuchFoodException {
         return new ResponseEntity<>(new FoodDto(customerService.findFoodForRecommendation(answers,town,kitchen)),HttpStatus.OK);
 
+    }
+    @PostMapping(value = "/customer-recommendation",consumes = "application/json")
+    ResponseEntity<RecommendationDto> createRecommendation(@RequestBody @Valid RecommendationCreateDto recommendationCreateDto)throws EntityAlreadyExistsException {
+        return new ResponseEntity<>(new RecommendationDto(customerService.createRecommendation(recommendationCreateDto.toServiceRecommendationDto())),HttpStatus.CREATED);
     }
 }

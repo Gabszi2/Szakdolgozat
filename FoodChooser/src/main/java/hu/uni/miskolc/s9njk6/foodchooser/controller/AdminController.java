@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
-//TODO recommendations, user controll
+//TODO user controll
 public class AdminController {
     private final AdminService adminService;
 
@@ -71,4 +71,33 @@ return new ResponseEntity<>(adminService.createQuestion(question, kitchen),HttpS
     void saveFood(@RequestBody @Valid FoodDto foodDto,@PathVariable("town") String town,@PathVariable("kitchen") String kitchen){
         adminService.saveFood(foodDto.toServiceFoodDto(),town,kitchen);
 }
+//Recommendation Requests
+    @GetMapping("/recommendations")
+    ResponseEntity<List<RecommendationDto>> allRecommendations(){
+        List<RecommendationDto> out=new ArrayList<>();
+        for (hu.uni.miskolc.s9njk6.foodchooser.service.RecommendationDto recommendationDto:adminService.allRecommendations()){
+            out.add(new RecommendationDto(recommendationDto));
+        }
+        return new ResponseEntity<>(out,HttpStatus.OK);
+    }
+    @GetMapping("/approved-recommendations")
+    ResponseEntity<List<RecommendationDto>> allApprovedRecommendations(){
+        List<RecommendationDto> out=new ArrayList<>();
+        for (hu.uni.miskolc.s9njk6.foodchooser.service.RecommendationDto recommendationDto:adminService.allApprovedRecommendation()){
+            out.add(new RecommendationDto(recommendationDto));
+        }
+        return new ResponseEntity<>(out,HttpStatus.OK);
+    }
+    @GetMapping("/recpmmendation/{id}")
+    ResponseEntity<RecommendationDto> getRecommendation(@PathVariable("id")Long id){
+    return new ResponseEntity<>(new RecommendationDto(adminService.getRecommendation(id)),HttpStatus.OK);
+    }
+    @DeleteMapping("/recommendation/{id}")
+    void deleteRecommendation(@PathVariable("id")Long id){
+        adminService.deleteRecommendation(id);
+    }
+    @PutMapping("/recommendation/{id}")
+    void updateApprovedRecommendation(@PathVariable("id")Long id){
+        adminService.updateApproveRecommendation(id);
+    }
 }
