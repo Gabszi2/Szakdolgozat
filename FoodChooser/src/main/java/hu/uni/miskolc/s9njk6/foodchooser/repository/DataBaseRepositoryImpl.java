@@ -141,12 +141,12 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
     }
 
     @Override
-    public void deleteRecommendation(RecommendationEntity recommendationEntity) {
+    public void deleteRecommendation(Long id) {
         Collection<RecommendationEntity> inAll=getAllRecommendations(false);
         JSONArray outToWrite=new JSONArray();
 
         for (RecommendationEntity recommendation:inAll){
-            if (recommendation.getId()!=recommendationEntity.getId()){
+            if (recommendation.getId()!=id){
                 outToWrite.add(recommendation);
             }
         }

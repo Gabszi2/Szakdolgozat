@@ -15,7 +15,7 @@ public interface DataBaseRepository {
     void deleteFoodFromTownAndKitchen(FoodEntity foodEntity, String town, String kitchen);
     void deleteQuestionFromKitchen(QuestionEntity question,String kitchen);
     void deleteUser(UserEntity userEntity);
-    void deleteRecommendation(RecommendationEntity recommendationEntity);
+    void deleteRecommendation(Long id);
     //read
     Collection<FoodEntity> getAllFoodFromTownAndKitchen(String town, String kitchen);
     Collection<QuestionEntity> getAllQuestionFromKitchen(String kitchen);

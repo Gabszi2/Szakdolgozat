@@ -138,22 +138,27 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void approveRecommendation(RecommendationDto recommendationDto) {
-        RecommendationEntity searched=dataBaseRepository.getRecommendation(recommendationDto.getId());
+    public void updateApproveRecommendation(Long id) {
+        RecommendationEntity searched=dataBaseRepository.getRecommendation(id);
         if (searched==null){
-            throw new NoSuchEntityException(String.valueOf(recommendationDto.getId()));
+            throw new NoSuchEntityException(String.valueOf(id));
         }
-        dataBaseRepository.saveRecommendation(recommendationDto.toRecommendationEntity());
+        if (searched.isApproved()){
+            searched.setApproved(false);
+        }else {
+            searched.setApproved(true);
+        }
+        dataBaseRepository.saveRecommendation(searched);
 
     }
 
     @Override
-    public void deleteRecommendation(RecommendationDto recommendationDto) {
-        RecommendationEntity searched=dataBaseRepository.getRecommendation(recommendationDto.getId());
+    public void deleteRecommendation(Long id) {
+        RecommendationEntity searched=dataBaseRepository.getRecommendation(id);
         if (searched==null){
-            throw new NoSuchEntityException(String.valueOf(recommendationDto.getId()));
+            throw new NoSuchEntityException(String.valueOf(id));
         }
-        dataBaseRepository.deleteRecommendation(recommendationDto.toRecommendationEntity());
+        dataBaseRepository.deleteRecommendation(id);
 
     }
 }
