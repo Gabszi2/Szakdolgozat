@@ -22,6 +22,9 @@ public interface AdminService {
     RecommendationDto getRecommendation(Long id);
     void updateApproveRecommendation(Long id);
     void deleteRecommendation(Long id);
-    //TODO User admin control
+
+    Iterable<UserDto> allUsers();
+    void updateAdminUser(String email,String password);
+    void deleteUser(String email,String password);
 
 }

@@ -154,13 +154,13 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
     }
 
     @Override
-    public void deleteUser(UserEntity userEntity) {
+    public void deleteUser(String email) {
         Collection<UserEntity> inAll= getAllUser();
         JSONArray outToWrite=new JSONArray();
 
         for (UserEntity user:inAll
         ) {
-            if (!user.getEmail().equals(userEntity.getEmail())){
+            if (!user.getEmail().equals(email)){
                 outToWrite.add(user);
             }
 

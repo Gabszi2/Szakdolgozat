@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
-//TODO user controll
+
 public class AdminController {
     private final AdminService adminService;
 
@@ -88,7 +88,7 @@ return new ResponseEntity<>(adminService.createQuestion(question, kitchen),HttpS
         }
         return new ResponseEntity<>(out,HttpStatus.OK);
     }
-    @GetMapping("/recpmmendation/{id}")
+    @GetMapping("/recommendation/{id}")
     ResponseEntity<RecommendationDto> getRecommendation(@PathVariable("id")Long id){
     return new ResponseEntity<>(new RecommendationDto(adminService.getRecommendation(id)),HttpStatus.OK);
     }
@@ -99,5 +99,22 @@ return new ResponseEntity<>(adminService.createQuestion(question, kitchen),HttpS
     @PutMapping("/recommendation/{id}")
     void updateApprovedRecommendation(@PathVariable("id")Long id){
         adminService.updateApproveRecommendation(id);
+    }
+    //User Requests
+    @GetMapping("/users")
+    ResponseEntity<List<UserDto>> allUsers(){
+        List<UserDto> out=new ArrayList<>();
+        for (hu.uni.miskolc.s9njk6.foodchooser.service.UserDto userDto: adminService.allUsers()){
+            out.add(new UserDto(userDto));
+        }
+        return new ResponseEntity<>(out,HttpStatus.OK);
+    }
+    @DeleteMapping("/user/{email}/{password}")
+    void deleteUser(@PathVariable("email") String email,@PathVariable("password")String password){
+        adminService.deleteUser(email, password);
+    }
+    @PutMapping("/user/{email}/{password}")
+    void updateAdminUser(@PathVariable("email") String email,@PathVariable("password")String password){
+        adminService.updateAdminUser(email,password);
     }
 }

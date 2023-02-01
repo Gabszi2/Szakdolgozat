@@ -1,9 +1,6 @@
 package hu.uni.miskolc.s9njk6.foodchooser.service;
 
-import hu.uni.miskolc.s9njk6.foodchooser.repository.DataBaseRepository;
-import hu.uni.miskolc.s9njk6.foodchooser.repository.FoodEntity;
-import hu.uni.miskolc.s9njk6.foodchooser.repository.QuestionEntity;
-import hu.uni.miskolc.s9njk6.foodchooser.repository.RecommendationEntity;
+import hu.uni.miskolc.s9njk6.foodchooser.repository.*;
 import hu.uni.miskolc.s9njk6.foodchooser.service.exceptions.EntityAlreadyExistsException;
 import hu.uni.miskolc.s9njk6.foodchooser.service.exceptions.NoSuchEntityException;
 import org.springframework.stereotype.Service;
@@ -156,5 +153,34 @@ public class AdminServiceImpl implements AdminService {
         }
         dataBaseRepository.deleteRecommendation(id);
 
+    }
+
+    @Override
+    public Iterable<UserDto> allUsers() {
+        List<UserDto> output=new ArrayList<>();
+        for (UserEntity userEntity:dataBaseRepository.getAllUser()){
+            output.add(new UserDto(userEntity));
+        }
+        return output;
+    }
+
+    @Override
+    public void updateAdminUser(String email, String password) {
+        UserEntity searched=dataBaseRepository.getUser(email, password);
+        if (searched==null){
+            throw new NoSuchEntityException(email);
+        }
+        searched.setAdmin(!searched.isAdmin());
+        dataBaseRepository.saveUser(searched);
+
+    }
+
+    @Override
+    public void deleteUser(String email, String password) {
+        UserEntity searched=dataBaseRepository.getUser(email, password);
+        if (searched==null){
+            throw new NoSuchEntityException(email);
+        }
+        dataBaseRepository.deleteUser(email);
     }
 }
