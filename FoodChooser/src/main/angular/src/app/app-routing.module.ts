@@ -22,7 +22,9 @@ import {
 import {
   AdminFoodModifyRestaurantsComponent
 } from "./admin-food-components/admin-food-modify-restaurants/admin-food-modify-restaurants.component";
-import {CustomerQuestionsFormComponent} from "./customer-components/customer-questions-form/customer-questions-form.component";
+import {
+  CustomerQuestionsFormComponent
+} from "./customer-components/customer-questions-form/customer-questions-form.component";
 import {CustomerResultsComponent} from "./customer-components/customer-results/customer-results.component";
 import {CustomerStartComponent} from "./customer-components/customer-start/customer-start.component";
 import {RegisterComponent} from "./register/register.component";
@@ -33,27 +35,39 @@ import {AdminRecommendationsComponent} from "./admin-recommendations/admin-recom
 
 
 const routes: Routes = [
-  {path: '', redirectTo:'/login',pathMatch:'full'},
-  {path:'login',component:LoginComponent},
-  {path:'register',component:RegisterComponent},
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
   //admin
-  {path: 'admin', component: AdminChoiceComponent,canActivate:[AdminGuard]},//TODO nem szükséges?
-  {path: 'admin/food-start', component: AdminFoodStartComponent,canActivate:[AdminGuard]},
-  {path: 'admin/question-start', component: AdminQuestionStartComponent,canActivate:[AdminGuard]},
-  {path:'admin/question-list/:kitchen',component:AdminQuestionListComponent,canActivate:[AdminGuard]},
-  {path:'admin/question-add/:kitchen',component:AdminQuestionAddComponent,canActivate:[AdminGuard]},
-  {path:'admin/question-modify/:kitchen/:question',component:AdminQuestionModifyComponent,canActivate:[AdminGuard]},
-  {path:'admin/food-list/:town/:kitchen',component:AdminFoodListComponent,canActivate:[AdminGuard]},
-  {path:'admin/food-modify/:town/:kitchen/:foodName',component:AdminFoodModifyComponent,canActivate:[AdminGuard]},
-  {path:'admin/food-add/:town/:kitchen',component:AdminFoodAddComponent,canActivate:[AdminGuard]},
-  {path:'admin/food-modify-answers/:town/:kitchen/:foodName',component:AdminFoodModifyAnswersComponent,canActivate:[AdminGuard]},
-  {path:'admin/food-modify-restaurants/:town/:kitchen/:foodName',component:AdminFoodModifyRestaurantsComponent,canActivate:[AdminGuard]},
-  {path:'admin/users',component:AdminUsersComponent,canActivate:[AdminGuard]},
-  {path:'admin/recommendations',component:AdminRecommendationsComponent,canActivate:[AdminGuard]},
+  {path: 'admin', component: AdminChoiceComponent, canActivate: [AdminGuard]},//TODO nem szükséges?
+  {path: 'admin/food-start', component: AdminFoodStartComponent, canActivate: [AdminGuard]},
+  {path: 'admin/question-start', component: AdminQuestionStartComponent, canActivate: [AdminGuard]},
+  {path: 'admin/question-list/:kitchen', component: AdminQuestionListComponent, canActivate: [AdminGuard]},
+  {path: 'admin/question-add/:kitchen', component: AdminQuestionAddComponent, canActivate: [AdminGuard]},
+  {
+    path: 'admin/question-modify/:kitchen/:question',
+    component: AdminQuestionModifyComponent,
+    canActivate: [AdminGuard]
+  },
+  {path: 'admin/food-list/:town/:kitchen', component: AdminFoodListComponent, canActivate: [AdminGuard]},
+  {path: 'admin/food-modify/:town/:kitchen/:foodName', component: AdminFoodModifyComponent, canActivate: [AdminGuard]},
+  {path: 'admin/food-add/:town/:kitchen', component: AdminFoodAddComponent, canActivate: [AdminGuard]},
+  {
+    path: 'admin/food-modify-answers/:town/:kitchen/:foodName',
+    component: AdminFoodModifyAnswersComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: 'admin/food-modify-restaurants/:town/:kitchen/:foodName',
+    component: AdminFoodModifyRestaurantsComponent,
+    canActivate: [AdminGuard]
+  },
+  {path: 'admin/users', component: AdminUsersComponent, canActivate: [AdminGuard]},
+  {path: 'admin/recommendations', component: AdminRecommendationsComponent, canActivate: [AdminGuard]},
   //customer-components
-  {path:'start',component:CustomerStartComponent,canActivate:[UserGuard]},
-  {path:'question-form/:town/:kitchen',component:CustomerQuestionsFormComponent,canActivate:[UserGuard]},
-  {path:'results/:town/:kitchen/:answers',component:CustomerResultsComponent,canActivate:[UserGuard]}
+  {path: 'start', component: CustomerStartComponent, canActivate: [UserGuard]},
+  {path: 'question-form/:town/:kitchen', component: CustomerQuestionsFormComponent, canActivate: [UserGuard]},
+  {path: 'results/:town/:kitchen/:answers', component: CustomerResultsComponent, canActivate: [UserGuard]}
 
 ];
 

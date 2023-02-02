@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AdminFoodModifyRestaurantsComponent } from './admin-food-modify-restaurants.component';
+import {AdminFoodModifyRestaurantsComponent} from './admin-food-modify-restaurants.component';
 
 describe('AdminFoodModifyRestaurantsComponent', () => {
   let component: AdminFoodModifyRestaurantsComponent;
@@ -8,9 +8,9 @@ describe('AdminFoodModifyRestaurantsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdminFoodModifyRestaurantsComponent ]
+      declarations: [AdminFoodModifyRestaurantsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

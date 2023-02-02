@@ -1,15 +1,15 @@
 <p class="text-center">Food add</p>
 
-<div class="row justify-content-center text-center h-100" >
+<div class="row justify-content-center text-center h-100">
   <form [formGroup]="foodForm" class="col-md-auto text-center my-auto">
     <label for="foodName">Type in the food name:</label>
-    <input type="text" id="foodName" class="form-control" formControlName="foodName">
+    <input class="form-control" formControlName="foodName" id="foodName" type="text">
     <p></p>
-    <div formArrayName="foodAnswers" >
+    <div formArrayName="foodAnswers">
       <div *ngFor="let foodAnswer of foodAnswers.controls;let i=index">
         <div [formGroupName]="i">
           <label for="foodAnswer">{{questions[i]}}</label>
-          <select formControlName="foodAnswer" id="foodAnswer" class="form-control text-center">
+          <select class="form-control text-center" formControlName="foodAnswer" id="foodAnswer">
             <option value="true">True</option>
             <option value="false">False</option>
           </select>
@@ -18,10 +18,10 @@
     </div>
     <p></p>
     <button (click)="addRestaurant()" class="btn-warning btn btn-md">Add restaurant</button>
-    <div formArrayName="foodRestaurants" >
+    <div formArrayName="foodRestaurants">
       <div *ngFor="let foodRestaurant of foodRestaurants.controls;let i=index">
         <div [formGroupName]="i">
-          <input type="text" formControlName="foodRestaurant" class="form-control"  >
+          <input class="form-control" formControlName="foodRestaurant" type="text">
 
         </div>
         <div class="text-end">
@@ -29,6 +29,6 @@
         </div>
       </div>
     </div>
-    <button (click)="foodAdd()" class="btn btn-sm btn-success" [hidden]="foodForm.invalid">Submit</button>
+    <button (click)="foodAdd()" [hidden]="foodForm.invalid" class="btn btn-sm btn-success">Submit</button>
   </form>
 </div>

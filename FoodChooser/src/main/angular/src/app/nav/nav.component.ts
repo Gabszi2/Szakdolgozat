@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../services/user.service";
 
 @Component({
@@ -8,11 +8,13 @@ import {UserService} from "../services/user.service";
 })
 export class NavComponent implements OnInit {
 
-  constructor(private service:UserService) { }
+  constructor(private service: UserService) {
+  }
 
   ngOnInit(): void {
   }
-  logOut(){
+
+  logOut() {
     this.service.logout();
   }
 }

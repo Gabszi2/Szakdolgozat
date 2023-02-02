@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {lastValueFrom} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {UserModel} from "../models/user-model";
@@ -8,24 +8,24 @@ import {Router} from "@angular/router";
   providedIn: 'root'
 })
 export class UserService {
-userUrl:string;
-  private currentUser?: UserModel ;
+  userUrl: string;
+  private currentUser?: UserModel;
 
 
   constructor(private http: HttpClient, private router: Router) {
-    this.userUrl='http://localhost:8080/'
+    this.userUrl = 'http://localhost:8080/'
   }
 
 //login/register
-  async login(email:string,password:string){
-const user= await lastValueFrom(this.http.get<UserModel>(this.userUrl+'login/'+email+'/'+password));
-    this.currentUser =  user;
+  async login(email: string, password: string) {
+    const user = await lastValueFrom(this.http.get<UserModel>(this.userUrl + 'login/' + email + '/' + password));
+    this.currentUser = user;
 
-    localStorage.setItem('user',JSON.stringify(user));
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
-  async register(user:UserModel){
-    return lastValueFrom(this.http.post<UserModel>(this.userUrl+'register',user))
+  async register(user: UserModel) {
+    return lastValueFrom(this.http.post<UserModel>(this.userUrl + 'register', user))
   }
 
   isLoggedIn() {
@@ -36,11 +36,11 @@ const user= await lastValueFrom(this.http.get<UserModel>(this.userUrl+'login/'+e
   }
 
   isAdmin() {
-    const userS=localStorage.getItem('user');
-    let userO:UserModel;
-    if (userS){
+    const userS = localStorage.getItem('user');
+    let userO: UserModel;
+    if (userS) {
 
-      userO=JSON.parse(userS);
+      userO = JSON.parse(userS);
       return userO.admin;
     }
     return false;
@@ -49,16 +49,21 @@ const user= await lastValueFrom(this.http.get<UserModel>(this.userUrl+'login/'+e
   logout() {
     this.currentUser = undefined;
     localStorage.clear();
-    this.router.navigate(['/login']).then(()=>{window.location.reload()});
+    this.router.navigate(['/login']).then(() => {
+      window.location.reload()
+    });
   }
+
 //admin
-  async getAllUsers(){
-    return lastValueFrom(this.http.get<UserModel[]>(this.userUrl+"admin/users"))
+  async getAllUsers() {
+    return lastValueFrom(this.http.get<UserModel[]>(this.userUrl + "admin/users"))
   }
-  async deleteUser(email:string,password:string){
-return lastValueFrom(this.http.delete(this.userUrl+"admin/user/"+email+"/"+password))
+
+  async deleteUser(email: string, password: string) {
+    return lastValueFrom(this.http.delete(this.userUrl + "admin/user/" + email + "/" + password))
   }
-  async updateUserAdmin(email:string,password:string){
-    return lastValueFrom(this.http.put(this.userUrl+"admin/user/"+email+"/"+password,{}))
+
+  async updateUserAdmin(email: string, password: string) {
+    return lastValueFrom(this.http.put(this.userUrl + "admin/user/" + email + "/" + password, {}))
   }
 }

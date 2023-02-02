@@ -1,13 +1,12 @@
-
 <p class="text-center ">Modify Food restaurants {{foodName}}</p>
 <div class="row justify-content-center text-center h-100">
   <div class="col-sm-auto text-center my-auto">
     <button (click)="addRestaurant()" class="btn-warning btn btn-md">Add restaurant</button>
-    <form [formGroup]="restaurantsForm" >
-      <div formArrayName="restaurants" >
+    <form [formGroup]="restaurantsForm">
+      <div formArrayName="restaurants">
         <div *ngFor="let restaurant of restaurants.controls;let i=index">
           <div [formGroupName]="i">
-            <input type="text" formControlName="restaurant" class="form-control"  >
+            <input class="form-control" formControlName="restaurant" type="text">
 
           </div>
           <div class="text-end">
@@ -15,7 +14,7 @@
           </div>
         </div>
       </div>
-      <button (click)="done()" class="btn btn-sm btn-success" [hidden]="restaurantsForm.invalid">Submit</button>
+      <button (click)="done()" [hidden]="restaurantsForm.invalid" class="btn btn-sm btn-success">Submit</button>
     </form>
   </div>
 </div>

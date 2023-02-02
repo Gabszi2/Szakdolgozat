@@ -2,6 +2,6 @@ export interface UserModel {
   email: string;
   userName: string;
   password: string;
-  admin:boolean
+  admin: boolean
 
 }

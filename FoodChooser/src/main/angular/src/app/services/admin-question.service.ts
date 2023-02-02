@@ -22,13 +22,16 @@ export class AdminQuestionService {
 
   async deleteQuestion(kitchen: string, question: string) {
     let httpParams = new HttpParams().set('question', question);
-    let options = { params: httpParams };
-   return  lastValueFrom(this.http.delete(this.adminUrl + '/question/' + kitchen,options ));
+    let options = {params: httpParams};
+    return lastValueFrom(this.http.delete(this.adminUrl + '/question/' + kitchen, options));
   }
 
   async addQuestion(kitchen: string, question: string) {
     let httpParams = new HttpParams().set('question', question);
-    return lastValueFrom(this.http.post(this.adminUrl + '/question/' + kitchen, null,{params: httpParams,responseType:"text" }));
+    return lastValueFrom(this.http.post(this.adminUrl + '/question/' + kitchen, null, {
+      params: httpParams,
+      responseType: "text"
+    }));
   }
 
   async updateQuestion(kitchen: string, questionSave: QuestionSaveModel) {

@@ -5,15 +5,16 @@
 >
   <div>
     <form [formGroup]="chooseForm">
-    <label for="town">Select a town</label>
-    <select id="town" class="form-control" formControlName="town">
-      <option *ngFor="let town of towns" value="{{town}}">{{town.charAt(0).toUpperCase()+town.slice(1)}}</option>
-    </select>
-      <label for="kitchen">Select a kitchen</label>
-      <select id="kitchen" class="form-control" formControlName="kitchen">
-        <option *ngFor="let kitchen of kitchens" value="{{kitchen}}">{{kitchen.charAt(0).toUpperCase()+kitchen.slice(1)}}</option>
+      <label for="town">Select a town</label>
+      <select class="form-control" formControlName="town" id="town">
+        <option *ngFor="let town of towns" value="{{town}}">{{town.charAt(0).toUpperCase() + town.slice(1)}}</option>
       </select>
-    <button class="btn btn-primary btn-md" [hidden]="chooseForm.invalid" (click)="choice()">Select</button>
+      <label for="kitchen">Select a kitchen</label>
+      <select class="form-control" formControlName="kitchen" id="kitchen">
+        <option *ngFor="let kitchen of kitchens"
+                value="{{kitchen}}">{{kitchen.charAt(0).toUpperCase() + kitchen.slice(1)}}</option>
+      </select>
+      <button (click)="choice()" [hidden]="chooseForm.invalid" class="btn btn-primary btn-md">Select</button>
     </form>
   </div>
 </div>

@@ -1,14 +1,14 @@
 <p class="text-center">Users {{currentUser.userName}}</p>
 <div *ngFor="let user of userAll" class="row justify-content-center text-center h-100">
-  <div class="col-md-4 text-center my-auto" [hidden]="user.admin">
+  <div [hidden]="user.admin" class="col-md-4 text-center my-auto">
     <div class="card card-block d-flex">
-      <div class="fw-bold card-body align-items-center d-flex justify-content-center" >
+      <div class="fw-bold card-body align-items-center d-flex justify-content-center">
         Email address: {{user.email}}<br>
         User name: {{user.userName}}<br>
       </div>
 
       <div class="text-end">
-        <button class="btn btn-sm btn-primary" type="button" (click)="updateAdmin(user)">Change admin status</button>
+        <button (click)="updateAdmin(user)" class="btn btn-sm btn-primary" type="button">Change admin status</button>
       </div>
       <div class="text-end">
         <button (click)="delete(user)" class="btn btn-sm btn-danger">Delete</button>
@@ -17,16 +17,16 @@
     </div>
 
   </div>
-  <div class="col-md-4 text-center my-auto" [hidden]="!user.admin">
+  <div [hidden]="!user.admin" class="col-md-4 text-center my-auto">
     <div class="card card-block d-flex">
-      <div class="fw-bold card-body align-items-center d-flex justify-content-center" >
+      <div class="fw-bold card-body align-items-center d-flex justify-content-center">
         Email address: {{user.email}}<br>
         User name: {{user.userName}}<br>
         Admin
       </div>
 
       <div class="text-end">
-        <button class="btn btn-sm btn-primary" type="button" (click)="updateAdmin(user)">Change admin status</button>
+        <button (click)="updateAdmin(user)" class="btn btn-sm btn-primary" type="button">Change admin status</button>
       </div>
       <div class="text-end">
         <button (click)="delete(user)" class="btn btn-sm btn-danger">Delete</button>

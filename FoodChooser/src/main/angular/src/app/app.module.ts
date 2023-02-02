@@ -22,15 +22,21 @@ import {
 import {AppRoutingModule} from './app-routing.module';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { AdminFoodModifyAnswersComponent } from './admin-food-components/admin-food-modify-answers/admin-food-modify-answers.component';
-import { AdminFoodModifyRestaurantsComponent } from './admin-food-components/admin-food-modify-restaurants/admin-food-modify-restaurants.component';
-import { CustomerQuestionsFormComponent } from './customer-components/customer-questions-form/customer-questions-form.component';
-import { CustomerResultsComponent } from './customer-components/customer-results/customer-results.component';
-import { CustomerStartComponent } from './customer-components/customer-start/customer-start.component';
-import { RegisterComponent } from './register/register.component';
-import { NavComponent } from './nav/nav.component';
-import { AdminUsersComponent } from './admin-users/admin-users.component';
-import { AdminRecommendationsComponent } from './admin-recommendations/admin-recommendations.component';
+import {
+  AdminFoodModifyAnswersComponent
+} from './admin-food-components/admin-food-modify-answers/admin-food-modify-answers.component';
+import {
+  AdminFoodModifyRestaurantsComponent
+} from './admin-food-components/admin-food-modify-restaurants/admin-food-modify-restaurants.component';
+import {
+  CustomerQuestionsFormComponent
+} from './customer-components/customer-questions-form/customer-questions-form.component';
+import {CustomerResultsComponent} from './customer-components/customer-results/customer-results.component';
+import {CustomerStartComponent} from './customer-components/customer-start/customer-start.component';
+import {RegisterComponent} from './register/register.component';
+import {NavComponent} from './nav/nav.component';
+import {AdminUsersComponent} from './admin-users/admin-users.component';
+import {AdminRecommendationsComponent} from './admin-recommendations/admin-recommendations.component';
 
 
 @NgModule({

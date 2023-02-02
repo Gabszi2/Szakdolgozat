@@ -5,6 +5,12 @@
       "userName": "gabsz",
       "password": "gaboca",
       "admin": true
+    },
+    {
+      "email": "gabszi2@hotmail.com",
+      "userName": "asd",
+      "password": "aa",
+      "admin": false
     }
   ]
 }

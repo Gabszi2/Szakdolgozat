@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import { Location } from '@angular/common'
 import {UserService} from "./services/user.service";
 
 @Component({
@@ -9,11 +8,13 @@ import {UserService} from "./services/user.service";
 })
 export class AppComponent {
   title = 'angular';
-  admin!:boolean
-  constructor(private service:UserService) {
+  admin!: boolean
+
+  constructor(private service: UserService) {
   }
+
   ngOnInit(): void {
-    this.admin=this.service.isAdmin()
+    this.admin = this.service.isAdmin()
   }
 
 }

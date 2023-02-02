@@ -7,8 +7,8 @@
     <form [formGroup]="questionForm">
       <p>Old question: {{oldQuestion}}</p>
       <label for="question">Type in the modified question:</label>
-      <input type="text" id="question" class="form-control" formControlName="question">
-      <button class="btn btn-primary btn-md"  (click)="questionModify()">Modify</button>
+      <input class="form-control" formControlName="question" id="question" type="text">
+      <button (click)="questionModify()" class="btn btn-primary btn-md">Modify</button>
     </form>
   </div>
 </div>

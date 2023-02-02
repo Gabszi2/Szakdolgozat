@@ -1,20 +1,20 @@
 <p class="text-center ">Answer the questions</p>
 <div class="row justify-content-center text-center h-100">
   <div class="col-sm-auto text-center my-auto">
-    <form [formGroup]="answersForm" >
+    <form [formGroup]="answersForm">
 
-      <div formArrayName="answers" >
+      <div formArrayName="answers">
         <div *ngFor="let answer of answers.controls;let i=index">
           <div [formGroupName]="i">
             <label for="answer">{{questions[i]}}</label>
-            <select formControlName="answer" id="answer" class="form-control"  >
+            <select class="form-control" formControlName="answer" id="answer">
               <option value="true">True</option>
               <option value="false">False</option>
             </select>
           </div>
         </div>
       </div>
-      <button (click)="done()" class="btn btn-sm btn-success" [hidden]="answersForm.invalid">Submit</button>
+      <button (click)="done()" [hidden]="answersForm.invalid" class="btn btn-sm btn-success">Submit</button>
     </form>
   </div>
 </div>

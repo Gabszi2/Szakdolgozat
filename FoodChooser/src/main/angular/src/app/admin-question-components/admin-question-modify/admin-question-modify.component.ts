@@ -10,25 +10,27 @@ import {QuestionSaveModel} from "../../models/question-save-model";
   styleUrls: ['./admin-question-modify.component.css']
 })
 export class AdminQuestionModifyComponent implements OnInit {
-  kitchen!:string;
-  oldQuestion!:string;
-  questionForm!:FormGroup;
-  constructor(private service:AdminQuestionService,private route: ActivatedRoute,private router:Router,private formBuilder:FormBuilder) {
+  kitchen!: string;
+  oldQuestion!: string;
+  questionForm!: FormGroup;
+
+  constructor(private service: AdminQuestionService, private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
-    this.kitchen=<string>this.route.snapshot.paramMap.get('kitchen');
-    this.oldQuestion=<string>this.route.snapshot.paramMap.get('question')
-    this.questionForm=this.formBuilder.group({
-      question:['',Validators.required]
+    this.kitchen = <string>this.route.snapshot.paramMap.get('kitchen');
+    this.oldQuestion = <string>this.route.snapshot.paramMap.get('question')
+    this.questionForm = this.formBuilder.group({
+      question: ['', Validators.required]
     })
   }
-  async questionModify(){
-    const newQuestion=this.questionForm.get('question')?.value;
-    const questionUpdate=<QuestionSaveModel>{};
-    questionUpdate.oldQuestion=this.oldQuestion;
-    questionUpdate.newQuestion=newQuestion;
-    await this.service.updateQuestion(this.kitchen,questionUpdate);
+
+  async questionModify() {
+    const newQuestion = this.questionForm.get('question')?.value;
+    const questionUpdate = <QuestionSaveModel>{};
+    questionUpdate.oldQuestion = this.oldQuestion;
+    questionUpdate.newQuestion = newQuestion;
+    await this.service.updateQuestion(this.kitchen, questionUpdate);
     await this.router.navigate(['/admin/question-list/' + this.kitchen])
   }
 }
