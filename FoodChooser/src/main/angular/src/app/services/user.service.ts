@@ -16,7 +16,7 @@ userUrl:string;
     this.userUrl='http://localhost:8080/'
   }
 
-
+//login/register
   async login(email:string,password:string){
 const user= await lastValueFrom(this.http.get<UserModel>(this.userUrl+'login/'+email+'/'+password));
     this.currentUser =  user;
@@ -51,5 +51,14 @@ const user= await lastValueFrom(this.http.get<UserModel>(this.userUrl+'login/'+e
     localStorage.clear();
     this.router.navigate(['/login']).then(()=>{window.location.reload()});
   }
-
+//admin
+  async getAllUsers(){
+    return lastValueFrom(this.http.get<UserModel[]>(this.userUrl+"admin/users"))
+  }
+  async deleteUser(email:string,password:string){
+return lastValueFrom(this.http.delete(this.userUrl+"admin/user/"+email+"/"+password))
+  }
+  async updateUserAdmin(email:string,password:string){
+    return lastValueFrom(this.http.put(this.userUrl+"admin/user/"+email+"/"+password,{}))
+  }
 }

@@ -22,12 +22,14 @@ import {
 import {
   AdminFoodModifyRestaurantsComponent
 } from "./admin-food-components/admin-food-modify-restaurants/admin-food-modify-restaurants.component";
-import {CustomerQuestionsFormComponent} from "./customer/customer-questions-form/customer-questions-form.component";
-import {CustomerResultsComponent} from "./customer/customer-results/customer-results.component";
-import {CustomerStartComponent} from "./customer/customer-start/customer-start.component";
+import {CustomerQuestionsFormComponent} from "./customer-components/customer-questions-form/customer-questions-form.component";
+import {CustomerResultsComponent} from "./customer-components/customer-results/customer-results.component";
+import {CustomerStartComponent} from "./customer-components/customer-start/customer-start.component";
 import {RegisterComponent} from "./register/register.component";
 import {AdminGuard} from "./admin.guard";
 import {UserGuard} from "./user.guard";
+import {AdminUsersComponent} from "./admin-users/admin-users.component";
+import {AdminRecommendationsComponent} from "./admin-recommendations/admin-recommendations.component";
 
 
 const routes: Routes = [
@@ -46,7 +48,9 @@ const routes: Routes = [
   {path:'admin/food-add/:town/:kitchen',component:AdminFoodAddComponent,canActivate:[AdminGuard]},
   {path:'admin/food-modify-answers/:town/:kitchen/:foodName',component:AdminFoodModifyAnswersComponent,canActivate:[AdminGuard]},
   {path:'admin/food-modify-restaurants/:town/:kitchen/:foodName',component:AdminFoodModifyRestaurantsComponent,canActivate:[AdminGuard]},
-  //customer
+  {path:'admin/users',component:AdminUsersComponent,canActivate:[AdminGuard]},
+  {path:'admin/recommendations',component:AdminRecommendationsComponent,canActivate:[AdminGuard]},
+  //customer-components
   {path:'start',component:CustomerStartComponent,canActivate:[UserGuard]},
   {path:'question-form/:town/:kitchen',component:CustomerQuestionsFormComponent,canActivate:[UserGuard]},
   {path:'results/:town/:kitchen/:answers',component:CustomerResultsComponent,canActivate:[UserGuard]}

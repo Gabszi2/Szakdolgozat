@@ -5,7 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {FoodModel} from "../../models/food-model";
 
 @Component({
-  selector: 'app-customer-results',
+  selector: 'app-customer-components-results',
   templateUrl: './customer-results.component.html',
   styleUrls: ['./customer-results.component.css']
 })

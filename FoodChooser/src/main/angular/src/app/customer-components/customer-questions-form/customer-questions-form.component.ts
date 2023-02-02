@@ -7,7 +7,7 @@ import {FoodModel} from "../../models/food-model";
 import {CustomerService} from "../../services/customer.service";
 
 @Component({
-  selector: 'app-customer-questions-form',
+  selector: 'app-customer-components-questions-form',
   templateUrl: './customer-questions-form.component.html',
   styleUrls: ['./customer-questions-form.component.css']
 })
