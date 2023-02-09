@@ -1,0 +1,22 @@
+<p class="text-center">Recommendations </p>
+<button class="btn btn-md btn-warning" routerLink="/admin/approved-recommendations" type="button">Approved recommendations</button>
+<div *ngFor="let recommendation of recommendationAll" class="row justify-content-center text-center h-100">
+  <div  class="col-md-4 text-center my-auto">
+    <div class="card card-block d-flex">
+      <div class="fw-bold card-body align-items-center d-flex justify-content-center">
+        Type:{{recommendation.type}}<br>
+        Message:{{recommendation.message}}<br>
+        Approved:{{recommendation.approved}}<br>
+
+      </div>
+
+      <div class="text-end">
+        <button (click)="approveChange(recommendation.id)" class="btn btn-sm btn-primary" type="button">Change approved status</button>
+      </div>
+      <div class="text-end">
+        <button (click)="delete(recommendation.id)" class="btn btn-sm btn-danger">Delete</button>
+      </div>
+
+    </div>
+  </div>
+</div>

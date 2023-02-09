@@ -31,7 +31,11 @@ import {RegisterComponent} from "./register/register.component";
 import {AdminGuard} from "./admin.guard";
 import {UserGuard} from "./user.guard";
 import {AdminUsersComponent} from "./admin-users/admin-users.component";
-import {AdminRecommendationsComponent} from "./admin-recommendations/admin-recommendations.component";
+import {AdminRecommendationsComponent} from "./admin-recommendation-components/admin-recommendations/admin-recommendations.component";
+import {AdminApprovedRecComponent} from "./admin-recommendation-components/admin-approved-rec/admin-approved-rec.component";
+import {
+  AdminRecommendationDetailsComponent
+} from "./admin-recommendation-components/admin-recommendation-details/admin-recommendation-details.component";
 
 
 const routes: Routes = [
@@ -64,6 +68,8 @@ const routes: Routes = [
   },
   {path: 'admin/users', component: AdminUsersComponent, canActivate: [AdminGuard]},
   {path: 'admin/recommendations', component: AdminRecommendationsComponent, canActivate: [AdminGuard]},
+  {path:'admin/approved-recommendations',component:AdminApprovedRecComponent,canActivate:[AdminGuard]},
+  {path:'admin/recommendation/:id',component:AdminRecommendationDetailsComponent,canActivate:[AdminGuard]},
   //customer-components
   {path: 'start', component: CustomerStartComponent, canActivate: [UserGuard]},
   {path: 'question-form/:town/:kitchen', component: CustomerQuestionsFormComponent, canActivate: [UserGuard]},

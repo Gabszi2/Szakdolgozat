@@ -36,7 +36,9 @@ import {CustomerStartComponent} from './customer-components/customer-start/custo
 import {RegisterComponent} from './register/register.component';
 import {NavComponent} from './nav/nav.component';
 import {AdminUsersComponent} from './admin-users/admin-users.component';
-import {AdminRecommendationsComponent} from './admin-recommendations/admin-recommendations.component';
+import {AdminRecommendationsComponent} from './admin-recommendation-components/admin-recommendations/admin-recommendations.component';
+import { AdminApprovedRecComponent } from './admin-recommendation-components/admin-approved-rec/admin-approved-rec.component';
+import { AdminRecommendationDetailsComponent } from './admin-recommendation-components/admin-recommendation-details/admin-recommendation-details.component';
 
 
 @NgModule({
@@ -60,7 +62,9 @@ import {AdminRecommendationsComponent} from './admin-recommendations/admin-recom
     RegisterComponent,
     NavComponent,
     AdminUsersComponent,
-    AdminRecommendationsComponent
+    AdminRecommendationsComponent,
+    AdminApprovedRecComponent,
+    AdminRecommendationDetailsComponent
   ],
   imports: [
     BrowserModule,
