@@ -3,11 +3,11 @@
     {
       "id": 1,
       "type": "food/question/restaurant",
-      "kitchen":"...",
+      "kitchen": "...",
       "city": "..",
       "restaurant": "...",
       "message": "name/question/menu",
-      "approved": false
+      "approved": true
     }
   ]
 }
