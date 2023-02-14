@@ -16,7 +16,9 @@
       <div class="text-end">
         <button (click)="delete(recommendation.id)" class="btn btn-sm btn-danger">Delete</button>
       </div>
-
+      <div class="text-start">
+        <button routerLink="/admin/recommendation/{{recommendation.id}}" class="btn btn-sm btn-secondary" type="button">Details</button>
+      </div>
     </div>
   </div>
 </div>

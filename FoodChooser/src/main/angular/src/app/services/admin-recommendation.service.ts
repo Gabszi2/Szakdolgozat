@@ -3,6 +3,7 @@ import {lastValueFrom} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {RecommendationModel} from "../models/recommendation-model";
 
+
 @Injectable({
   providedIn: 'root'
 })

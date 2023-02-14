@@ -39,6 +39,7 @@ import {AdminUsersComponent} from './admin-users/admin-users.component';
 import {AdminRecommendationsComponent} from './admin-recommendation-components/admin-recommendations/admin-recommendations.component';
 import { AdminApprovedRecComponent } from './admin-recommendation-components/admin-approved-rec/admin-approved-rec.component';
 import { AdminRecommendationDetailsComponent } from './admin-recommendation-components/admin-recommendation-details/admin-recommendation-details.component';
+import { RecommendationComponent } from './customer-components/recommendation/recommendation.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { AdminRecommendationDetailsComponent } from './admin-recommendation-comp
     AdminUsersComponent,
     AdminRecommendationsComponent,
     AdminApprovedRecComponent,
-    AdminRecommendationDetailsComponent
+    AdminRecommendationDetailsComponent,
+    RecommendationComponent
   ],
   imports: [
     BrowserModule,

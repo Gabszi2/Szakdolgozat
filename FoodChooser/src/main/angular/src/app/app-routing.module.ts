@@ -36,6 +36,7 @@ import {AdminApprovedRecComponent} from "./admin-recommendation-components/admin
 import {
   AdminRecommendationDetailsComponent
 } from "./admin-recommendation-components/admin-recommendation-details/admin-recommendation-details.component";
+import {RecommendationComponent} from "./customer-components/recommendation/recommendation.component";
 
 
 const routes: Routes = [
@@ -73,7 +74,8 @@ const routes: Routes = [
   //customer-components
   {path: 'start', component: CustomerStartComponent, canActivate: [UserGuard]},
   {path: 'question-form/:town/:kitchen', component: CustomerQuestionsFormComponent, canActivate: [UserGuard]},
-  {path: 'results/:town/:kitchen/:answers', component: CustomerResultsComponent, canActivate: [UserGuard]}
+  {path: 'results/:town/:kitchen/:answers', component: CustomerResultsComponent, canActivate: [UserGuard]},
+  {path:'recommendation',component:RecommendationComponent,canActivate:[UserGuard]}
 
 ];
 

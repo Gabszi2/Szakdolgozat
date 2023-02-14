@@ -1,0 +1,36 @@
+<p class="text-center">Give us a recommendation!</p>
+<div
+  class="border d-flex align-items-center justify-content-center"
+
+>
+  <div>
+    <form [formGroup]="recommendationForm">
+      <br><label for="type">Select the type of recommendation:</label>
+      <select class="form-control" formControlName="type" id="type">
+        <option *ngFor="let type of types" value="{{type}}">{{type.charAt(0).toUpperCase() + type.slice(1)}}</option>
+      </select><br><br>
+<div *ngIf="recommendationForm.get('type')?.value=='food'">
+
+  <label for="kitchen">Kitchen the food belongs to:</label>
+  <input class="form-control " formControlName="kitchen" type="text" id="kitchen"><br>
+
+  <label for="city">City where you can eat this food</label>
+  <input class="form-control" formControlName="city" type="text" id="city"><br>
+
+  <label for="restaurant">Restaurant where you can eat it (must be in the city above):</label>
+  <input class="form-control" formControlName="restaurant" type="text" id="restaurant"><br>
+
+  <label for="message">Give us the food name and a description:</label>
+  <input class="form-control" formControlName="message" type="text" id="message"><br>
+</div>
+      <button (click)="recommendationAdd()" [hidden]="recommendationForm.invalid" class="btn btn-sm btn-success">Submit</button>
+    </form>
+
+  </div>
+
+</div>
+food: city,kitchen,restaurant
+question:kitchen
+kitchen:kitchen
+restaurant:city,kitchen,restaurant
+city:city

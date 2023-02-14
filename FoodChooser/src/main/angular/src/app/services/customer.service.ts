@@ -4,6 +4,7 @@ import {lastValueFrom} from "rxjs";
 import {FoodModel} from "../models/food-model";
 import {RecommendationModel} from "../models/recommendation-model";
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,6 +28,6 @@ export class CustomerService {
     return lastValueFrom(this.http.get<FoodModel>(this.url + 'result/' + town + '/' + kitchen, options));
   }
   async createRecommendation(recommendation:RecommendationModel){
-    return lastValueFrom(this.http.post<RecommendationModel>(this.url+'/customer-recommendation',recommendation));
+    return lastValueFrom(this.http.post<RecommendationModel>(this.url+'customer-recommendation',recommendation));
   }
 }

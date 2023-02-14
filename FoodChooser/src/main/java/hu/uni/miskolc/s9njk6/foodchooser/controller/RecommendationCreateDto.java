@@ -15,6 +15,9 @@ public class RecommendationCreateDto {
     private String message;
     private boolean approved;
 
+    public RecommendationCreateDto() {
+    }
+
     public RecommendationCreateDto(RecommendationDto recommendationDto) {
         this.type = recommendationDto.getType();
         this.kitchen =recommendationDto.getKitchen();
