@@ -35,7 +35,7 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
 
             for (RecommendationEntity recommendation:inAll){
                 //update
-                if (recommendation.getId()!=recommendationEntity.getId()){
+                if (!recommendation.getId().equals(recommendationEntity.getId())){
                     outToWrite.add(recommendation);
 
                 }else {
@@ -146,7 +146,7 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
         JSONArray outToWrite=new JSONArray();
 
         for (RecommendationEntity recommendation:inAll){
-            if (recommendation.getId()!=id){
+            if (!recommendation.getId().equals(id)){
                 outToWrite.add(recommendation);
             }
         }
@@ -290,7 +290,7 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
     public RecommendationEntity getRecommendation(Long id) {
         Collection<RecommendationEntity> allRecommendation=getAllRecommendations(false);
         for (RecommendationEntity recommendation:allRecommendation){
-            if (recommendation.getId()==id){
+            if (recommendation.getId().equals(id)){
                 return recommendation;
             }
         }
