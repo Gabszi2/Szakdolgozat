@@ -21,6 +21,7 @@ export class RecommendationComponent implements OnInit {
       type: ['', Validators.required],
       kitchen: [''],
       city: [''],
+      foodName:[''],
       restaurant: [''],
       message: ['', Validators.required],
   })
@@ -30,6 +31,7 @@ async recommendationAdd() {
   recommendation.type = this.recommendationForm.get('type')?.value
   recommendation.kitchen = this.recommendationForm.get('kitchen')?.value
   recommendation.city = this.recommendationForm.get('city')?.value
+  recommendation.foodName=this.recommendationForm.get('foodName')?.value
   recommendation.restaurant = this.recommendationForm.get('restaurant')?.value
   recommendation.message = this.recommendationForm.get('message')?.value
   recommendation.approved=false;
