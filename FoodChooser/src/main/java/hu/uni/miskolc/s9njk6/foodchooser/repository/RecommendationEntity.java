@@ -7,6 +7,7 @@ public class RecommendationEntity {
     private String type;
     private String kitchen;
     private String city;
+    private String foodName;
     private String restaurant;
     private String message;
     private boolean approved;
@@ -14,14 +15,23 @@ public class RecommendationEntity {
     public RecommendationEntity() {
     }
 
-    public RecommendationEntity(Long id, String type, String kitchen, String city, String restaurant, String message, boolean approved) {
+    public RecommendationEntity(Long id, String type, String kitchen, String city,String foodName, String restaurant, String message, boolean approved) {
         this.id = id;
         this.type = type;
         this.kitchen = kitchen;
         this.city = city;
+        this.foodName=foodName;
         this.restaurant = restaurant;
         this.message = message;
         this.approved = approved;
+    }
+
+    public String getFoodName() {
+        return foodName;
+    }
+
+    public void setFoodName(String foodName) {
+        this.foodName = foodName;
     }
 
     public Long getId() {
@@ -87,6 +97,7 @@ public class RecommendationEntity {
                 ", type='" + type + '\'' +
                 ", kitchen='" + kitchen + '\'' +
                 ", city='" + city + '\'' +
+                ", foodName='" + foodName + '\'' +
                 ", restaurant='" + restaurant + '\'' +
                 ", message='" + message + '\'' +
                 ", approved=" + approved +
@@ -98,11 +109,11 @@ public class RecommendationEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RecommendationEntity that = (RecommendationEntity) o;
-        return approved == that.approved && Objects.equals(id, that.id) && Objects.equals(type, that.type) && Objects.equals(kitchen, that.kitchen) && Objects.equals(city, that.city) && Objects.equals(restaurant, that.restaurant) && Objects.equals(message, that.message);
+        return approved == that.approved && Objects.equals(id, that.id) && Objects.equals(type, that.type) && Objects.equals(kitchen, that.kitchen) && Objects.equals(city, that.city) && Objects.equals(foodName, that.foodName) && Objects.equals(restaurant, that.restaurant) && Objects.equals(message, that.message);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, type, kitchen, city, restaurant, message, approved);
+        return Objects.hash(id, type, kitchen, city, foodName, restaurant, message, approved);
     }
 }

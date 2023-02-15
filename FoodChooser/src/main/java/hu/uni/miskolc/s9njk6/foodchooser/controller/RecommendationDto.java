@@ -10,6 +10,7 @@ public class RecommendationDto {
     private String type;
     private String kitchen;
     private String city;
+    private String foodName;
     private String restaurant;
     @NotEmpty
     private String message;
@@ -23,39 +24,15 @@ public class RecommendationDto {
         this.type = recommendationDto.getType();
         this.kitchen = recommendationDto.getKitchen();
         this.city = recommendationDto.getCity();
+        this.foodName=recommendationDto.getFoodName();
         this.restaurant = recommendationDto.getRestaurant();
         this.message = recommendationDto.getMessage();
         this.approved = recommendationDto.isApproved();
     }
     public hu.uni.miskolc.s9njk6.foodchooser.service.RecommendationDto toServiceRecommendationDto(){
-        return new hu.uni.miskolc.s9njk6.foodchooser.service.RecommendationDto(id,type,kitchen,city,restaurant,message,approved);
+        return new hu.uni.miskolc.s9njk6.foodchooser.service.RecommendationDto(id,type,kitchen,city,foodName,restaurant,message,approved);
     }
 
-    @Override
-    public String toString() {
-        return "RecommendationDto{" +
-                "id=" + id +
-                ", type='" + type + '\'' +
-                ", kitchen='" + kitchen + '\'' +
-                ", city='" + city + '\'' +
-                ", restaurant='" + restaurant + '\'' +
-                ", message='" + message + '\'' +
-                ", approved=" + approved +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        RecommendationDto that = (RecommendationDto) o;
-        return approved == that.approved && Objects.equals(id, that.id) && Objects.equals(type, that.type) && Objects.equals(kitchen, that.kitchen) && Objects.equals(city, that.city) && Objects.equals(restaurant, that.restaurant) && Objects.equals(message, that.message);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, type, kitchen, city, restaurant, message, approved);
-    }
 
     public Long getId() {
         return id;
@@ -111,5 +88,32 @@ public class RecommendationDto {
 
     public void setApproved(boolean approved) {
         this.approved = approved;
+    }
+
+    @Override
+    public String toString() {
+        return "RecommendationDto{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", kitchen='" + kitchen + '\'' +
+                ", city='" + city + '\'' +
+                ", foodName='" + foodName + '\'' +
+                ", restaurant='" + restaurant + '\'' +
+                ", message='" + message + '\'' +
+                ", approved=" + approved +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RecommendationDto that = (RecommendationDto) o;
+        return approved == that.approved && Objects.equals(id, that.id) && Objects.equals(type, that.type) && Objects.equals(kitchen, that.kitchen) && Objects.equals(city, that.city) && Objects.equals(foodName, that.foodName) && Objects.equals(restaurant, that.restaurant) && Objects.equals(message, that.message);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, type, kitchen, city, foodName, restaurant, message, approved);
     }
 }
