@@ -21,11 +21,13 @@ public interface DataBaseRepository {
     Collection<QuestionEntity> getAllQuestionFromKitchen(String kitchen);
     Collection<UserEntity> getAllUser();
     Collection<RecommendationEntity> getAllRecommendations(boolean approved);
+    Collection<CityEntity> getAllCities();
 
     FoodEntity getFoodFromTownAndKitchen(String foodName, String town, String kitchen);
     QuestionEntity getQuestionFromKitchen(String question, String kitchen);
     UserEntity getUser(String email,String password);
     RecommendationEntity getRecommendation(Long id);
+    CityEntity getCity(String name);
 
 
 

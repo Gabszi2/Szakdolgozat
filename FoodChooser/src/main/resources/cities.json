@@ -1,0 +1,11 @@
+{
+  "cities": [
+    {
+      "city": "Miskolc",
+      "kitchens": [
+        "Asian",
+        "Turkish"
+      ]
+    }
+  ]
+}

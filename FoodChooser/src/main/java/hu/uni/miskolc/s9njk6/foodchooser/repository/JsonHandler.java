@@ -30,18 +30,29 @@ public class JsonHandler {
         path = "src/main/resources/" + kitchen.toLowerCase() + "_questions.json";
         dbJsonName="questions";
     }
-    //users construktor
-    public JsonHandler(boolean user) {
-        if (user){
-        path="src/main/resources/users.json";
-        dbJsonName="users";
-        }else {
-            path="src/main/resources/customer_recommendations.json";
-            dbJsonName="recommendations";
+
+    public JsonHandler(Path pathEnum) {
+        switch (pathEnum){
+            case USERS:{
+                path="src/main/resources/users.json";
+                dbJsonName="users";}
+            break;
+            case RECOMMENDATIONS:{
+                path="src/main/resources/customer_recommendations.json";
+                dbJsonName="recommendations";
+            }
+            break;
+            case CITIES:{
+                path="src/main/resources/cities.json";
+                dbJsonName="cities";
+            }
+            break;
+            default:{
+                path="";
+                dbJsonName="";
+            }
         }
-
     }
-
 
     //returns the content of the file as a JsonArray
     public JSONArray arrayParser(){

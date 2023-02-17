@@ -17,8 +17,9 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
     @Override
     public RecommendationEntity saveRecommendation(RecommendationEntity recommendationEntity) {
         JSONArray outToWrite=new JSONArray();
+        //create
         if (recommendationEntity.getId()==null){
-            outToWrite=new JsonHandler(false).arrayParser();
+            outToWrite=new JsonHandler(Path.RECOMMENDATIONS).arrayParser();
 
             Long rndId;
             do{
@@ -43,7 +44,7 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
                 }
             }
         }
-        new  JsonHandler(false).writeJsonArrayToFile(outToWrite);
+        new  JsonHandler(Path.RECOMMENDATIONS).writeJsonArrayToFile(outToWrite);
         return recommendationEntity;
 
     }
@@ -67,7 +68,7 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
         if (counter==inAll.size()){
             outToWrite.add(userEntity);
         }
-        new JsonHandler(true).writeJsonArrayToFile(outToWrite);
+        new JsonHandler(Path.USERS).writeJsonArrayToFile(outToWrite);
         return userEntity;
     }
 
@@ -150,7 +151,7 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
                 outToWrite.add(recommendation);
             }
         }
-        new JsonHandler(false).writeJsonArrayToFile(outToWrite);
+        new JsonHandler(Path.RECOMMENDATIONS).writeJsonArrayToFile(outToWrite);
     }
 
     @Override
@@ -166,7 +167,7 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
 
 
         }
-        new JsonHandler(true).writeJsonArrayToFile(outToWrite);
+        new JsonHandler(Path.USERS).writeJsonArrayToFile(outToWrite);
     }
 
     @Override
@@ -210,7 +211,7 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
     @Override
     public Collection<RecommendationEntity> getAllRecommendations(boolean approved) {
         Collection<RecommendationEntity> output=new ArrayList<>();
-        JsonHandler jsonHandler=new JsonHandler(false);
+        JsonHandler jsonHandler=new JsonHandler(Path.RECOMMENDATIONS);
         JSONArray jsonArray=jsonHandler.arrayParser();
 
         Iterator<JSONObject>i= jsonArray.iterator();
@@ -235,7 +236,7 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
     @Override
     public Collection<UserEntity> getAllUser() {
         Collection<UserEntity> output=new ArrayList<>();
-        JsonHandler jsonHandler=new JsonHandler(true);
+        JsonHandler jsonHandler=new JsonHandler(Path.USERS);
         JSONArray jsonArray=jsonHandler.arrayParser();
 
         Iterator<JSONObject> i=jsonArray.iterator();
@@ -283,6 +284,20 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
         }
 
 
+        return output;
+    }
+
+    @Override
+    public Collection<CityEntity> getAllCities() {
+        Collection<CityEntity> output=new ArrayList<>();
+        JsonHandler jsonHandler=new JsonHandler(Path.CITIES);
+        JSONArray jsonArray=jsonHandler.arrayParser();
+        Iterator<JSONObject> i= jsonArray.iterator();
+        while (i.hasNext()){
+            JSONObject city=i.next();
+            CityEntity cityEntity=gson.fromJson(city.toString(),CityEntity.class);
+            output.add(cityEntity);
+        }
         return output;
     }
 
@@ -335,4 +350,18 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
         }
         return null;
     }
+
+    @Override
+    public CityEntity getCity(String name) {
+        Collection<CityEntity> allCities=getAllCities();
+        for (CityEntity cityEntity:allCities
+             ) {
+            if (cityEntity.getName().equals(name)){
+                return cityEntity;
+            }
+
+        }
+        return null;
+    }
+    //TODO egységesíteni?
 }
