@@ -27,4 +27,10 @@ public interface AdminService {
     void updateAdminUser(String email,String password);
     void deleteUser(String email,String password);
 
+    Iterable<CityDto> allCities();
+    CityDto getCity(String name);
+    CityDto createCity(CityDto cityDto) throws EntityAlreadyExistsException;
+    void updateCity(CityDto cityDto);
+    void deleteCity(String name);
+
 }

@@ -15,6 +15,29 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     @Override
+    public CityEntity saveCity(CityEntity cityEntity) {
+        Collection<CityEntity> inAll=getAllCities();
+        JSONArray outToWrite=new JSONArray();
+        int counter=0;
+
+        for (CityEntity city:inAll){
+            //update
+            if (!city.getName().equals(cityEntity.getName())){
+                outToWrite.add(city);
+                counter++;
+            }else {
+                outToWrite.add(city);
+            }
+        }
+        //create
+        if (counter==inAll.size()){
+            outToWrite.add(cityEntity);
+        }
+        new JsonHandler(Path.CITIES).writeJsonArrayToFile(outToWrite);
+        return cityEntity;
+    }
+
+    @Override
     public RecommendationEntity saveRecommendation(RecommendationEntity recommendationEntity) {
         JSONArray outToWrite=new JSONArray();
         //create
@@ -139,6 +162,20 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
         new JsonHandler(kitchen).writeJsonArrayToFile(outToWrite);
         return newQuestion;
 
+    }
+
+    @Override
+    public void deleteCity(String name) {
+        Collection<CityEntity> inAll=getAllCities();
+        JSONArray outToWrite=new JSONArray();
+        for (CityEntity city:inAll
+             ) {
+            if (!city.getName().equals(name)){
+                outToWrite.add(city);
+            }
+
+        }
+        new JsonHandler(Path.CITIES).writeJsonArrayToFile(outToWrite);
     }
 
     @Override

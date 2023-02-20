@@ -19,6 +19,7 @@ public class AdminServiceImpl implements AdminService {
         this.dataBaseRepository = dataBaseRepository;
     }
 
+
     @Override
     public Iterable<String> allQuestions(String kitchen) {
         List<String> output=new ArrayList<>();
@@ -30,6 +31,8 @@ public class AdminServiceImpl implements AdminService {
 
         return output;
     }
+
+
 
     @Override
     public void deleteQuestion(String question, String kitchen) {
@@ -182,5 +185,51 @@ public class AdminServiceImpl implements AdminService {
             throw new NoSuchEntityException(email);
         }
         dataBaseRepository.deleteUser(email);
+    }
+
+    @Override
+    public Iterable<CityDto> allCities() {
+        List<CityDto> output=new ArrayList<>();
+        for (CityEntity cityEntity:dataBaseRepository.getAllCities()
+        ) {
+            output.add(new CityDto(cityEntity));
+
+        }
+        return output;
+    }
+    @Override
+    public void deleteCity(String name) {
+        CityEntity cityEntity=dataBaseRepository.getCity(name);
+        if (cityEntity==null){
+            throw new NoSuchEntityException(name);
+        }
+        dataBaseRepository.deleteCity(name);
+    }
+
+    @Override
+    public CityDto getCity(String name) {
+        CityEntity cityEntity=dataBaseRepository.getCity(name);
+        if (cityEntity==null){
+            throw new NoSuchEntityException(name);
+        }
+        return new CityDto(cityEntity);
+    }
+
+    @Override
+    public CityDto createCity(CityDto cityDto) throws EntityAlreadyExistsException {
+        CityEntity cityEntity=dataBaseRepository.getCity(cityDto.getName());
+        if (cityEntity==null){
+            return new CityDto(dataBaseRepository.saveCity(cityDto.toEntity()));
+        }
+        throw new EntityAlreadyExistsException(cityDto.getName());
+    }
+
+    @Override
+    public void updateCity(CityDto cityDto) {
+        CityEntity cityEntity=dataBaseRepository.getCity(cityDto.getName());
+        if (cityEntity==null){
+            throw new NoSuchEntityException(cityDto.getName());
+        }
+        dataBaseRepository.saveCity(cityDto.toEntity());
     }
 }

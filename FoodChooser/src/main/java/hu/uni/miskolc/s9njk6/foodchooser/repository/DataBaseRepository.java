@@ -11,11 +11,13 @@ public interface DataBaseRepository {
     QuestionEntity saveQuestionsToKitchen(QuestionEntity oldQuestion,QuestionEntity newQuestion, String kitchen);
     UserEntity saveUser(UserEntity userEntity);
     RecommendationEntity saveRecommendation(RecommendationEntity recommendationEntity);
+    CityEntity saveCity(CityEntity cityEntity);
     //delete
     void deleteFoodFromTownAndKitchen(FoodEntity foodEntity, String town, String kitchen);
     void deleteQuestionFromKitchen(QuestionEntity question,String kitchen);
     void deleteUser(String email);
     void deleteRecommendation(Long id);
+    void deleteCity(String name);
     //read
     Collection<FoodEntity> getAllFoodFromTownAndKitchen(String town, String kitchen);
     Collection<QuestionEntity> getAllQuestionFromKitchen(String kitchen);

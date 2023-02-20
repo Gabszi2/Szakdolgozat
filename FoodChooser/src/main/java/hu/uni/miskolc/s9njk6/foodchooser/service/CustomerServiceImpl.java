@@ -1,10 +1,7 @@
 package hu.uni.miskolc.s9njk6.foodchooser.service;
 
-import hu.uni.miskolc.s9njk6.foodchooser.repository.DataBaseRepository;
-import hu.uni.miskolc.s9njk6.foodchooser.repository.FoodEntity;
-import hu.uni.miskolc.s9njk6.foodchooser.repository.QuestionEntity;
+import hu.uni.miskolc.s9njk6.foodchooser.repository.*;
 
-import hu.uni.miskolc.s9njk6.foodchooser.repository.RecommendationEntity;
 import hu.uni.miskolc.s9njk6.foodchooser.service.exceptions.EntityAlreadyExistsException;
 import hu.uni.miskolc.s9njk6.foodchooser.service.exceptions.NoSuchFoodException;
 import org.springframework.stereotype.Service;
@@ -65,5 +62,16 @@ if (food.getAnswer()[i]==customerAnswers[i]){
 
            return new RecommendationDto(dataBaseRepository.saveRecommendation(recommendationDto.toRecommendationEntity()));
 
+    }
+
+    @Override
+    public Iterable<CityDto> allCities() {
+        List<CityDto> output=new ArrayList<>();
+        for (CityEntity cityEntity:dataBaseRepository.getAllCities()
+             ) {
+            output.add(new CityDto(cityEntity));
+
+        }
+        return output;
     }
 }
