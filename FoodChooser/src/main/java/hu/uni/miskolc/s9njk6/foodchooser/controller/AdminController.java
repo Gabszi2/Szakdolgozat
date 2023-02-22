@@ -139,7 +139,7 @@ return new ResponseEntity<>(adminService.createQuestion(question, kitchen),HttpS
     ResponseEntity<CityDto> createCity(@RequestBody @Valid CityDto cityDto){
         return new ResponseEntity<>(new CityDto(adminService.createCity(cityDto.toServiceCityDto())),HttpStatus.CREATED);
     }
-    @PutMapping(value = "city")
+    @PutMapping(value = "/city")
     void updateCity(@RequestBody @Valid CityDto cityDto){
         adminService.updateCity(cityDto.toServiceCityDto());
     }

@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {FoodModel} from "../models/food-model";
 import {lastValueFrom} from "rxjs";
+import {CityModel} from "../models/city-model";
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +34,8 @@ export class AdminFoodService {
 
   async updateFood(town: string, kitchen: string, food: FoodModel) {
     return lastValueFrom(this.http.put(this.adminUrl + '/food/' + town + '/' + kitchen, food));
+  }
+  async getCities(){
+    return lastValueFrom(this.http.get<CityModel[]>(this.adminUrl+'/cities'));
   }
 }

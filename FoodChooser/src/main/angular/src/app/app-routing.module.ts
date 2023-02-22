@@ -37,6 +37,9 @@ import {
   AdminRecommendationDetailsComponent
 } from "./admin-recommendation-components/admin-recommendation-details/admin-recommendation-details.component";
 import {RecommendationComponent} from "./customer-components/recommendation/recommendation.component";
+import {AdminCityListComponent} from "./admin-city-components/admin-city-list/admin-city-list.component";
+import {AdminCityModifyComponent} from "./admin-city-components/admin-city-modify/admin-city-modify.component";
+import {AdminCityAddComponent} from "./admin-city-components/admin-city-add/admin-city-add.component";
 
 
 const routes: Routes = [
@@ -71,6 +74,10 @@ const routes: Routes = [
   {path: 'admin/recommendations', component: AdminRecommendationsComponent, canActivate: [AdminGuard]},
   {path:'admin/approved-recommendations',component:AdminApprovedRecComponent,canActivate:[AdminGuard]},
   {path:'admin/recommendation/:id',component:AdminRecommendationDetailsComponent,canActivate:[AdminGuard]},
+  //city-components
+  {path:'admin/cities',component:AdminCityListComponent,canActivate:[AdminGuard]},
+  {path:'admin/city-modify',component:AdminCityModifyComponent,canActivate:[AdminGuard]},
+  {path:'admin/city-add',component:AdminCityAddComponent,canActivate:[AdminGuard]},
   //customer-components
   {path: 'start', component: CustomerStartComponent, canActivate: [UserGuard]},
   {path: 'question-form/:town/:kitchen', component: CustomerQuestionsFormComponent, canActivate: [UserGuard]},

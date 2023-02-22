@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 
 import {QuestionSaveModel} from "../models/question-save-model";
 import {lastValueFrom} from "rxjs";
+import {CityModel} from "../models/city-model";
 
 
 @Injectable({
@@ -36,5 +37,8 @@ export class AdminQuestionService {
 
   async updateQuestion(kitchen: string, questionSave: QuestionSaveModel) {
     return lastValueFrom(this.http.put(this.adminUrl + '/question/' + kitchen, questionSave));
+  }
+  async getCities(){
+    return lastValueFrom(this.http.get<CityModel[]>(this.adminUrl+'/cities'));
   }
 }

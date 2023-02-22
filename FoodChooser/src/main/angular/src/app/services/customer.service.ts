@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {lastValueFrom} from "rxjs";
 import {FoodModel} from "../models/food-model";
 import {RecommendationModel} from "../models/recommendation-model";
+import {CityModel} from "../models/city-model";
 
 
 @Injectable({
@@ -29,5 +30,8 @@ export class CustomerService {
   }
   async createRecommendation(recommendation:RecommendationModel){
     return lastValueFrom(this.http.post<RecommendationModel>(this.url+'customer-recommendation',recommendation));
+  }
+  async getCities(){
+    return lastValueFrom(this.http.get<CityModel[]>(this.url+'cities'));
   }
 }

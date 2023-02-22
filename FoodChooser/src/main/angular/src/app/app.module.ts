@@ -40,6 +40,9 @@ import {AdminRecommendationsComponent} from './admin-recommendation-components/a
 import { AdminApprovedRecComponent } from './admin-recommendation-components/admin-approved-rec/admin-approved-rec.component';
 import { AdminRecommendationDetailsComponent } from './admin-recommendation-components/admin-recommendation-details/admin-recommendation-details.component';
 import { RecommendationComponent } from './customer-components/recommendation/recommendation.component';
+import { AdminCityListComponent } from './admin-city-components/admin-city-list/admin-city-list.component';
+import { AdminCityModifyComponent } from './admin-city-components/admin-city-modify/admin-city-modify.component';
+import { AdminCityAddComponent } from './admin-city-components/admin-city-add/admin-city-add.component';
 
 
 @NgModule({
@@ -66,7 +69,10 @@ import { RecommendationComponent } from './customer-components/recommendation/re
     AdminRecommendationsComponent,
     AdminApprovedRecComponent,
     AdminRecommendationDetailsComponent,
-    RecommendationComponent
+    RecommendationComponent,
+    AdminCityListComponent,
+    AdminCityModifyComponent,
+    AdminCityAddComponent
   ],
   imports: [
     BrowserModule,
