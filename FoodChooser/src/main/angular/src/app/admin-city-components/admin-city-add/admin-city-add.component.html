@@ -1,0 +1,14 @@
+<p class="text-center">Add city</p>
+<div
+  class="border d-flex align-items-center justify-content-center"
+  style="height: 350px;"
+>
+  <div>
+    <form [formGroup]="cityForm">
+      <label for="name">City's name:</label>
+      <input class="form-control" formControlName="name" id="name" type="text">
+      <button (click)="cityAdd()" class="btn btn-primary btn-md">Add</button>
+    </form>
+  </div>
+</div>
+
