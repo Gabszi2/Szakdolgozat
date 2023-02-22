@@ -36,4 +36,12 @@ public class CustomerController {
     ResponseEntity<RecommendationDto> createRecommendation(@RequestBody @Valid RecommendationCreateDto recommendationCreateDto)throws EntityAlreadyExistsException {
         return new ResponseEntity<>(new RecommendationDto(customerService.createRecommendation(recommendationCreateDto.toServiceRecommendationDto())),HttpStatus.CREATED);
     }
+    @GetMapping(value = "/cities")
+    ResponseEntity<List<CityDto>> allCities(){
+        List<CityDto> out=new ArrayList<>();
+        for (hu.uni.miskolc.s9njk6.foodchooser.service.CityDto cityDto: customerService.allCities()){
+            out.add(new CityDto(cityDto));
+        }
+        return new ResponseEntity<>(out,HttpStatus.OK);
+    }
 }

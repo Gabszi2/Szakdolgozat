@@ -117,4 +117,30 @@ return new ResponseEntity<>(adminService.createQuestion(question, kitchen),HttpS
     void updateAdminUser(@PathVariable("email") String email,@PathVariable("password")String password){
         adminService.updateAdminUser(email,password);
     }
+    //City Requests
+    @GetMapping(value = "/cities")
+    ResponseEntity<List<CityDto>> allCities(){
+
+        List<CityDto> out=new ArrayList<>();
+        for (hu.uni.miskolc.s9njk6.foodchooser.service.CityDto cityDto: adminService.allCities()){
+            out.add(new CityDto(cityDto));
+        }
+        return new ResponseEntity<>(out,HttpStatus.OK);
+    }
+    @GetMapping(value = "/city/{name}")
+    ResponseEntity<CityDto> getCity(@PathVariable("name")String name){
+        return new ResponseEntity<>(new CityDto(adminService.getCity(name)),HttpStatus.OK);
+    }
+    @DeleteMapping(value = "/city/{name}")
+    void deleteCity(@PathVariable("name")String name){
+        adminService.deleteCity(name);
+    }
+    @PostMapping(value = "/city",consumes = "application/json")
+    ResponseEntity<CityDto> createCity(@RequestBody @Valid CityDto cityDto){
+        return new ResponseEntity<>(new CityDto(adminService.createCity(cityDto.toServiceCityDto())),HttpStatus.CREATED);
+    }
+    @PutMapping(value = "city")
+    void updateCity(@RequestBody @Valid CityDto cityDto){
+        adminService.updateCity(cityDto.toServiceCityDto());
+    }
 }
