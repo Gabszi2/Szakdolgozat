@@ -61,7 +61,7 @@ export class AdminFoodAddComponent implements OnInit {
     this.foodAnswers.push(this.answerForm());
   }
 
-  async delete(index: number) {
+  delete(index: number) {
     this.foodRestaurants.removeAt(index);
   }
 

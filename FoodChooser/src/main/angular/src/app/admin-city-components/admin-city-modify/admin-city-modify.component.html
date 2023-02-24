@@ -1,1 +1,21 @@
-<p>admin-city-modify works!</p>
+<p class="text-center ">Modify kitchens in {{city.name}} town</p>
+<div class="row justify-content-center text-center h-100">
+  <div class="col-sm-auto text-center my-auto">
+    <button (click)="addKitchen()" class="btn-warning btn btn-md">Add kitchen</button>
+    <form [formGroup]="kitchensForm">
+      <div formArrayName="kitchens">
+        <div *ngFor="let kitchen of kitchens.controls;let i=index">
+          <div [formGroupName]="i">
+            <input class="form-control" formControlName="kitchen" type="text">
+
+          </div>
+          <div class="text-end">
+            <button (click)="delete(i)" class="btn btn-danger btn-sm ">Delete</button>
+          </div>
+        </div>
+      </div>
+      <button (click)="done()" [hidden]="kitchensForm.invalid" class="btn btn-sm btn-success">Submit</button>
+    </form>
+  </div>
+</div>
+

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {AdminFoodService} from "../../services/admin-food.service";
+import {CityModel} from "../../models/city-model";
 
 
 @Component({
@@ -10,26 +12,30 @@ import {Router} from "@angular/router";
 })
 export class AdminFoodStartComponent implements OnInit {
   chooseForm!: FormGroup;
-  kitchens: string[] = ['asian', 'turkish'];
-  towns: string[] = ['miskolc'];
+  kitchens!: string[];
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  cityAll!:CityModel[];
+
+  constructor(private formBuilder: FormBuilder, private router: Router,private service:AdminFoodService) {
   }
 
 
-  ngOnInit() {
+  async ngOnInit() {
     this.chooseForm = this.formBuilder.group({
       town: ['', Validators.required],
       kitchen: ['', Validators.required]
     })
+    this.cityAll = await this.service.getCities();
   }
 
   choice() {
-    const town = this.chooseForm.get('town')?.value;
+    const town = this.cityAll[this.chooseForm.get('town')?.value].name;
     const kitchen = this.chooseForm.get('kitchen')?.value;
     this.router.navigate(['admin/food-list/' + town + '/' + kitchen]).then(() => {
       window.location.reload()
     })
   }
-
+onChange(value:any){
+    this.kitchens=this.cityAll[value.target.value].kitchens;
+}
 }

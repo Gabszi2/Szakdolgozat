@@ -6,8 +6,8 @@
   <div>
     <form [formGroup]="chooseForm">
       <label for="town">Select a town</label>
-      <select class="form-control" formControlName="town" id="town">
-        <option *ngFor="let town of towns" value="{{town}}">{{town.charAt(0).toUpperCase() + town.slice(1)}}</option>
+      <select class="form-control" formControlName="town" id="town" (change)="onChange($event)">
+        <option *ngFor="let city of cityAll; let i=index" value="{{i}}">{{city.name.charAt(0).toUpperCase() + city.name.slice(1)}}</option>
       </select>
       <label for="kitchen">Select a kitchen</label>
       <select class="form-control" formControlName="kitchen" id="kitchen">

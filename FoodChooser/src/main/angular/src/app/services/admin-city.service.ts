@@ -16,7 +16,7 @@ export class AdminCityService {
     return lastValueFrom(this.http.post<CityModel>(this.adminUrl+'/city',city));
   }
   async getCity(name:string){
-    return lastValueFrom(this.http.get<CityModel>(this.adminUrl+'city/'+name));
+    return lastValueFrom(this.http.get<CityModel>(this.adminUrl+'/city/'+name));
   }
   async getCities(){
     return lastValueFrom(this.http.get<CityModel[]>(this.adminUrl+'/cities'));

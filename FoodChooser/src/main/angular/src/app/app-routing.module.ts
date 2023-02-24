@@ -76,7 +76,7 @@ const routes: Routes = [
   {path:'admin/recommendation/:id',component:AdminRecommendationDetailsComponent,canActivate:[AdminGuard]},
   //city-components
   {path:'admin/cities',component:AdminCityListComponent,canActivate:[AdminGuard]},
-  {path:'admin/city-modify',component:AdminCityModifyComponent,canActivate:[AdminGuard]},
+  {path:'admin/city-modify/:town',component:AdminCityModifyComponent,canActivate:[AdminGuard]},
   {path:'admin/city-add',component:AdminCityAddComponent,canActivate:[AdminGuard]},
   //customer-components
   {path: 'start', component: CustomerStartComponent, canActivate: [UserGuard]},

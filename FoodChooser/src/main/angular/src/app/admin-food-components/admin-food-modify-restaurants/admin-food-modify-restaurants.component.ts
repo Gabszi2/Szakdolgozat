@@ -39,7 +39,7 @@ export class AdminFoodModifyRestaurantsComponent implements OnInit {
     this.foodName = <string>this.route.snapshot.paramMap.get('foodName');
     this.food = await this.foodService.getFood(this.town, this.kitchen, this.foodName);
 
-    for (let question in this.food.restaurants) {
+    for (let restaurant in this.food.restaurants) {
       this.addRestaurant();
     }
     for (let i = 0; i < this.restaurants.length; i++) {
@@ -66,7 +66,7 @@ export class AdminFoodModifyRestaurantsComponent implements OnInit {
     await this.router.navigate(['/admin/food-list/' + this.town + '/' + this.kitchen])
   }
 
-  async delete(index: number) {
+  delete(index: number) {
     this.restaurants.removeAt(index);
   }
 }

@@ -7,7 +7,20 @@
     <form [formGroup]="cityForm">
       <label for="name">City's name:</label>
       <input class="form-control" formControlName="name" id="name" type="text">
-      <button (click)="cityAdd()" class="btn btn-primary btn-md">Add</button>
+      <p></p>
+      <button (click)="addKitchen()" class="btn-warning btn btn-md">Add kitchen</button>
+      <div formArrayName="kitchens">
+        <div *ngFor="let kitchen of kitchens.controls;let i=index">
+          <div [formGroupName]="i">
+            <input class="form-control" formControlName="kitchen" type="text">
+
+          </div>
+          <div class="text-end">
+            <button (click)="delete(i)" class="btn btn-danger btn-sm "[hidden]="i==0">Delete</button>
+          </div>
+        </div>
+      </div>
+      <button (click)="cityAdd()" [hidden]="cityForm.invalid" class="btn btn-primary btn-md">Add</button>
     </form>
   </div>
 </div>
