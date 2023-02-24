@@ -26,8 +26,9 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
                 outToWrite.add(city);
                 counter++;
             }else {
-                outToWrite.add(city);
+                outToWrite.add(cityEntity);
             }
+            //TODO check if kitchen file exists and create food files
         }
         //create
         if (counter==inAll.size()){
@@ -176,6 +177,7 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
 
         }
         new JsonHandler(Path.CITIES).writeJsonArrayToFile(outToWrite);
+        //TODO delete files
     }
 
     @Override
