@@ -7,7 +7,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import java.util.Arrays;
-
+//TODO átnevezni a kitchent cuisine-re és általánosítani a változóneveket
 @SpringBootApplication
 public class FoodChooserApplication {
 

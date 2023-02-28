@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from "../services/user.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {HttpErrorResponse} from "@angular/common/http";
 
 
 @Component({
@@ -16,6 +17,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.userService.isLoggedIn()){
+      this.userService.logout()
+    }
 
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
@@ -42,5 +46,5 @@ export class LoginComponent implements OnInit {
 
 }
 
-//TODO HTML re-haul?
-//TODO question for teach about exception handling in angular (massage)+ routing help
+
+

@@ -14,7 +14,7 @@ export class CustomerResultsComponent implements OnInit {
   kitchen!: string;
   answers!: boolean[];
   result = <FoodModel>{};
-//TODO ha nincs találat írja ki az oldal(másféle kinézet)
+
   constructor(private fb: FormBuilder, private service: CustomerService, private route: ActivatedRoute, private router: Router) {
   }
 

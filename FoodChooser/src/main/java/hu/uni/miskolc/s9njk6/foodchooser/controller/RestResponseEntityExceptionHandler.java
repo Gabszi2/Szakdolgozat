@@ -2,6 +2,7 @@ package hu.uni.miskolc.s9njk6.foodchooser.controller;
 
 import hu.uni.miskolc.s9njk6.foodchooser.service.exceptions.EntityAlreadyExistsException;
 import hu.uni.miskolc.s9njk6.foodchooser.service.exceptions.NoSuchEntityException;
+import hu.uni.miskolc.s9njk6.foodchooser.service.exceptions.NoSuchFoodException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,5 +21,9 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     @ExceptionHandler(value = EntityAlreadyExistsException.class)
     protected ResponseEntity<Object> handleAlreadyExists(EntityAlreadyExistsException entityAlreadyExists, WebRequest webRequest){
         return handleExceptionInternal(entityAlreadyExists,entityAlreadyExists.getMessage(),new HttpHeaders(), HttpStatus.CONFLICT,webRequest);
+    }
+    @ExceptionHandler(value = NoSuchFoodException.class)
+    protected ResponseEntity<Object> handleNoSuchFood(NoSuchFoodException noSuchFoodException, WebRequest webRequest){
+        return handleExceptionInternal(noSuchFoodException,noSuchFoodException.getMessage(),new HttpHeaders(), HttpStatus.NOT_FOUND,webRequest);
     }
 }

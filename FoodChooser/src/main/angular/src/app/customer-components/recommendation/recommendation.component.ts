@@ -12,7 +12,7 @@ import {CustomerService} from "../../services/customer.service";
 })
 export class RecommendationComponent implements OnInit {
   recommendationForm!: FormGroup;
-  types:string[]=['food','question','kitchen','restaurant','city'];//TODO ???enum
+  types:string[]=['food','question','kitchen','restaurant','city'];
 
   constructor(private service:CustomerService,private formBuilder: FormBuilder, private router: Router) { }
 

@@ -20,7 +20,7 @@ import {
   AdminQuestionStartComponent
 } from './admin-question-components/admin-question-start/admin-question-start.component';
 import {AppRoutingModule} from './app-routing.module';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {
   AdminFoodModifyAnswersComponent
@@ -43,6 +43,7 @@ import { RecommendationComponent } from './customer-components/recommendation/re
 import { AdminCityListComponent } from './admin-city-components/admin-city-list/admin-city-list.component';
 import { AdminCityModifyComponent } from './admin-city-components/admin-city-modify/admin-city-modify.component';
 import { AdminCityAddComponent } from './admin-city-components/admin-city-add/admin-city-add.component';
+import {HttpErrorInterceptor} from "./http-error.interceptor";
 
 
 @NgModule({
@@ -82,7 +83,11 @@ import { AdminCityAddComponent } from './admin-city-components/admin-city-add/ad
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpErrorInterceptor,
+    multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

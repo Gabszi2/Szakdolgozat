@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
 })
 export class UserService {
   userUrl: string;
-  private currentUser?: UserModel;
+  private currentUser?: UserModel | void;
 
 
   constructor(private http: HttpClient, private router: Router) {
@@ -18,7 +18,7 @@ export class UserService {
 
 //login/register
   async login(email: string, password: string) {
-    const user = await lastValueFrom(this.http.get<UserModel>(this.userUrl + 'login/' + email + '/' + password));
+    const user = await lastValueFrom(this.http.get<UserModel>(this.userUrl + 'login/' + email + '/' + password))
     this.currentUser = user;
 
     localStorage.setItem('user', JSON.stringify(user));

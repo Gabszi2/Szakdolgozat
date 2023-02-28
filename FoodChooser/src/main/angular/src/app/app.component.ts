@@ -16,5 +16,5 @@ export class AppComponent {
   ngOnInit(): void {
     this.admin = this.service.isAdmin()
   }
-
+//TODO átnevezni a kitchent cuisine-re és általánosítani a változóneveket
 }

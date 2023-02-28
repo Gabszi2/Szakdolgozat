@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.*;
 
-
+//TODO Mongodb-be átalakítani
 //Iterator-nál hiba lehet majd a <JsonObject>
 @Component
 public class DataBaseRepositoryImpl implements DataBaseRepository {
@@ -28,7 +28,7 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
             }else {
                 outToWrite.add(cityEntity);
             }
-            //TODO check if kitchen file exists and create food files
+
         }
         //create
         if (counter==inAll.size()){
@@ -177,7 +177,7 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
 
         }
         new JsonHandler(Path.CITIES).writeJsonArrayToFile(outToWrite);
-        //TODO delete files
+
     }
 
     @Override
@@ -402,5 +402,5 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
         }
         return null;
     }
-    //TODO egységesíteni?
+
 }
