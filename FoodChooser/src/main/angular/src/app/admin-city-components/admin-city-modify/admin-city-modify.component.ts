@@ -12,46 +12,46 @@ import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 export class AdminCityModifyComponent implements OnInit {
 town!:string;
 city!:CityModel;
-  kitchensForm = this.fb.group({
-    kitchens: this.fb.array([])
+  cuisinesForm = this.fb.group({
+    cuisines: this.fb.array([])
   });
   constructor(private service:AdminCityService, private route: ActivatedRoute,private fb: FormBuilder, private router: Router) { }
 
-  get kitchens(): FormArray {
-    return this.kitchensForm.get("kitchens") as FormArray;
+  get cuisines(): FormArray {
+    return this.cuisinesForm.get("cuisines") as FormArray;
   }
 
   restaurantForm(): FormGroup {
     return this.fb.group({
-      kitchen: ['', Validators.required]
+      cuisine: ['', Validators.required]
     })
   };
   async ngOnInit(){
     this.town=<string>this.route.snapshot.paramMap.get('town');
     this.city=await this.service.getCity(this.town);
 
-    for (let kitchen in this.city.kitchens) {
-      this.addKitchen();
+    for (let cuisine in this.city.cuisines) {
+      this.addCuisine();
     }
-    for (let i = 0; i < this.kitchens.length; i++) {
-      this.kitchens.at(i).get("kitchen")?.setValue(this.city.kitchens[i]);
+    for (let i = 0; i < this.cuisines.length; i++) {
+      this.cuisines.at(i).get("cuisine")?.setValue(this.city.cuisines[i]);
 
     }
   }
-  addKitchen() {
-    this.kitchens.push(this.restaurantForm());
+  addCuisine() {
+    this.cuisines.push(this.restaurantForm());
   }
    delete(index: number) {
-    this.kitchens.removeAt(index);
+    this.cuisines.removeAt(index);
   }
   async done() {
-    let kitchens = [];
-    for (let i = 0; i < this.kitchens.length; i++) {
-      const element = this.kitchens.at(i).get("kitchen")?.value;
-      kitchens.push(element);
+    let cuisines = [];
+    for (let i = 0; i < this.cuisines.length; i++) {
+      const element = this.cuisines.at(i).get("cuisine")?.value;
+      cuisines.push(element);
     }
 
-    this.city.kitchens = kitchens;
+    this.city.cuisines = cuisines;
 
     await this.service.updateCity(this.city);
     await this.router.navigate(['/admin/cities/'])

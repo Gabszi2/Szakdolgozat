@@ -12,7 +12,7 @@ import {CityModel} from "../../models/city-model";
 })
 export class AdminFoodStartComponent implements OnInit {
   chooseForm!: FormGroup;
-  kitchens!: string[];
+  cuisines!: string[];
 
   cityAll!:CityModel[];
 
@@ -23,19 +23,19 @@ export class AdminFoodStartComponent implements OnInit {
   async ngOnInit() {
     this.chooseForm = this.formBuilder.group({
       town: ['', Validators.required],
-      kitchen: ['', Validators.required]
+      cuisine: ['', Validators.required]
     })
     this.cityAll = await this.service.getCities();
   }
 
   choice() {
     const town = this.cityAll[this.chooseForm.get('town')?.value].name;
-    const kitchen = this.chooseForm.get('kitchen')?.value;
-    this.router.navigate(['admin/food-list/' + town + '/' + kitchen]).then(() => {
+    const cuisine = this.chooseForm.get('cuisine')?.value;
+    this.router.navigate(['admin/food-list/' + town + '/' + cuisine]).then(() => {
       window.location.reload()
     })
   }
 onChange(value:any){
-    this.kitchens=this.cityAll[value.target.value].kitchens;
+    this.cuisines=this.cityAll[value.target.value].cuisines;
 }
 }

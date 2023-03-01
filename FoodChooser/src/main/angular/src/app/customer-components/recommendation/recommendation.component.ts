@@ -12,14 +12,14 @@ import {CustomerService} from "../../services/customer.service";
 })
 export class RecommendationComponent implements OnInit {
   recommendationForm!: FormGroup;
-  types:string[]=['food','question','kitchen','restaurant','city'];
+  types:string[]=['food','question','cuisine','restaurant','city'];
 
   constructor(private service:CustomerService,private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.recommendationForm = this.formBuilder.group({
       type: ['', Validators.required],
-      kitchen: [''],
+      cuisine: [''],
       city: [''],
       foodName:[''],
       restaurant: [''],
@@ -29,7 +29,7 @@ export class RecommendationComponent implements OnInit {
 async recommendationAdd() {
   const recommendation = <RecommendationModel>{};
   recommendation.type = this.recommendationForm.get('type')?.value
-  recommendation.kitchen = this.recommendationForm.get('kitchen')?.value
+  recommendation.cuisine = this.recommendationForm.get('cuisine')?.value
   recommendation.city = this.recommendationForm.get('city')?.value
   recommendation.foodName=this.recommendationForm.get('foodName')?.value
   recommendation.restaurant = this.recommendationForm.get('restaurant')?.value

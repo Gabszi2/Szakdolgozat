@@ -2,9 +2,8 @@
   "cities": [
     {
       "name": "Miskolc",
-      "kitchens": [
-        "Asian",
-        "Turkish"
+      "cuisines": [
+        "ddd"
       ]
     }
   ]

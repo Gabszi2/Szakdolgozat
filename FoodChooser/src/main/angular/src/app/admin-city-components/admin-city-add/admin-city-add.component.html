@@ -8,11 +8,11 @@
       <label for="name">City's name:</label>
       <input class="form-control" formControlName="name" id="name" type="text">
       <p></p>
-      <button (click)="addKitchen()" class="btn-warning btn btn-md">Add kitchen</button>
-      <div formArrayName="kitchens">
-        <div *ngFor="let kitchen of kitchens.controls;let i=index">
+      <button (click)="addCuisine()" class="btn-warning btn btn-md">Add cuisine</button>
+      <div formArrayName="cuisines">
+        <div *ngFor="let cuisine of cuisines.controls;let i=index">
           <div [formGroupName]="i">
-            <input class="form-control" formControlName="kitchen" type="text">
+            <input class="form-control" formControlName="cuisine" type="text">
 
           </div>
           <div class="text-end">

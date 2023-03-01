@@ -97,8 +97,8 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
     }
 
     @Override
-    public FoodEntity saveFoodToTownAndKitchen(FoodEntity foodEntity, String town, String kitchen) {
-        Collection<FoodEntity> inAll= getAllFoodFromTownAndKitchen(town,kitchen);
+    public FoodEntity saveFoodToTownAndCuisine(FoodEntity foodEntity, String town, String cuisine) {
+        Collection<FoodEntity> inAll= getAllFoodFromTownAndCuisine(town,cuisine);
         JSONArray outToWrite=new JSONArray();
         int counter=0;
 
@@ -123,7 +123,7 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
                 outToWrite.add(foodEntity);
             }
 
-        new JsonHandler(town,kitchen).writeJsonArrayToFile(outToWrite);
+        new JsonHandler(town,cuisine).writeJsonArrayToFile(outToWrite);
 
         return foodEntity;
 
@@ -136,8 +136,8 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
 
      */
     @Override
-    public QuestionEntity saveQuestionsToKitchen(QuestionEntity oldQuestion, QuestionEntity newQuestion, String kitchen) {
-        Collection<QuestionEntity> inAll=getAllQuestionFromKitchen(kitchen);
+    public QuestionEntity saveQuestionsToCuisine(QuestionEntity oldQuestion, QuestionEntity newQuestion, String cuisine) {
+        Collection<QuestionEntity> inAll=getAllQuestionFromCuisine(cuisine);
         JSONArray outToWrite=new JSONArray();
         int counter=0;
 
@@ -160,7 +160,7 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
 
             outToWrite.add(newQuestion);
         }
-        new JsonHandler(kitchen).writeJsonArrayToFile(outToWrite);
+        new JsonHandler(cuisine).writeJsonArrayToFile(outToWrite);
         return newQuestion;
 
     }
@@ -210,8 +210,8 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
     }
 
     @Override
-    public void deleteFoodFromTownAndKitchen(FoodEntity foodEntity, String town, String kitchen) {
-        Collection<FoodEntity> inAll= getAllFoodFromTownAndKitchen(town,kitchen);
+    public void deleteFoodFromTownAndCuisine(FoodEntity foodEntity, String town, String cuisine) {
+        Collection<FoodEntity> inAll= getAllFoodFromTownAndCuisine(town,cuisine);
         JSONArray outToWrite=new JSONArray();
 
         for (FoodEntity entity:inAll
@@ -222,14 +222,14 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
 
 
         }
-        new JsonHandler(town,kitchen).writeJsonArrayToFile(outToWrite);
+        new JsonHandler(town,cuisine).writeJsonArrayToFile(outToWrite);
 
 
     }
 
     @Override
-    public void deleteQuestionFromKitchen(QuestionEntity question, String kitchen) {
-        Collection<QuestionEntity> inAll=getAllQuestionFromKitchen(kitchen);
+    public void deleteQuestionFromCuisine(QuestionEntity question, String cuisine) {
+        Collection<QuestionEntity> inAll=getAllQuestionFromCuisine(cuisine);
         JSONArray outToWrite=new JSONArray();
 
         for (QuestionEntity entity: inAll
@@ -239,7 +239,7 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
             }
 
         }
-        new JsonHandler(kitchen).writeJsonArrayToFile(outToWrite);
+        new JsonHandler(cuisine).writeJsonArrayToFile(outToWrite);
     }
     /**
 
@@ -291,9 +291,9 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
     }
 
     @Override
-    public Collection<FoodEntity> getAllFoodFromTownAndKitchen(String town, String kitchen) {
+    public Collection<FoodEntity> getAllFoodFromTownAndCuisine(String town, String cuisine) {
         Collection<FoodEntity> output=new ArrayList<>();
-        JsonHandler jsonHandler=new JsonHandler(town, kitchen);
+        JsonHandler jsonHandler=new JsonHandler(town, cuisine);
         JSONArray jsonArray=jsonHandler.arrayParser();
 
         Iterator<JSONObject> i=jsonArray.iterator();
@@ -309,10 +309,10 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
     }
 
     @Override
-    public Collection<QuestionEntity> getAllQuestionFromKitchen(String kitchen) {
+    public Collection<QuestionEntity> getAllQuestionFromCuisine(String cuisine) {
         Collection<QuestionEntity> output=new ArrayList<>();
 
-        JsonHandler jsonHandler=new JsonHandler(kitchen);
+        JsonHandler jsonHandler=new JsonHandler(cuisine);
         JSONArray jsonArray=jsonHandler.arrayParser();
 
         Iterator<JSONObject> i= jsonArray.iterator();
@@ -365,8 +365,8 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
     }
 
     @Override
-    public FoodEntity getFoodFromTownAndKitchen(String foodName, String town, String kitchen) {
-        Collection<FoodEntity> allFood=getAllFoodFromTownAndKitchen(town,kitchen);
+    public FoodEntity getFoodFromTownAndCuisine(String foodName, String town, String cuisine) {
+        Collection<FoodEntity> allFood=getAllFoodFromTownAndCuisine(town,cuisine);
 
         for (FoodEntity foodEntity:allFood
              ) {
@@ -378,8 +378,8 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
     }
 
     @Override
-    public QuestionEntity getQuestionFromKitchen(String question, String kitchen) {
-        Collection<QuestionEntity> allQuestion=getAllQuestionFromKitchen(kitchen);
+    public QuestionEntity getQuestionFromCuisine(String question, String cuisine) {
+        Collection<QuestionEntity> allQuestion=getAllQuestionFromCuisine(cuisine);
 
         for (QuestionEntity questionEntity:allQuestion
              ) {

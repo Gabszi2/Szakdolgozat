@@ -7,16 +7,16 @@ import java.util.Objects;
 public class CityDto {
     @NotEmpty
     private String name;
-    private String[] kitchens;
+    private String[] cuisines;
 
     public CityDto() {
     }
 
     public CityDto(hu.uni.miskolc.s9njk6.foodchooser.service.CityDto cityDto) {
         this.name = cityDto.getName();
-        this.kitchens = cityDto.getKitchens();
+        this.cuisines = cityDto.getCuisines();
     }
-    public hu.uni.miskolc.s9njk6.foodchooser.service.CityDto toServiceCityDto(){return new hu.uni.miskolc.s9njk6.foodchooser.service.CityDto(name,kitchens);}
+    public hu.uni.miskolc.s9njk6.foodchooser.service.CityDto toServiceCityDto(){return new hu.uni.miskolc.s9njk6.foodchooser.service.CityDto(name,cuisines);}
 
     public String getName() {
         return name;
@@ -26,12 +26,12 @@ public class CityDto {
         this.name = name;
     }
 
-    public String[] getKitchens() {
-        return kitchens;
+    public String[] getCuisines() {
+        return cuisines;
     }
 
-    public void setKitchens(String[] kitchens) {
-        this.kitchens = kitchens;
+    public void setCuisines(String[] cuisines) {
+        this.cuisines = cuisines;
     }
 
     @Override
@@ -39,13 +39,13 @@ public class CityDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CityDto cityDto = (CityDto) o;
-        return Objects.equals(name, cityDto.name) && Arrays.equals(kitchens, cityDto.kitchens);
+        return Objects.equals(name, cityDto.name) && Arrays.equals(cuisines, cityDto.cuisines);
     }
 
     @Override
     public int hashCode() {
         int result = Objects.hash(name);
-        result = 31 * result + Arrays.hashCode(kitchens);
+        result = 31 * result + Arrays.hashCode(cuisines);
         return result;
     }
 
@@ -53,7 +53,7 @@ public class CityDto {
     public String toString() {
         return "CityDto{" +
                 "name='" + name + '\'' +
-                ", kitchens=" + Arrays.toString(kitchens) +
+                ", cuisines=" + Arrays.toString(cuisines) +
                 '}';
     }
 }

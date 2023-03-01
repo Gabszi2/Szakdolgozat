@@ -18,18 +18,18 @@ public class CustomerController {
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
     }
-    @GetMapping("/customer-questions/{kitchen}")
-    ResponseEntity<List<String>> allQuestions(@PathVariable("kitchen") String kitchen){
+    @GetMapping("/customer-questions/{cuisine}")
+    ResponseEntity<List<String>> allQuestions(@PathVariable("cuisine") String cuisine){
         List<String> out=new ArrayList<>();
-        for (String s:customerService.allQuestions(kitchen)
+        for (String s:customerService.allQuestions(cuisine)
         ) {
             out.add(s);
         }
         return new ResponseEntity<>(out, HttpStatus.OK);
     }
-    @GetMapping("/result/{town}/{kitchen}")
-    ResponseEntity<FoodDto> result(@PathVariable("town") String town, @PathVariable("kitchen") String kitchen, @RequestParam("answers") boolean[] answers) throws NoSuchFoodException {
-        return new ResponseEntity<>(new FoodDto(customerService.findFoodForRecommendation(answers,town,kitchen)),HttpStatus.OK);
+    @GetMapping("/result/{town}/{cuisine}")
+    ResponseEntity<FoodDto> result(@PathVariable("town") String town, @PathVariable("cuisine") String cuisine, @RequestParam("answers") boolean[] answers) throws NoSuchFoodException {
+        return new ResponseEntity<>(new FoodDto(customerService.findFoodForRecommendation(answers,town,cuisine)),HttpStatus.OK);
 
     }
     @PostMapping(value = "/customer-recommendation",consumes = "application/json")

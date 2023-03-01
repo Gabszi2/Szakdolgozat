@@ -18,9 +18,9 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Iterable<String> allQuestions(String kitchen) {
+    public Iterable<String> allQuestions(String cuisine) {
         List<String> output=new ArrayList<>();
-        for (QuestionEntity questionEntity:dataBaseRepository.getAllQuestionFromKitchen(kitchen)
+        for (QuestionEntity questionEntity:dataBaseRepository.getAllQuestionFromCuisine(cuisine)
         ) {
             output.add(questionEntity.getQuestion());
         }
@@ -28,10 +28,10 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public FoodDto findFoodForRecommendation(boolean[] customerAnswers, String town, String kitchen){
+    public FoodDto findFoodForRecommendation(boolean[] customerAnswers, String town, String cuisine){
         List<FoodDto> allFoods=new ArrayList<>();
         FoodDto output=null;
-        for (FoodEntity foodEntity:dataBaseRepository.getAllFoodFromTownAndKitchen(town, kitchen)
+        for (FoodEntity foodEntity:dataBaseRepository.getAllFoodFromTownAndCuisine(town, cuisine)
         ) {
             allFoods.add(new FoodDto(foodEntity));
 

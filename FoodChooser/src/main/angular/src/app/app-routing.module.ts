@@ -50,23 +50,23 @@ const routes: Routes = [
   {path: 'admin', component: AdminChoiceComponent, canActivate: [AdminGuard]},
   {path: 'admin/food-start', component: AdminFoodStartComponent, canActivate: [AdminGuard]},
   {path: 'admin/question-start', component: AdminQuestionStartComponent, canActivate: [AdminGuard]},
-  {path: 'admin/question-list/:kitchen', component: AdminQuestionListComponent, canActivate: [AdminGuard]},
-  {path: 'admin/question-add/:kitchen', component: AdminQuestionAddComponent, canActivate: [AdminGuard]},
+  {path: 'admin/question-list/:cuisine', component: AdminQuestionListComponent, canActivate: [AdminGuard]},
+  {path: 'admin/question-add/:cuisine', component: AdminQuestionAddComponent, canActivate: [AdminGuard]},
   {
-    path: 'admin/question-modify/:kitchen/:question',
+    path: 'admin/question-modify/:cuisine/:question',
     component: AdminQuestionModifyComponent,
     canActivate: [AdminGuard]
   },
-  {path: 'admin/food-list/:town/:kitchen', component: AdminFoodListComponent, canActivate: [AdminGuard]},
-  {path: 'admin/food-modify/:town/:kitchen/:foodName', component: AdminFoodModifyComponent, canActivate: [AdminGuard]},
-  {path: 'admin/food-add/:town/:kitchen', component: AdminFoodAddComponent, canActivate: [AdminGuard]},
+  {path: 'admin/food-list/:town/:cuisine', component: AdminFoodListComponent, canActivate: [AdminGuard]},
+  {path: 'admin/food-modify/:town/:cuisine/:foodName', component: AdminFoodModifyComponent, canActivate: [AdminGuard]},
+  {path: 'admin/food-add/:town/:cuisine', component: AdminFoodAddComponent, canActivate: [AdminGuard]},
   {
-    path: 'admin/food-modify-answers/:town/:kitchen/:foodName',
+    path: 'admin/food-modify-answers/:town/:cuisine/:foodName',
     component: AdminFoodModifyAnswersComponent,
     canActivate: [AdminGuard]
   },
   {
-    path: 'admin/food-modify-restaurants/:town/:kitchen/:foodName',
+    path: 'admin/food-modify-restaurants/:town/:cuisine/:foodName',
     component: AdminFoodModifyRestaurantsComponent,
     canActivate: [AdminGuard]
   },
@@ -80,8 +80,8 @@ const routes: Routes = [
   {path:'admin/city-add',component:AdminCityAddComponent,canActivate:[AdminGuard]},
   //customer-components
   {path: 'start', component: CustomerStartComponent, canActivate: [UserGuard]},
-  {path: 'question-form/:town/:kitchen', component: CustomerQuestionsFormComponent, canActivate: [UserGuard]},
-  {path: 'results/:town/:kitchen/:answers', component: CustomerResultsComponent, canActivate: [UserGuard]},
+  {path: 'question-form/:town/:cuisine', component: CustomerQuestionsFormComponent, canActivate: [UserGuard]},
+  {path: 'results/:town/:cuisine/:answers', component: CustomerResultsComponent, canActivate: [UserGuard]},
   {path:'recommendation',component:RecommendationComponent,canActivate:[UserGuard]}
 
 ];

@@ -6,13 +6,13 @@
       "restaurant": "",
       "id": 519771,
       "type": "question",
-      "kitchen": "fffffff",
+      "cuisine": "fffffff",
       "message": "ad"
     },
     {
       "id": 911237,
       "type": "restaurant",
-      "kitchen": "ads",
+      "cuisine": "ads",
       "city": "Tiszaújváros",
       "restaurant": "ff",
       "message": "dddd",

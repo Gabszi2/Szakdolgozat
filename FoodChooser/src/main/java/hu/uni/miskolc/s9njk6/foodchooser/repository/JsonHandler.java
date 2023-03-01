@@ -18,16 +18,16 @@ public class JsonHandler {
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     //answers construktor
-    public JsonHandler(String town, String kitchen) {
-        path="src/main/resources/"+town.toLowerCase()+"_"+kitchen.toLowerCase()+"_answers.json";
+    public JsonHandler(String town, String cuisine) {
+        path="src/main/resources/"+town.toLowerCase()+"_"+cuisine.toLowerCase()+"_answers.json";
         dbJsonName="answers";
 
     }
 
     //questions construktor
-    public JsonHandler(String kitchen) {
+    public JsonHandler(String cuisine) {
 
-        path = "src/main/resources/" + kitchen.toLowerCase() + "_questions.json";
+        path = "src/main/resources/" + cuisine.toLowerCase() + "_questions.json";
         dbJsonName="questions";
     }
 

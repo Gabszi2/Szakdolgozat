@@ -10,14 +10,14 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./admin-question-add.component.css']
 })
 export class AdminQuestionAddComponent implements OnInit {
-  kitchen!: string;
+  cuisine!: string;
   questionForm!: FormGroup;
 
   constructor(private service: AdminQuestionService, private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder) {
   }
 
   async ngOnInit() {
-    this.kitchen = <string>this.route.snapshot.paramMap.get('kitchen');
+    this.cuisine = <string>this.route.snapshot.paramMap.get('cuisine');
     this.questionForm = this.formBuilder.group({
       question: ['', Validators.required]
     })
@@ -25,7 +25,7 @@ export class AdminQuestionAddComponent implements OnInit {
 
   async questionAdd() {
     const question = this.questionForm.get('question')?.value;
-    await this.service.addQuestion(this.kitchen, question);
-    await this.router.navigate(['/admin/question-list/' + this.kitchen])
+    await this.service.addQuestion(this.cuisine, question);
+    await this.router.navigate(['/admin/question-list/' + this.cuisine])
   }
 }

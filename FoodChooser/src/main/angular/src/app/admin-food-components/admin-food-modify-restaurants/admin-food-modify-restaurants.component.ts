@@ -12,7 +12,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class AdminFoodModifyRestaurantsComponent implements OnInit {
   town!: string;
-  kitchen!: string;
+  cuisine!: string;
   foodName!: string;
   food!: FoodModel;
 
@@ -35,9 +35,9 @@ export class AdminFoodModifyRestaurantsComponent implements OnInit {
 
   async ngOnInit() {
     this.town = <string>this.route.snapshot.paramMap.get('town');
-    this.kitchen = <string>this.route.snapshot.paramMap.get('kitchen');
+    this.cuisine = <string>this.route.snapshot.paramMap.get('cuisine');
     this.foodName = <string>this.route.snapshot.paramMap.get('foodName');
-    this.food = await this.foodService.getFood(this.town, this.kitchen, this.foodName);
+    this.food = await this.foodService.getFood(this.town, this.cuisine, this.foodName);
 
     for (let restaurant in this.food.restaurants) {
       this.addRestaurant();
@@ -62,8 +62,8 @@ export class AdminFoodModifyRestaurantsComponent implements OnInit {
 
     this.food.restaurants = restaurants;
 
-    await this.foodService.updateFood(this.town, this.kitchen, this.food);
-    await this.router.navigate(['/admin/food-list/' + this.town + '/' + this.kitchen])
+    await this.foodService.updateFood(this.town, this.cuisine, this.food);
+    await this.router.navigate(['/admin/food-list/' + this.town + '/' + this.cuisine])
   }
 
   delete(index: number) {

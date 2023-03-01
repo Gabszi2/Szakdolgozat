@@ -12,7 +12,7 @@ import {FoodModel} from "../../models/food-model";
 })
 export class AdminFoodAddComponent implements OnInit {
   town!: string;
-  kitchen!: string;
+  cuisine!: string;
   questions!: string[];
 
   foodForm = this.formBuilder.group({
@@ -46,8 +46,8 @@ export class AdminFoodAddComponent implements OnInit {
 
   async ngOnInit() {
     this.town = <string>this.route.snapshot.paramMap.get('town');
-    this.kitchen = <string>this.route.snapshot.paramMap.get('kitchen');
-    this.questions = await this.questionService.getAllQuestion(this.kitchen);
+    this.cuisine = <string>this.route.snapshot.paramMap.get('cuisine');
+    this.questions = await this.questionService.getAllQuestion(this.cuisine);
     for (let question in this.questions) {
       this.addAnswer();
     }
@@ -84,8 +84,8 @@ export class AdminFoodAddComponent implements OnInit {
     food.answer = answers;
     food.restaurants = restaurants;
 
-    await this.foodService.addFood(this.town, this.kitchen, food)
-    await this.router.navigate(['/admin/food-list/' + this.town + '/' + this.kitchen])
+    await this.foodService.addFood(this.town, this.cuisine, food)
+    await this.router.navigate(['/admin/food-list/' + this.town + '/' + this.cuisine])
 
   }
 }

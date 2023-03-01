@@ -17,26 +17,26 @@ export class AdminQuestionService {
     this.adminUrl = 'http://localhost:8080/admin'
   }
 
-  async getAllQuestion(kitchen: string) {
-    return lastValueFrom(this.http.get<string[]>(this.adminUrl + '/questions/' + kitchen));
+  async getAllQuestion(cuisine: string) {
+    return lastValueFrom(this.http.get<string[]>(this.adminUrl + '/questions/' + cuisine));
   }
 
-  async deleteQuestion(kitchen: string, question: string) {
+  async deleteQuestion(cuisine: string, question: string) {
     let httpParams = new HttpParams().set('question', question);
     let options = {params: httpParams};
-    return lastValueFrom(this.http.delete(this.adminUrl + '/question/' + kitchen, options));
+    return lastValueFrom(this.http.delete(this.adminUrl + '/question/' + cuisine, options));
   }
 
-  async addQuestion(kitchen: string, question: string) {
+  async addQuestion(cuisine: string, question: string) {
     let httpParams = new HttpParams().set('question', question);
-    return lastValueFrom(this.http.post(this.adminUrl + '/question/' + kitchen, null, {
+    return lastValueFrom(this.http.post(this.adminUrl + '/question/' + cuisine, null, {
       params: httpParams,
       responseType: "text"
     }));
   }
 
-  async updateQuestion(kitchen: string, questionSave: QuestionSaveModel) {
-    return lastValueFrom(this.http.put(this.adminUrl + '/question/' + kitchen, questionSave));
+  async updateQuestion(cuisine: string, questionSave: QuestionSaveModel) {
+    return lastValueFrom(this.http.put(this.adminUrl + '/question/' + cuisine, questionSave));
   }
   async getCities(){
     return lastValueFrom(this.http.get<CityModel[]>(this.adminUrl+'/cities'));

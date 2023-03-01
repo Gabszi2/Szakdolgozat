@@ -11,7 +11,7 @@ import {FoodModel} from "../../models/food-model";
 export class AdminFoodModifyComponent implements OnInit {
   foodUpdate!: FoodModel;
   town!: string;
-  kitchen!: string;
+  cuisine!: string;
   foodName!: string
 
   constructor(private service: AdminFoodService, private route: ActivatedRoute) {
@@ -20,9 +20,9 @@ export class AdminFoodModifyComponent implements OnInit {
 
   async ngOnInit() {
     this.town = <string>this.route.snapshot.paramMap.get('town');
-    this.kitchen = <string>this.route.snapshot.paramMap.get('kitchen');
+    this.cuisine = <string>this.route.snapshot.paramMap.get('cuisine');
     this.foodName = <string>this.route.snapshot.paramMap.get('foodName');
-    this.foodUpdate = await this.service.getFood(this.town, this.kitchen, this.foodName);
+    this.foodUpdate = await this.service.getFood(this.town, this.cuisine, this.foodName);
   }
 
 }

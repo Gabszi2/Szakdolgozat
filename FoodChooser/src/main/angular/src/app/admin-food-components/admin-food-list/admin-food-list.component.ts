@@ -11,19 +11,19 @@ import {ActivatedRoute} from "@angular/router";
 export class AdminFoodListComponent implements OnInit {
   foodAll!: FoodModel[];
   town!: string;
-  kitchen!: string;
+  cuisine!: string;
 
   constructor(private service: AdminFoodService, private route: ActivatedRoute) {
   }
 
   async ngOnInit() {
     this.town = <string>this.route.snapshot.paramMap.get('town');
-    this.kitchen = <string>this.route.snapshot.paramMap.get('kitchen');
-    this.foodAll = await this.service.getAllFood(this.town, this.kitchen);
+    this.cuisine = <string>this.route.snapshot.paramMap.get('cuisine');
+    this.foodAll = await this.service.getAllFood(this.town, this.cuisine);
   }
 
   async deleteFood(food: FoodModel) {
-    await this.service.deleteFood(this.town, this.kitchen, food);
-    this.foodAll = await this.service.getAllFood(this.town, this.kitchen)
+    await this.service.deleteFood(this.town, this.cuisine, food);
+    this.foodAll = await this.service.getAllFood(this.town, this.cuisine)
   }
 }

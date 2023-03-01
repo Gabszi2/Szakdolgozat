@@ -1,6 +1,6 @@
 <p class="text-center">Foods</p>
 
-<button class="btn btn-md btn-warning" routerLink="/admin/food-add/{{town}}/{{kitchen}}" type="button">Add food</button>
+<button class="btn btn-md btn-warning" routerLink="/admin/food-add/{{town}}/{{cuisine}}" type="button">Add food</button>
 <div *ngFor="let food of foodAll" class="row justify-content-center text-center h-100">
   <div class="col-md-4 text-center my-auto">
     <div class="card card-block d-flex" style="height: 120px">
@@ -8,7 +8,7 @@
         {{food.foodName.charAt(0).toUpperCase() + food.foodName.slice(1)}}
       </div>
       <div class="text-end">
-        <button class="btn btn-sm btn-primary" routerLink="/admin/food-modify/{{town}}/{{kitchen}}/{{food.foodName}}"
+        <button class="btn btn-sm btn-primary" routerLink="/admin/food-modify/{{town}}/{{cuisine}}/{{food.foodName}}"
                 type="button">Modify
         </button>
       </div>

@@ -1,7 +1,7 @@
 export interface RecommendationModel{
   id:number;
   type:string;
-  kitchen:string;
+  cuisine:string;
   city:string;
   foodName:string;
   restaurant:string;

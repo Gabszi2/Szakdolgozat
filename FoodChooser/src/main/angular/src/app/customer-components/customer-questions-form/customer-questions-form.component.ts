@@ -10,7 +10,7 @@ import {CustomerService} from "../../services/customer.service";
 })
 export class CustomerQuestionsFormComponent implements OnInit {
   town!: string;
-  kitchen!: string;
+  cuisine!: string;
 
 
   questions!: string[];
@@ -34,9 +34,9 @@ export class CustomerQuestionsFormComponent implements OnInit {
 
   async ngOnInit() {
     this.town = <string>this.route.snapshot.paramMap.get('town');
-    this.kitchen = <string>this.route.snapshot.paramMap.get('kitchen');
+    this.cuisine = <string>this.route.snapshot.paramMap.get('cuisine');
 
-    this.questions = await this.service.getQuestions(this.kitchen);
+    this.questions = await this.service.getQuestions(this.cuisine);
     for (let question in this.questions) {
       this.addAnswer();
     }
@@ -55,6 +55,6 @@ export class CustomerQuestionsFormComponent implements OnInit {
     }
 
 
-    await this.router.navigate(['/results/' + this.town + '/' + this.kitchen + '/' + JSON.stringify(answers)])
+    await this.router.navigate(['/results/' + this.town + '/' + this.cuisine + '/' + JSON.stringify(answers)])
   }
 }

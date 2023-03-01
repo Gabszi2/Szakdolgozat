@@ -4,13 +4,13 @@
   style="height: 350px;"
 >
   <div>
-    <label for="kitchen">Select a kitchen</label>
-    <select [(ngModel)]="selectedKitchen" class="form-control" id="kitchen">
-      <option *ngFor="let kitchen of kitchens"
-              value="{{kitchen}}">{{kitchen.charAt(0).toUpperCase() + kitchen.slice(1)}}</option>
+    <label for="cuisine">Select a cuisine</label>
+    <select [(ngModel)]="selectedcuisine" class="form-control" id="cuisine">
+      <option *ngFor="let cuisine of cuisines"
+              value="{{cuisine}}">{{cuisine.charAt(0).toUpperCase() + cuisine.slice(1)}}</option>
     </select>
-    <button [hidden]="!selectedKitchen" class="btn btn-primary btn-md"
-            routerLink="/admin/question-list/{{selectedKitchen}}">Select
+    <button [hidden]="!selectedcuisine" class="btn btn-primary btn-md"
+            routerLink="/admin/question-list/{{selectedcuisine}}">Select
     </button>
   </div>
 </div>

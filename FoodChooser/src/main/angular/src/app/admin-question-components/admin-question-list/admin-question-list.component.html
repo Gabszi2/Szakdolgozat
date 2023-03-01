@@ -1,6 +1,6 @@
 <p class="text-center">Questions</p>
 
-<button class="btn btn-md btn-warning" routerLink="/admin/question-add/{{kitchen}}" type="button">Add Question</button>
+<button class="btn btn-md btn-warning" routerLink="/admin/question-add/{{cuisine}}" type="button">Add Question</button>
 <div *ngFor="let question of questions" class="row justify-content-center text-center h-100">
   <div class="col-md-4 text-center my-auto">
     <div class="card card-block d-flex" style="height: 120px">
@@ -8,7 +8,7 @@
         {{question}}
       </div>
       <div class="text-end">
-        <button class="btn btn-sm btn-primary" routerLink="/admin/question-modify/{{kitchen}}/{{question}}"
+        <button class="btn btn-sm btn-primary" routerLink="/admin/question-modify/{{cuisine}}/{{question}}"
                 type="button">Modify
         </button>
       </div>

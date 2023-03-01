@@ -15,25 +15,25 @@ export class AdminFoodService {
     this.adminUrl = 'http://localhost:8080/admin'
   }
 
-  async getAllFood(town: string, kitchen: string) {
-    return lastValueFrom(this.http.get<FoodModel[]>(this.adminUrl + '/foods/' + town + '/' + kitchen));
+  async getAllFood(town: string, cuisine: string) {
+    return lastValueFrom(this.http.get<FoodModel[]>(this.adminUrl + '/foods/' + town + '/' + cuisine));
   }
 
-  async getFood(town: string, kitchen: string, foodName: string) {
-    return lastValueFrom(this.http.get<FoodModel>(this.adminUrl + '/food/' + town + '/' + kitchen + '/' + foodName))
+  async getFood(town: string, cuisine: string, foodName: string) {
+    return lastValueFrom(this.http.get<FoodModel>(this.adminUrl + '/food/' + town + '/' + cuisine + '/' + foodName))
   }
 
-  async deleteFood(town: string, kitchen: string, food: FoodModel) {
-    return lastValueFrom(this.http.delete(this.adminUrl + '/food/' + town + '/' + kitchen, {body: food}));
+  async deleteFood(town: string, cuisine: string, food: FoodModel) {
+    return lastValueFrom(this.http.delete(this.adminUrl + '/food/' + town + '/' + cuisine, {body: food}));
   }
 
-  async addFood(town: string, kitchen: string, food: FoodModel) {
+  async addFood(town: string, cuisine: string, food: FoodModel) {
 
-    return lastValueFrom(this.http.post<FoodModel>(this.adminUrl + '/food/' + town + '/' + kitchen, food));
+    return lastValueFrom(this.http.post<FoodModel>(this.adminUrl + '/food/' + town + '/' + cuisine, food));
   }
 
-  async updateFood(town: string, kitchen: string, food: FoodModel) {
-    return lastValueFrom(this.http.put(this.adminUrl + '/food/' + town + '/' + kitchen, food));
+  async updateFood(town: string, cuisine: string, food: FoodModel) {
+    return lastValueFrom(this.http.put(this.adminUrl + '/food/' + town + '/' + cuisine, food));
   }
   async getCities(){
     return lastValueFrom(this.http.get<CityModel[]>(this.adminUrl+'/cities'));

@@ -21,9 +21,9 @@ public class AdminServiceImpl implements AdminService {
 
 
     @Override
-    public Iterable<String> allQuestions(String kitchen) {
+    public Iterable<String> allQuestions(String cuisine) {
         List<String> output=new ArrayList<>();
-        for (QuestionEntity questionEntity:dataBaseRepository.getAllQuestionFromKitchen(kitchen)
+        for (QuestionEntity questionEntity:dataBaseRepository.getAllQuestionFromCuisine(cuisine)
              ) {
             output.add(questionEntity.getQuestion());
         }
@@ -35,77 +35,77 @@ public class AdminServiceImpl implements AdminService {
 
 
     @Override
-    public void deleteQuestion(String question, String kitchen) {
-        QuestionEntity questionEntity=dataBaseRepository.getQuestionFromKitchen(question, kitchen);
+    public void deleteQuestion(String question, String cuisine) {
+        QuestionEntity questionEntity=dataBaseRepository.getQuestionFromCuisine(question, cuisine);
 
         if (questionEntity==null){
             throw new NoSuchEntityException(question);
         }
-        dataBaseRepository.deleteQuestionFromKitchen(questionEntity,kitchen);
+        dataBaseRepository.deleteQuestionFromCuisine(questionEntity,cuisine);
     }
 
     @Override
-    public String createQuestion(String question, String kitchen) throws EntityAlreadyExistsException {
-        QuestionEntity questionEntity=dataBaseRepository.getQuestionFromKitchen(question, kitchen);
+    public String createQuestion(String question, String cuisine) throws EntityAlreadyExistsException {
+        QuestionEntity questionEntity=dataBaseRepository.getQuestionFromCuisine(question, cuisine);
 
         if (questionEntity==null){
 
-            return dataBaseRepository.saveQuestionsToKitchen(new QuestionEntity(question),new QuestionEntity(question),kitchen).getQuestion();
+            return dataBaseRepository.saveQuestionsToCuisine(new QuestionEntity(question),new QuestionEntity(question),cuisine).getQuestion();
         }
         throw new EntityAlreadyExistsException(question);
     }
 
     @Override
-    public void saveQuestion(String oldQuestion, String newQuestion, String kitchen) {
-        QuestionEntity searched=dataBaseRepository.getQuestionFromKitchen(oldQuestion,kitchen);
+    public void saveQuestion(String oldQuestion, String newQuestion, String cuisine) {
+        QuestionEntity searched=dataBaseRepository.getQuestionFromCuisine(oldQuestion,cuisine);
         if (searched==null){
             throw new NoSuchEntityException(oldQuestion);
         }
-        dataBaseRepository.saveQuestionsToKitchen(new QuestionEntity(oldQuestion),new QuestionEntity(newQuestion),kitchen);
+        dataBaseRepository.saveQuestionsToCuisine(new QuestionEntity(oldQuestion),new QuestionEntity(newQuestion),cuisine);
     }
 
     @Override
-    public Iterable<FoodDto> allFood(String town, String kitchen) {
+    public Iterable<FoodDto> allFood(String town, String cuisine) {
         List<FoodDto> output=new ArrayList<>();
-        for (FoodEntity foodEntity:dataBaseRepository.getAllFoodFromTownAndKitchen(town, kitchen)
+        for (FoodEntity foodEntity:dataBaseRepository.getAllFoodFromTownAndCuisine(town, cuisine)
              ) {
             output.add(new FoodDto(foodEntity));
         }
         return output;
     }
     @Override
-    public FoodDto getFood(String town, String kitchen,String foodName){
-        FoodEntity foodEntity=dataBaseRepository.getFoodFromTownAndKitchen(foodName,town,kitchen);
+    public FoodDto getFood(String town, String cuisine,String foodName){
+        FoodEntity foodEntity=dataBaseRepository.getFoodFromTownAndCuisine(foodName,town,cuisine);
         if (foodEntity==null){
             throw new NoSuchEntityException(foodName);
         }
         return new FoodDto(foodEntity) ;
     }
     @Override
-    public FoodDto createFood(FoodDto foodDto, String town, String kitchen) throws EntityAlreadyExistsException {
-        FoodEntity foodEntity=dataBaseRepository.getFoodFromTownAndKitchen(foodDto.getFoodName(),town,kitchen);
+    public FoodDto createFood(FoodDto foodDto, String town, String cuisine) throws EntityAlreadyExistsException {
+        FoodEntity foodEntity=dataBaseRepository.getFoodFromTownAndCuisine(foodDto.getFoodName(),town,cuisine);
         if(foodEntity==null){
-            return new FoodDto(dataBaseRepository.saveFoodToTownAndKitchen(foodDto.toEntity(),town,kitchen));
+            return new FoodDto(dataBaseRepository.saveFoodToTownAndCuisine(foodDto.toEntity(),town,cuisine));
         }
        throw new EntityAlreadyExistsException(foodDto.getFoodName());
     }
 
     @Override
-    public void saveFood(FoodDto foodDto, String town, String kitchen) {
-        FoodEntity searched=dataBaseRepository.getFoodFromTownAndKitchen(foodDto.getFoodName(), town,kitchen);
+    public void saveFood(FoodDto foodDto, String town, String cuisine) {
+        FoodEntity searched=dataBaseRepository.getFoodFromTownAndCuisine(foodDto.getFoodName(), town,cuisine);
         if (searched==null){
             throw new NoSuchEntityException(foodDto.getFoodName());
         }
-        dataBaseRepository.saveFoodToTownAndKitchen(foodDto.toEntity(),town,kitchen);
+        dataBaseRepository.saveFoodToTownAndCuisine(foodDto.toEntity(),town,cuisine);
     }
 
     @Override
-    public void deleteFood(FoodDto foodDto, String town, String kitchen) {
-        FoodEntity searched=dataBaseRepository.getFoodFromTownAndKitchen(foodDto.getFoodName(), town,kitchen);
+    public void deleteFood(FoodDto foodDto, String town, String cuisine) {
+        FoodEntity searched=dataBaseRepository.getFoodFromTownAndCuisine(foodDto.getFoodName(), town,cuisine);
         if (searched==null){
             throw new NoSuchEntityException(foodDto.getFoodName());
         }
-        dataBaseRepository.deleteFoodFromTownAndKitchen(foodDto.toEntity(),town,kitchen);
+        dataBaseRepository.deleteFoodFromTownAndCuisine(foodDto.toEntity(),town,cuisine);
     }
 
     @Override

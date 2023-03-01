@@ -8,8 +8,8 @@ import {AdminQuestionService} from "../../services/admin-question.service";
   styleUrls: ['./admin-question-start.component.css']
 })
 export class AdminQuestionStartComponent implements OnInit {
-  selectedKitchen!: string;
-  kitchens!: string[];
+  selectedcuisine!: string;
+  cuisines!: string[];
   cityAll!:CityModel[];
 
   constructor(private service:AdminQuestionService) {
@@ -18,19 +18,19 @@ export class AdminQuestionStartComponent implements OnInit {
   async ngOnInit(){
 
     this.cityAll= await this.service.getCities();
-    this.kitchens=this.cityAll[0].kitchens;
+    this.cuisines=this.cityAll[0].cuisines;
 
     for (let i=1;i<this.cityAll.length;i++){
 
-      for (const cityKitchen of this.cityAll[i].kitchens) {
-        let notInKitchens = true;
-        for (const kitchen of this.kitchens) {
-          if (kitchen == cityKitchen) {
-            notInKitchens = false;
+      for (const citycuisine of this.cityAll[i].cuisines) {
+        let notIncuisines = true;
+        for (const cuisine of this.cuisines) {
+          if (cuisine == citycuisine) {
+            notIncuisines = false;
           }
         }
-        if (notInKitchens) {
-          this.kitchens.push(cityKitchen);
+        if (notIncuisines) {
+          this.cuisines.push(citycuisine);
         }
       }
     }

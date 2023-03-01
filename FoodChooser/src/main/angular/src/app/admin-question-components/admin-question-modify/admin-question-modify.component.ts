@@ -10,7 +10,7 @@ import {QuestionSaveModel} from "../../models/question-save-model";
   styleUrls: ['./admin-question-modify.component.css']
 })
 export class AdminQuestionModifyComponent implements OnInit {
-  kitchen!: string;
+  cuisine!: string;
   oldQuestion!: string;
   questionForm!: FormGroup;
 
@@ -18,7 +18,7 @@ export class AdminQuestionModifyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.kitchen = <string>this.route.snapshot.paramMap.get('kitchen');
+    this.cuisine = <string>this.route.snapshot.paramMap.get('cuisine');
     this.oldQuestion = <string>this.route.snapshot.paramMap.get('question')
     this.questionForm = this.formBuilder.group({
       question: ['', Validators.required]
@@ -30,7 +30,7 @@ export class AdminQuestionModifyComponent implements OnInit {
     const questionUpdate = <QuestionSaveModel>{};
     questionUpdate.oldQuestion = this.oldQuestion;
     questionUpdate.newQuestion = newQuestion;
-    await this.service.updateQuestion(this.kitchen, questionUpdate);
-    await this.router.navigate(['/admin/question-list/' + this.kitchen])
+    await this.service.updateQuestion(this.cuisine, questionUpdate);
+    await this.router.navigate(['/admin/question-list/' + this.cuisine])
   }
 }

@@ -8,7 +8,7 @@ public class RecommendationDto {
     private Long id;
     @NotEmpty
     private String type;
-    private String kitchen;
+    private String cuisine;
     private String city;
     private String foodName;
     private String restaurant;
@@ -22,7 +22,7 @@ public class RecommendationDto {
     public RecommendationDto(hu.uni.miskolc.s9njk6.foodchooser.service.RecommendationDto recommendationDto) {
         this.id = recommendationDto.getId();
         this.type = recommendationDto.getType();
-        this.kitchen = recommendationDto.getKitchen();
+        this.cuisine = recommendationDto.getCuisine();
         this.city = recommendationDto.getCity();
         this.foodName=recommendationDto.getFoodName();
         this.restaurant = recommendationDto.getRestaurant();
@@ -30,7 +30,7 @@ public class RecommendationDto {
         this.approved = recommendationDto.isApproved();
     }
     public hu.uni.miskolc.s9njk6.foodchooser.service.RecommendationDto toServiceRecommendationDto(){
-        return new hu.uni.miskolc.s9njk6.foodchooser.service.RecommendationDto(id,type,kitchen,city,foodName,restaurant,message,approved);
+        return new hu.uni.miskolc.s9njk6.foodchooser.service.RecommendationDto(id,type,cuisine,city,foodName,restaurant,message,approved);
     }
 
 
@@ -50,12 +50,12 @@ public class RecommendationDto {
         this.type = type;
     }
 
-    public String getKitchen() {
-        return kitchen;
+    public String getCuisine() {
+        return cuisine;
     }
 
-    public void setKitchen(String kitchen) {
-        this.kitchen = kitchen;
+    public void setCuisine(String cuisine) {
+        this.cuisine = cuisine;
     }
 
     public String getCity() {
@@ -95,7 +95,7 @@ public class RecommendationDto {
         return "RecommendationDto{" +
                 "id=" + id +
                 ", type='" + type + '\'' +
-                ", kitchen='" + kitchen + '\'' +
+                ", cuisine='" + cuisine + '\'' +
                 ", city='" + city + '\'' +
                 ", foodName='" + foodName + '\'' +
                 ", restaurant='" + restaurant + '\'' +
@@ -109,11 +109,11 @@ public class RecommendationDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RecommendationDto that = (RecommendationDto) o;
-        return approved == that.approved && Objects.equals(id, that.id) && Objects.equals(type, that.type) && Objects.equals(kitchen, that.kitchen) && Objects.equals(city, that.city) && Objects.equals(foodName, that.foodName) && Objects.equals(restaurant, that.restaurant) && Objects.equals(message, that.message);
+        return approved == that.approved && Objects.equals(id, that.id) && Objects.equals(type, that.type) && Objects.equals(cuisine, that.cuisine) && Objects.equals(city, that.city) && Objects.equals(foodName, that.foodName) && Objects.equals(restaurant, that.restaurant) && Objects.equals(message, that.message);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, type, kitchen, city, foodName, restaurant, message, approved);
+        return Objects.hash(id, type, cuisine, city, foodName, restaurant, message, approved);
     }
 }

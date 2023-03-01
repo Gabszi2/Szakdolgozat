@@ -16,17 +16,17 @@ export class CustomerService {
     this.url = 'http://localhost:8080/'
   }
 
-  async getQuestions(kitchen: string) {
-    return lastValueFrom(this.http.get<string[]>(this.url + 'customer-questions/' + kitchen));
+  async getQuestions(cuisine: string) {
+    return lastValueFrom(this.http.get<string[]>(this.url + 'customer-questions/' + cuisine));
   }
 
-  async getResult(answers: boolean[], town: string, kitchen: string) {
+  async getResult(answers: boolean[], town: string, cuisine: string) {
     let httpParams = new HttpParams();
     answers.forEach(answer => {
       httpParams = httpParams.append('answers', answer);
     })
     let options = {params: httpParams};
-    return lastValueFrom(this.http.get<FoodModel>(this.url + 'result/' + town + '/' + kitchen, options));
+    return lastValueFrom(this.http.get<FoodModel>(this.url + 'result/' + town + '/' + cuisine, options));
   }
   async createRecommendation(recommendation:RecommendationModel){
     return lastValueFrom(this.http.post<RecommendationModel>(this.url+'customer-recommendation',recommendation));

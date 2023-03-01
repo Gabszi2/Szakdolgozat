@@ -14,41 +14,41 @@ export class AdminCityAddComponent implements OnInit {
 
   cityForm = this.formBuilder.group({
     name: ['', Validators.required],
-    kitchens: this.formBuilder.array([])
+    cuisines: this.formBuilder.array([])
 
   })
   constructor(private service: AdminCityService, private router: Router, private formBuilder: FormBuilder) { }
 
-  get kitchens(): FormArray {
-    return this.cityForm.get("kitchens") as FormArray;
+  get cuisines(): FormArray {
+    return this.cityForm.get("cuisines") as FormArray;
   }
-  kitchenForm(): FormGroup {
+  cuisineForm(): FormGroup {
     return this.formBuilder.group({
-      kitchen: ['', Validators.required]
+      cuisine: ['', Validators.required]
     })
   };
 
 
   async ngOnInit(){
-    this.addKitchen()
+    this.addCuisine()
   }
 
-  addKitchen() {
-    this.kitchens.push(this.kitchenForm());
+  addCuisine() {
+    this.cuisines.push(this.cuisineForm());
   }
   delete(index: number) {
-    this.kitchens.removeAt(index);
+    this.cuisines.removeAt(index);
   }
   async cityAdd(){
     const city=<CityModel>{};
     city.name=this.cityForm.get('name')?.value;
 
-    let kitchens = [];
-    for (let i = 0; i < this.kitchens.length; i++) {
-      const element = this.kitchens.at(i).get("kitchen")?.value;
-      kitchens.push(element);
+    let cuisines = [];
+    for (let i = 0; i < this.cuisines.length; i++) {
+      const element = this.cuisines.at(i).get("cuisine")?.value;
+      cuisines.push(element);
     }
-    city.kitchens=kitchens;
+    city.cuisines=cuisines;
     await this.service.addCity(city);
   await this.router.navigate(['/admin/cities'])
 }

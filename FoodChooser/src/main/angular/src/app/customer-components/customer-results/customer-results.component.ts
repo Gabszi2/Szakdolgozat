@@ -11,7 +11,7 @@ import {FoodModel} from "../../models/food-model";
 })
 export class CustomerResultsComponent implements OnInit {
   town!: string;
-  kitchen!: string;
+  cuisine!: string;
   answers!: boolean[];
   result = <FoodModel>{};
 
@@ -20,9 +20,9 @@ export class CustomerResultsComponent implements OnInit {
 
   async ngOnInit() {
     this.town = <string>this.route.snapshot.paramMap.get('town');
-    this.kitchen = <string>this.route.snapshot.paramMap.get('kitchen');
+    this.cuisine = <string>this.route.snapshot.paramMap.get('cuisine');
     this.answers = JSON.parse(<string>this.route.snapshot.paramMap.get('answers'));
-    this.result = await this.service.getResult(this.answers, this.town, this.kitchen)
+    this.result = await this.service.getResult(this.answers, this.town, this.cuisine)
   }
 
 }

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {CustomerService} from "../../services/customer.service";
+import {CityModel} from "../../models/city-model";
 
 @Component({
   selector: 'app-customer-components-start',
@@ -9,26 +11,29 @@ import {Router} from "@angular/router";
 })
 export class CustomerStartComponent implements OnInit {
   chooseForm!: FormGroup;
-  kitchens: string[] = ['asian', 'turkish'];
-  towns: string[] = ['miskolc'];
+  cuisines!: string[];
+  cityAll!: CityModel[]
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(private service:CustomerService,private formBuilder: FormBuilder, private router: Router) {
   }
 
 
-  ngOnInit() {
+  async ngOnInit() {
     this.chooseForm = this.formBuilder.group({
       town: ['', Validators.required],
-      kitchen: ['', Validators.required]
+      cuisine: ['', Validators.required]
     })
+    this.cityAll=await this.service.getCities()
   }
 
   choice() {
-    const town = this.chooseForm.get('town')?.value;
-    const kitchen = this.chooseForm.get('kitchen')?.value;
-    this.router.navigate(['question-form/' + town + '/' + kitchen]).then(() => {
+    const town = this.cityAll[this.chooseForm.get('town')?.value].name;
+    const cuisine = this.chooseForm.get('cuisine')?.value;
+    this.router.navigate(['question-form/' + town + '/' + cuisine]).then(() => {
       window.location.reload()
     })
   }
-
+  onChange(value:any){
+    this.cuisines=this.cityAll[value.target.value].cuisines;
+  }
 }

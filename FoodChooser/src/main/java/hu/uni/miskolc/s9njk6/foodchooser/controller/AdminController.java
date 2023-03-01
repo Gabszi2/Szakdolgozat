@@ -21,55 +21,55 @@ public class AdminController {
     }
 
     //Question Requests
-    @GetMapping("/questions/{kitchen}")
-   ResponseEntity< List<String>> allQuestions(@PathVariable("kitchen") String kitchen){
+    @GetMapping("/questions/{cuisine}")
+   ResponseEntity< List<String>> allQuestions(@PathVariable("cuisine") String cuisine){
         List<String> out=new ArrayList<>();
-        for (String s:adminService.allQuestions(kitchen)
+        for (String s:adminService.allQuestions(cuisine)
              ) {
             out.add(s);
         }
         return new ResponseEntity<>(out, HttpStatus.OK);
     }
 
-    @DeleteMapping("/question/{kitchen}")
-    void deleteQuestion(@RequestParam("question") String question,@PathVariable("kitchen")String kitchen){
-        adminService.deleteQuestion(question, kitchen);
+    @DeleteMapping("/question/{cuisine}")
+    void deleteQuestion(@RequestParam("question") String question,@PathVariable("cuisine")String cuisine){
+        adminService.deleteQuestion(question, cuisine);
     }
-    @PostMapping(value = "/question/{kitchen}")
-    ResponseEntity<String> createQuestion(@RequestParam("question") String question,@PathVariable("kitchen") String kitchen) throws EntityAlreadyExistsException {
-return new ResponseEntity<>(adminService.createQuestion(question, kitchen),HttpStatus.CREATED);
+    @PostMapping(value = "/question/{cuisine}")
+    ResponseEntity<String> createQuestion(@RequestParam("question") String question,@PathVariable("cuisine") String cuisine) throws EntityAlreadyExistsException {
+return new ResponseEntity<>(adminService.createQuestion(question, cuisine),HttpStatus.CREATED);
     }
-    @PutMapping("question/{kitchen}")
-    void saveQuestion(@RequestBody @Valid QuestionSaveDto questionSaveDto,@PathVariable("kitchen") String kitchen){
-        adminService.saveQuestion(questionSaveDto.getOldQuestion(),questionSaveDto.getNewQuestion(),kitchen);
+    @PutMapping("question/{cuisine}")
+    void saveQuestion(@RequestBody @Valid QuestionSaveDto questionSaveDto,@PathVariable("cuisine") String cuisine){
+        adminService.saveQuestion(questionSaveDto.getOldQuestion(),questionSaveDto.getNewQuestion(),cuisine);
     }
 
     //Food Requests
-    @GetMapping("/foods/{town}/{kitchen}")
-    ResponseEntity<List<FoodDto>> allFood(@PathVariable("town") String town,@PathVariable("kitchen") String kitchen){
+    @GetMapping("/foods/{town}/{cuisine}")
+    ResponseEntity<List<FoodDto>> allFood(@PathVariable("town") String town,@PathVariable("cuisine") String cuisine){
         List<FoodDto> out=new ArrayList<>();
-        for (hu.uni.miskolc.s9njk6.foodchooser.service.FoodDto foodDto:adminService.allFood(town, kitchen)
+        for (hu.uni.miskolc.s9njk6.foodchooser.service.FoodDto foodDto:adminService.allFood(town, cuisine)
              ) {
             out.add(new FoodDto(foodDto));
         }
         return new ResponseEntity<>(out,HttpStatus.OK);
     }
-    @GetMapping("/food/{town}/{kitchen}/{foodName}")
-    ResponseEntity<FoodDto> getFood(@PathVariable("town") String town,@PathVariable("kitchen") String kitchen,@PathVariable("foodName") String foodName){
+    @GetMapping("/food/{town}/{cuisine}/{foodName}")
+    ResponseEntity<FoodDto> getFood(@PathVariable("town") String town,@PathVariable("cuisine") String cuisine,@PathVariable("foodName") String foodName){
 
-        return new ResponseEntity<>(new FoodDto(adminService.getFood(town,kitchen,foodName)),HttpStatus.OK);
+        return new ResponseEntity<>(new FoodDto(adminService.getFood(town,cuisine,foodName)),HttpStatus.OK);
     }
-    @DeleteMapping("/food/{town}/{kitchen}")
-    void deleteFood(@RequestBody @Valid FoodDto foodDto,@PathVariable("town") String town,@PathVariable("kitchen") String kitchen){
-        adminService.deleteFood(foodDto.toServiceFoodDto(),town,kitchen);
+    @DeleteMapping("/food/{town}/{cuisine}")
+    void deleteFood(@RequestBody @Valid FoodDto foodDto,@PathVariable("town") String town,@PathVariable("cuisine") String cuisine){
+        adminService.deleteFood(foodDto.toServiceFoodDto(),town,cuisine);
     }
-    @PostMapping(value = "/food/{town}/{kitchen}",consumes = "application/json")
-    ResponseEntity<FoodDto> createFood(@RequestBody @Valid FoodDto foodDto,@PathVariable("town") String town,@PathVariable("kitchen") String kitchen) throws EntityAlreadyExistsException {
-        return new ResponseEntity<>(new FoodDto( adminService.createFood(foodDto.toServiceFoodDto(),town,kitchen)),HttpStatus.CREATED);
+    @PostMapping(value = "/food/{town}/{cuisine}",consumes = "application/json")
+    ResponseEntity<FoodDto> createFood(@RequestBody @Valid FoodDto foodDto,@PathVariable("town") String town,@PathVariable("cuisine") String cuisine) throws EntityAlreadyExistsException {
+        return new ResponseEntity<>(new FoodDto( adminService.createFood(foodDto.toServiceFoodDto(),town,cuisine)),HttpStatus.CREATED);
     }
-@PutMapping("/food/{town}/{kitchen}")
-    void saveFood(@RequestBody @Valid FoodDto foodDto,@PathVariable("town") String town,@PathVariable("kitchen") String kitchen){
-        adminService.saveFood(foodDto.toServiceFoodDto(),town,kitchen);
+@PutMapping("/food/{town}/{cuisine}")
+    void saveFood(@RequestBody @Valid FoodDto foodDto,@PathVariable("town") String town,@PathVariable("cuisine") String cuisine){
+        adminService.saveFood(foodDto.toServiceFoodDto(),town,cuisine);
 }
 //Recommendation Requests
     @GetMapping("/recommendations")

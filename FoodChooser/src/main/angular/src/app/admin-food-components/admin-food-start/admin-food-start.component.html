@@ -9,10 +9,10 @@
       <select class="form-control" formControlName="town" id="town" (change)="onChange($event)">
         <option *ngFor="let city of cityAll; let i=index" value="{{i}}">{{city.name.charAt(0).toUpperCase() + city.name.slice(1)}}</option>
       </select>
-      <label for="kitchen">Select a kitchen</label>
-      <select class="form-control" formControlName="kitchen" id="kitchen">
-        <option *ngFor="let kitchen of kitchens"
-                value="{{kitchen}}">{{kitchen.charAt(0).toUpperCase() + kitchen.slice(1)}}</option>
+      <label for="cuisine">Select a cuisine</label>
+      <select class="form-control" formControlName="cuisine" id="cuisine">
+        <option *ngFor="let cuisine of cuisines"
+                value="{{cuisine}}">{{cuisine.charAt(0).toUpperCase() + cuisine.slice(1)}}</option>
       </select>
       <button (click)="choice()" [hidden]="chooseForm.invalid" class="btn btn-primary btn-md">Select</button>
     </form>

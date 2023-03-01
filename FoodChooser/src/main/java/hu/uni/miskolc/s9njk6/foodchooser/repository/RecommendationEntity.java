@@ -5,7 +5,7 @@ import java.util.Objects;
 public class RecommendationEntity {
     private Long id;
     private String type;
-    private String kitchen;
+    private String cuisine;
     private String city;
     private String foodName;
     private String restaurant;
@@ -15,10 +15,10 @@ public class RecommendationEntity {
     public RecommendationEntity() {
     }
 
-    public RecommendationEntity(Long id, String type, String kitchen, String city,String foodName, String restaurant, String message, boolean approved) {
+    public RecommendationEntity(Long id, String type, String cuisine, String city,String foodName, String restaurant, String message, boolean approved) {
         this.id = id;
         this.type = type;
-        this.kitchen = kitchen;
+        this.cuisine = cuisine;
         this.city = city;
         this.foodName=foodName;
         this.restaurant = restaurant;
@@ -50,12 +50,12 @@ public class RecommendationEntity {
         this.type = type;
     }
 
-    public String getKitchen() {
-        return kitchen;
+    public String getCuisine() {
+        return cuisine;
     }
 
-    public void setKitchen(String kitchen) {
-        this.kitchen = kitchen;
+    public void setCuisine(String cuisine) {
+        this.cuisine = cuisine;
     }
 
     public String getCity() {
@@ -95,7 +95,7 @@ public class RecommendationEntity {
         return "RecommendationEntity{" +
                 "id=" + id +
                 ", type='" + type + '\'' +
-                ", kitchen='" + kitchen + '\'' +
+                ", cuisine='" + cuisine + '\'' +
                 ", city='" + city + '\'' +
                 ", foodName='" + foodName + '\'' +
                 ", restaurant='" + restaurant + '\'' +
@@ -109,11 +109,11 @@ public class RecommendationEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RecommendationEntity that = (RecommendationEntity) o;
-        return approved == that.approved && Objects.equals(id, that.id) && Objects.equals(type, that.type) && Objects.equals(kitchen, that.kitchen) && Objects.equals(city, that.city) && Objects.equals(foodName, that.foodName) && Objects.equals(restaurant, that.restaurant) && Objects.equals(message, that.message);
+        return approved == that.approved && Objects.equals(id, that.id) && Objects.equals(type, that.type) && Objects.equals(cuisine, that.cuisine) && Objects.equals(city, that.city) && Objects.equals(foodName, that.foodName) && Objects.equals(restaurant, that.restaurant) && Objects.equals(message, that.message);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, type, kitchen, city, foodName, restaurant, message, approved);
+        return Objects.hash(id, type, cuisine, city, foodName, restaurant, message, approved);
     }
 }
