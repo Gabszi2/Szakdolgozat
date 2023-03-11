@@ -5,8 +5,9 @@ import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
+
 @Repository
-public interface RecommendationRepository extends MongoRepository<RecommendationEntity,String> {
+public interface RecommendationRepository extends MongoRepository<RecommendationEntity, String> {
     @Query("{'approved': true}")
     Collection<RecommendationEntity> findAllByApproved();
 }

@@ -14,7 +14,7 @@ export class CustomerStartComponent implements OnInit {
   cuisines!: string[];
   cityAll!: CityModel[]
 
-  constructor(private service:CustomerService,private formBuilder: FormBuilder, private router: Router) {
+  constructor(private service: CustomerService, private formBuilder: FormBuilder, private router: Router) {
   }
 
 
@@ -23,7 +23,7 @@ export class CustomerStartComponent implements OnInit {
       town: ['', Validators.required],
       cuisine: ['', Validators.required]
     })
-    this.cityAll=await this.service.getCities()
+    this.cityAll = await this.service.getCities()
   }
 
   choice() {
@@ -33,7 +33,8 @@ export class CustomerStartComponent implements OnInit {
       window.location.reload()
     })
   }
-  onChange(value:any){
-    this.cuisines=this.cityAll[value.target.value].cuisines;
+
+  onChange(value: any) {
+    this.cuisines = this.cityAll[value.target.value].cuisines;
   }
 }

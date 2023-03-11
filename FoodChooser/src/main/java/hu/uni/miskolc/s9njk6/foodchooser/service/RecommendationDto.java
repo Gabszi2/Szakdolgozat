@@ -2,7 +2,6 @@ package hu.uni.miskolc.s9njk6.foodchooser.service;
 
 import hu.uni.miskolc.s9njk6.foodchooser.repository.RecommendationEntity;
 
-
 import java.util.Objects;
 
 public class RecommendationDto {

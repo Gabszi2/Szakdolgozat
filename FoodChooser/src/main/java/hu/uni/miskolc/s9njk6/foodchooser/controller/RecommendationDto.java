@@ -23,13 +23,14 @@ public class RecommendationDto {
         this.type = recommendationDto.getType();
         this.cuisine = recommendationDto.getCuisine();
         this.city = recommendationDto.getCity();
-        this.foodName=recommendationDto.getFoodName();
+        this.foodName = recommendationDto.getFoodName();
         this.restaurant = recommendationDto.getRestaurant();
         this.message = recommendationDto.getMessage();
         this.approved = recommendationDto.isApproved();
     }
-    public hu.uni.miskolc.s9njk6.foodchooser.service.RecommendationDto toServiceRecommendationDto(){
-        return new hu.uni.miskolc.s9njk6.foodchooser.service.RecommendationDto(id,type,cuisine,city,foodName,restaurant,message,approved);
+
+    public hu.uni.miskolc.s9njk6.foodchooser.service.RecommendationDto toServiceRecommendationDto() {
+        return new hu.uni.miskolc.s9njk6.foodchooser.service.RecommendationDto(id, type, cuisine, city, foodName, restaurant, message, approved);
     }
 
 

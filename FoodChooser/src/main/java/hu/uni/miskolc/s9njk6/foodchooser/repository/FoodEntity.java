@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Arrays;
 import java.util.Objects;
+
 @Document("Foods")
 public class FoodEntity {
     @Id
@@ -14,15 +15,19 @@ public class FoodEntity {
     private String foodName;
     private String[] restaurants;
     private String town;
-private String cuisine;
-    public FoodEntity(String foodName, boolean[] answers, String[] restaurants,String town,String cuisine) {
+    private String cuisine;
+
+    public FoodEntity(String foodName, boolean[] answers, String[] restaurants, String town, String cuisine) {
 
         this.foodName = foodName;
         this.answer = answers;
         this.restaurants = restaurants;
-        this.town=town;
-        this.cuisine=cuisine;
+        this.town = town;
+        this.cuisine = cuisine;
 
+    }
+
+    public FoodEntity() {
     }
 
     @Override
@@ -75,9 +80,6 @@ private String cuisine;
 
     public void setCuisine(String cuisine) {
         this.cuisine = cuisine;
-    }
-
-    public FoodEntity() {
     }
 
     public String getFoodName() {

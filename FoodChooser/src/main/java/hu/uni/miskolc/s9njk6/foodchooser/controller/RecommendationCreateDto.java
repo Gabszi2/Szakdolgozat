@@ -21,15 +21,16 @@ public class RecommendationCreateDto {
 
     public RecommendationCreateDto(RecommendationDto recommendationDto) {
         this.type = recommendationDto.getType();
-        this.cuisine =recommendationDto.getCuisine();
+        this.cuisine = recommendationDto.getCuisine();
         this.city = recommendationDto.getCity();
-        this.foodName=recommendationDto.getFoodName();
+        this.foodName = recommendationDto.getFoodName();
         this.restaurant = recommendationDto.getRestaurant();
         this.message = recommendationDto.getMessage();
         this.approved = recommendationDto.isApproved();
     }
-    public RecommendationDto toServiceRecommendationDto(){
-        return new RecommendationDto(null,type,cuisine,city,foodName,restaurant,message,approved);
+
+    public RecommendationDto toServiceRecommendationDto() {
+        return new RecommendationDto(null, type, cuisine, city, foodName, restaurant, message, approved);
     }
 
 

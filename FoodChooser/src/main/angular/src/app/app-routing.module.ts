@@ -31,8 +31,12 @@ import {RegisterComponent} from "./register/register.component";
 import {AdminGuard} from "./admin.guard";
 import {UserGuard} from "./user.guard";
 import {AdminUsersComponent} from "./admin-users/admin-users.component";
-import {AdminRecommendationsComponent} from "./admin-recommendation-components/admin-recommendations/admin-recommendations.component";
-import {AdminApprovedRecComponent} from "./admin-recommendation-components/admin-approved-rec/admin-approved-rec.component";
+import {
+  AdminRecommendationsComponent
+} from "./admin-recommendation-components/admin-recommendations/admin-recommendations.component";
+import {
+  AdminApprovedRecComponent
+} from "./admin-recommendation-components/admin-approved-rec/admin-approved-rec.component";
 import {
   AdminRecommendationDetailsComponent
 } from "./admin-recommendation-components/admin-recommendation-details/admin-recommendation-details.component";
@@ -43,12 +47,15 @@ import {AdminCityAddComponent} from "./admin-city-components/admin-city-add/admi
 
 
 const routes: Routes = [
+  //login/register-components
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  //admin
+
+  //admin-components
   {path: 'admin', component: AdminChoiceComponent, canActivate: [AdminGuard]},
-  {path: 'admin/food-start', component: AdminFoodStartComponent, canActivate: [AdminGuard]},
+
+  //question-components
   {path: 'admin/question-start', component: AdminQuestionStartComponent, canActivate: [AdminGuard]},
   {path: 'admin/question-list/:cuisine', component: AdminQuestionListComponent, canActivate: [AdminGuard]},
   {path: 'admin/question-add/:cuisine', component: AdminQuestionAddComponent, canActivate: [AdminGuard]},
@@ -57,6 +64,8 @@ const routes: Routes = [
     component: AdminQuestionModifyComponent,
     canActivate: [AdminGuard]
   },
+  //food-components
+  {path: 'admin/food-start', component: AdminFoodStartComponent, canActivate: [AdminGuard]},
   {path: 'admin/food-list/:town/:cuisine', component: AdminFoodListComponent, canActivate: [AdminGuard]},
   {path: 'admin/food-modify/:town/:cuisine/:foodName', component: AdminFoodModifyComponent, canActivate: [AdminGuard]},
   {path: 'admin/food-add/:town/:cuisine', component: AdminFoodAddComponent, canActivate: [AdminGuard]},
@@ -70,19 +79,21 @@ const routes: Routes = [
     component: AdminFoodModifyRestaurantsComponent,
     canActivate: [AdminGuard]
   },
+  //user-components
   {path: 'admin/users', component: AdminUsersComponent, canActivate: [AdminGuard]},
+  //recommendation-components
   {path: 'admin/recommendations', component: AdminRecommendationsComponent, canActivate: [AdminGuard]},
-  {path:'admin/approved-recommendations',component:AdminApprovedRecComponent,canActivate:[AdminGuard]},
-  {path:'admin/recommendation/:id',component:AdminRecommendationDetailsComponent,canActivate:[AdminGuard]},
+  {path: 'admin/approved-recommendations', component: AdminApprovedRecComponent, canActivate: [AdminGuard]},
+  {path: 'admin/recommendation/:id', component: AdminRecommendationDetailsComponent, canActivate: [AdminGuard]},
   //city-components
-  {path:'admin/cities',component:AdminCityListComponent,canActivate:[AdminGuard]},
-  {path:'admin/city-modify/:town',component:AdminCityModifyComponent,canActivate:[AdminGuard]},
-  {path:'admin/city-add',component:AdminCityAddComponent,canActivate:[AdminGuard]},
+  {path: 'admin/cities', component: AdminCityListComponent, canActivate: [AdminGuard]},
+  {path: 'admin/city-modify/:town', component: AdminCityModifyComponent, canActivate: [AdminGuard]},
+  {path: 'admin/city-add', component: AdminCityAddComponent, canActivate: [AdminGuard]},
   //customer-components
   {path: 'start', component: CustomerStartComponent, canActivate: [UserGuard]},
   {path: 'question-form/:town/:cuisine', component: CustomerQuestionsFormComponent, canActivate: [UserGuard]},
   {path: 'results/:town/:cuisine/:answers', component: CustomerResultsComponent, canActivate: [UserGuard]},
-  {path:'recommendation',component:RecommendationComponent,canActivate:[UserGuard]}
+  {path: 'recommendation', component: RecommendationComponent, canActivate: [UserGuard]}
 
 ];
 

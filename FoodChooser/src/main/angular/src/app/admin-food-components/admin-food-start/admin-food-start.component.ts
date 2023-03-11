@@ -14,9 +14,9 @@ export class AdminFoodStartComponent implements OnInit {
   chooseForm!: FormGroup;
   cuisines!: string[];
 
-  cityAll!:CityModel[];
+  cityAll!: CityModel[];
 
-  constructor(private formBuilder: FormBuilder, private router: Router,private service:AdminFoodService) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private service: AdminFoodService) {
   }
 
 
@@ -35,7 +35,8 @@ export class AdminFoodStartComponent implements OnInit {
       window.location.reload()
     })
   }
-onChange(value:any){
-    this.cuisines=this.cityAll[value.target.value].cuisines;
-}
+
+  onChange(value: any) {
+    this.cuisines = this.cityAll[value.target.value].cuisines;
+  }
 }

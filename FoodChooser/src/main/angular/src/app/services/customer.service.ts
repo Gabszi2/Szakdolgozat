@@ -28,10 +28,12 @@ export class CustomerService {
     let options = {params: httpParams};
     return lastValueFrom(this.http.get<FoodModel>(this.url + 'result/' + town + '/' + cuisine, options));
   }
-  async createRecommendation(recommendation:RecommendationModel){
-    return lastValueFrom(this.http.post<RecommendationModel>(this.url+'customer-recommendation',recommendation));
+
+  async createRecommendation(recommendation: RecommendationModel) {
+    return lastValueFrom(this.http.post<RecommendationModel>(this.url + 'customer-recommendation', recommendation));
   }
-  async getCities(){
-    return lastValueFrom(this.http.get<CityModel[]>(this.url+'cities'));
+
+  async getCities() {
+    return lastValueFrom(this.http.get<CityModel[]>(this.url + 'cities'));
   }
 }

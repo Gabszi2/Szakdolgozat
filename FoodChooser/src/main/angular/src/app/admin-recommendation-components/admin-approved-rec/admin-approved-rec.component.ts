@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AdminRecommendationService} from "../../services/admin-recommendation.service";
 import {RecommendationModel} from "../../models/recommendation-model";
 
@@ -8,15 +8,18 @@ import {RecommendationModel} from "../../models/recommendation-model";
   styleUrls: ['./admin-approved-rec.component.css']
 })
 export class AdminApprovedRecComponent implements OnInit {
-approvedRec!:RecommendationModel[];
-  constructor(private service:AdminRecommendationService) { }
+  approvedRec!: RecommendationModel[];
 
-  async ngOnInit(){
-    this.approvedRec=await this.service.getAllApprovedRecommendations();
+  constructor(private service: AdminRecommendationService) {
   }
-  async delete(id:number){
+
+  async ngOnInit() {
+    this.approvedRec = await this.service.getAllApprovedRecommendations();
+  }
+
+  async delete(id: string) {
     await this.service.deleteRecommendation(id);
-    this.approvedRec= await this.service.getAllRecommendations();
+    this.approvedRec = await this.service.getAllRecommendations();
   }
 
 }

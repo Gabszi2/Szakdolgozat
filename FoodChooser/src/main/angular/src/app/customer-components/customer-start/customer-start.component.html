@@ -6,8 +6,9 @@
   <div>
     <form [formGroup]="chooseForm">
       <label for="town">Select a town</label>
-      <select class="form-control" formControlName="town" id="town" (change)="onChange($event)">
-        <option *ngFor="let city of cityAll; let i=index" value="{{i}}">{{city.name.charAt(0).toUpperCase() + city.name.slice(1)}}</option>
+      <select (change)="onChange($event)" class="form-control" formControlName="town" id="town">
+        <option *ngFor="let city of cityAll; let i=index"
+                value="{{i}}">{{city.name.charAt(0).toUpperCase() + city.name.slice(1)}}</option>
       </select>
       <label for="cuisine">Select a cuisine</label>
       <select class="form-control" formControlName="cuisine" id="cuisine">
@@ -22,5 +23,5 @@
 </div>
 
 <div class="text-end">
-  <button routerLink="/recommendation" class="btn btn-sm btn-warning" type="button">Give us recommendations!</button>
+  <button class="btn btn-sm btn-warning" routerLink="/recommendation" type="button">Give us recommendations!</button>
 </div>

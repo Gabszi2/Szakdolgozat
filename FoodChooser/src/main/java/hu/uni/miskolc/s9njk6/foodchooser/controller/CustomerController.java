@@ -16,10 +16,10 @@ import java.util.List;
 
 @RestController
 public class CustomerController {
-private final QuestionService questionService;
-private final FoodService foodService;
-private final RecommendationService recommendationService;
-private final CityService cityService;
+    private final QuestionService questionService;
+    private final FoodService foodService;
+    private final RecommendationService recommendationService;
+    private final CityService cityService;
 
     public CustomerController(QuestionService questionService, FoodService foodService, RecommendationService recommendationService, CityService cityService) {
         this.questionService = questionService;
@@ -29,29 +29,32 @@ private final CityService cityService;
     }
 
     @GetMapping("/customer-questions/{cuisine}")
-    ResponseEntity<List<String>> allQuestions(@PathVariable("cuisine") String cuisine){
-        List<String> out=new ArrayList<>();
-        for (String s:questionService.allQuestions(cuisine)
+    ResponseEntity<List<String>> allQuestions(@PathVariable("cuisine") String cuisine) {
+        List<String> out = new ArrayList<>();
+        for (String s : questionService.allQuestions(cuisine)
         ) {
             out.add(s);
         }
         return new ResponseEntity<>(out, HttpStatus.OK);
     }
+
     @GetMapping("/result/{town}/{cuisine}")
     ResponseEntity<FoodDto> result(@PathVariable("town") String town, @PathVariable("cuisine") String cuisine, @RequestParam("answers") boolean[] answers) throws NoSuchFoodException {
-        return new ResponseEntity<>(new FoodDto(foodService.getFoodRecommendation(answers,town,cuisine)),HttpStatus.OK);
+        return new ResponseEntity<>(new FoodDto(foodService.getFoodRecommendation(answers, town, cuisine)), HttpStatus.OK);
 
     }
-    @PostMapping(value = "/customer-recommendation",consumes = "application/json")
-    ResponseEntity<RecommendationDto> createRecommendation(@RequestBody @Valid RecommendationCreateDto recommendationCreateDto)throws EntityAlreadyExistsException {
-        return new ResponseEntity<>(new RecommendationDto(recommendationService.createRecommendation(recommendationCreateDto.toServiceRecommendationDto())),HttpStatus.CREATED);
+
+    @PostMapping(value = "/customer-recommendation", consumes = "application/json")
+    ResponseEntity<RecommendationDto> createRecommendation(@RequestBody @Valid RecommendationCreateDto recommendationCreateDto) throws EntityAlreadyExistsException {
+        return new ResponseEntity<>(new RecommendationDto(recommendationService.createRecommendation(recommendationCreateDto.toServiceRecommendationDto())), HttpStatus.CREATED);
     }
+
     @GetMapping(value = "/cities")
-    ResponseEntity<List<CityDto>> allCities(){
-        List<CityDto> out=new ArrayList<>();
-        for (hu.uni.miskolc.s9njk6.foodchooser.service.CityDto cityDto: cityService.allCities()){
+    ResponseEntity<List<CityDto>> allCities() {
+        List<CityDto> out = new ArrayList<>();
+        for (hu.uni.miskolc.s9njk6.foodchooser.service.CityDto cityDto : cityService.allCities()) {
             out.add(new CityDto(cityDto));
         }
-        return new ResponseEntity<>(out,HttpStatus.OK);
+        return new ResponseEntity<>(out, HttpStatus.OK);
     }
 }

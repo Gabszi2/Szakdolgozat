@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
+
 @Document("Users")
 public class UserEntity {
     @Id
@@ -17,6 +18,9 @@ public class UserEntity {
         this.userName = userName;
         this.password = password;
         this.admin = admin;
+    }
+
+    public UserEntity() {
     }
 
     @Override
@@ -40,9 +44,6 @@ public class UserEntity {
     @Override
     public int hashCode() {
         return Objects.hash(email, userName, password, admin);
-    }
-
-    public UserEntity() {
     }
 
     public String getEmail() {

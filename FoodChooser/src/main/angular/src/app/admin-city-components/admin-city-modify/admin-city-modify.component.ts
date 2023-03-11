@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AdminCityService} from "../../services/admin-city.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {CityModel} from "../../models/city-model";
@@ -10,12 +10,14 @@ import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./admin-city-modify.component.css']
 })
 export class AdminCityModifyComponent implements OnInit {
-town!:string;
-city!:CityModel;
+  town!: string;
+  city!: CityModel;
   cuisinesForm = this.fb.group({
     cuisines: this.fb.array([])
   });
-  constructor(private service:AdminCityService, private route: ActivatedRoute,private fb: FormBuilder, private router: Router) { }
+
+  constructor(private service: AdminCityService, private route: ActivatedRoute, private fb: FormBuilder, private router: Router) {
+  }
 
   get cuisines(): FormArray {
     return this.cuisinesForm.get("cuisines") as FormArray;
@@ -26,9 +28,10 @@ city!:CityModel;
       cuisine: ['', Validators.required]
     })
   };
-  async ngOnInit(){
-    this.town=<string>this.route.snapshot.paramMap.get('town');
-    this.city=await this.service.getCity(this.town);
+
+  async ngOnInit() {
+    this.town = <string>this.route.snapshot.paramMap.get('town');
+    this.city = await this.service.getCity(this.town);
 
     for (let cuisine in this.city.cuisines) {
       this.addCuisine();
@@ -38,12 +41,15 @@ city!:CityModel;
 
     }
   }
+
   addCuisine() {
     this.cuisines.push(this.restaurantForm());
   }
-   delete(index: number) {
+
+  delete(index: number) {
     this.cuisines.removeAt(index);
   }
+
   async done() {
     let cuisines = [];
     for (let i = 0; i < this.cuisines.length; i++) {

@@ -1,4 +1,4 @@
 export interface CityModel {
-  name:string;
-  cuisines:string[];
+  name: string;
+  cuisines: string[];
 }

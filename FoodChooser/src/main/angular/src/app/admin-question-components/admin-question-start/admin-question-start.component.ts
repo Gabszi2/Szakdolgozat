@@ -10,17 +10,17 @@ import {AdminQuestionService} from "../../services/admin-question.service";
 export class AdminQuestionStartComponent implements OnInit {
   selectedcuisine!: string;
   cuisines!: string[];
-  cityAll!:CityModel[];
+  cityAll!: CityModel[];
 
-  constructor(private service:AdminQuestionService) {
+  constructor(private service: AdminQuestionService) {
   }
 
-  async ngOnInit(){
+  async ngOnInit() {
 
-    this.cityAll= await this.service.getCities();
-    this.cuisines=this.cityAll[0].cuisines;
+    this.cityAll = await this.service.getCities();
+    this.cuisines = this.cityAll[0].cuisines;
 
-    for (let i=1;i<this.cityAll.length;i++){
+    for (let i = 1; i < this.cityAll.length; i++) {
 
       for (const citycuisine of this.cityAll[i].cuisines) {
         let notIncuisines = true;
@@ -35,7 +35,7 @@ export class AdminQuestionStartComponent implements OnInit {
       }
     }
 
-    }
   }
+}
 
 

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {lastValueFrom} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {RecommendationModel} from "../models/recommendation-model";
@@ -8,23 +8,29 @@ import {RecommendationModel} from "../models/recommendation-model";
   providedIn: 'root'
 })
 export class AdminRecommendationService {
-adminUrl:string;
+  adminUrl: string;
+
   constructor(private http: HttpClient) {
-    this.adminUrl='http://localhost:8080/admin/'
+    this.adminUrl = 'http://localhost:8080/admin/'
   }
-  async getAllRecommendations(){
-    return lastValueFrom(this.http.get<RecommendationModel[]>(this.adminUrl+'recommendations'))
+
+  async getAllRecommendations() {
+    return lastValueFrom(this.http.get<RecommendationModel[]>(this.adminUrl + 'recommendations'))
   }
-  async getAllApprovedRecommendations(){
-    return lastValueFrom(this.http.get<RecommendationModel[]>(this.adminUrl+'approved-recommendations'))
+
+  async getAllApprovedRecommendations() {
+    return lastValueFrom(this.http.get<RecommendationModel[]>(this.adminUrl + 'approved-recommendations'))
   }
-  async getRecommendation(id:number){
-    return lastValueFrom(this.http.get<RecommendationModel>(this.adminUrl+'recommendation/'+id))
+
+  async getRecommendation(id: string) {
+    return lastValueFrom(this.http.get<RecommendationModel>(this.adminUrl + 'recommendation/' + id))
   }
-  async deleteRecommendation(id:number){
-    return lastValueFrom(this.http.delete(this.adminUrl+'recommendation/'+id))
+
+  async deleteRecommendation(id: string) {
+    return lastValueFrom(this.http.delete(this.adminUrl + 'recommendation/' + id))
   }
-  async updateRecommendationApprove(id:number){
-    return lastValueFrom(this.http.put(this.adminUrl+'recommendation/'+id,null))
+
+  async updateRecommendationApprove(id: string) {
+    return lastValueFrom(this.http.put(this.adminUrl + 'recommendation/' + id, null))
   }
 }

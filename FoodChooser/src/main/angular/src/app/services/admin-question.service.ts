@@ -38,7 +38,8 @@ export class AdminQuestionService {
   async updateQuestion(cuisine: string, questionSave: QuestionSaveModel) {
     return lastValueFrom(this.http.put(this.adminUrl + '/question/' + cuisine, questionSave));
   }
-  async getCities(){
-    return lastValueFrom(this.http.get<CityModel[]>(this.adminUrl+'/cities'));
+
+  async getCities() {
+    return lastValueFrom(this.http.get<CityModel[]>(this.adminUrl + '/cities'));
   }
 }

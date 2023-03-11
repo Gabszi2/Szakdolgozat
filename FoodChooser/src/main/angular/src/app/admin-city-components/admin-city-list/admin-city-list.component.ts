@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AdminCityService} from "../../services/admin-city.service";
 import {CityModel} from "../../models/city-model";
 
@@ -8,15 +8,18 @@ import {CityModel} from "../../models/city-model";
   styleUrls: ['./admin-city-list.component.css']
 })
 export class AdminCityListComponent implements OnInit {
-cityAll!:CityModel[];
-  constructor(private service:AdminCityService) { }
+  cityAll!: CityModel[];
 
-  async ngOnInit(){
-    this.cityAll=await this.service.getCities();
+  constructor(private service: AdminCityService) {
   }
-async deleteCity(name:string){
+
+  async ngOnInit() {
+    this.cityAll = await this.service.getCities();
+  }
+
+  async deleteCity(name: string) {
     await this.service.deleteCity(name);
-    this.cityAll=await this.service.getCities();
-}
+    this.cityAll = await this.service.getCities();
+  }
 
 }

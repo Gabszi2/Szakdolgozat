@@ -16,11 +16,15 @@ public class CityDto {
         this.name = name;
         this.cuisines = cuisines;
     }
+
     public CityDto(CityEntity cityEntity) {
         this.name = cityEntity.getName();
         this.cuisines = cityEntity.getCuisines();
     }
-    public CityEntity toEntity(){return new CityEntity(name,cuisines);}
+
+    public CityEntity toEntity() {
+        return new CityEntity(name, cuisines);
+    }
 
     public String getName() {
         return name;

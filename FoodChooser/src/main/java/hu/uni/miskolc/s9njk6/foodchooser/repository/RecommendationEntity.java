@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
+
 @Document("Recommendations")
 public class RecommendationEntity {
     @Id
@@ -19,12 +20,12 @@ public class RecommendationEntity {
     public RecommendationEntity() {
     }
 
-    public RecommendationEntity(String id, String type, String cuisine, String city,String foodName, String restaurant, String message, boolean approved) {
+    public RecommendationEntity(String id, String type, String cuisine, String city, String foodName, String restaurant, String message, boolean approved) {
         this.id = id;
         this.type = type;
         this.cuisine = cuisine;
         this.city = city;
-        this.foodName=foodName;
+        this.foodName = foodName;
         this.restaurant = restaurant;
         this.message = message;
         this.approved = approved;

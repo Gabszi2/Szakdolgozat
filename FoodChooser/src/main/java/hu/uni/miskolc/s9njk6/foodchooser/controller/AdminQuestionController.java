@@ -13,16 +13,16 @@ import java.util.List;
 @RestController
 @RequestMapping("/admin")
 public class AdminQuestionController {
-private final QuestionService questionService;
+    private final QuestionService questionService;
 
     public AdminQuestionController(QuestionService questionService) {
         this.questionService = questionService;
     }
 
     @GetMapping("/questions/{cuisine}")
-    ResponseEntity<List<String>> allQuestions(@PathVariable("cuisine") String cuisine){
-        List<String> out=new ArrayList<>();
-        for (String s:questionService.allQuestions(cuisine)
+    ResponseEntity<List<String>> allQuestions(@PathVariable("cuisine") String cuisine) {
+        List<String> out = new ArrayList<>();
+        for (String s : questionService.allQuestions(cuisine)
         ) {
             out.add(s);
         }
@@ -30,15 +30,17 @@ private final QuestionService questionService;
     }
 
     @DeleteMapping("/question/{cuisine}")
-    void deleteQuestion(@RequestParam("question") String question,@PathVariable("cuisine")String cuisine){
+    void deleteQuestion(@RequestParam("question") String question, @PathVariable("cuisine") String cuisine) {
         questionService.deleteQuestion(question, cuisine);
     }
+
     @PostMapping(value = "/question/{cuisine}")
-    ResponseEntity<String> createQuestion(@RequestParam("question") String question,@PathVariable("cuisine") String cuisine) throws EntityAlreadyExistsException {
-        return new ResponseEntity<>(questionService.createQuestion(question, cuisine),HttpStatus.CREATED);
+    ResponseEntity<String> createQuestion(@RequestParam("question") String question, @PathVariable("cuisine") String cuisine) throws EntityAlreadyExistsException {
+        return new ResponseEntity<>(questionService.createQuestion(question, cuisine), HttpStatus.CREATED);
     }
+
     @PutMapping("question/{cuisine}")
-    void saveQuestion(@RequestBody @Valid QuestionSaveDto questionSaveDto, @PathVariable("cuisine") String cuisine){
-        questionService.saveQuestion(questionSaveDto.getOldQuestion(),questionSaveDto.getNewQuestion(),cuisine);
+    void saveQuestion(@RequestBody @Valid QuestionSaveDto questionSaveDto, @PathVariable("cuisine") String cuisine) {
+        questionService.saveQuestion(questionSaveDto.getOldQuestion(), questionSaveDto.getNewQuestion(), cuisine);
     }
 }

@@ -7,11 +7,12 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface QuestionRepository extends MongoRepository<QuestionEntity,String> {
+public interface QuestionRepository extends MongoRepository<QuestionEntity, String> {
     //getAll
     @Query("{'cuisine': ?0}")
     Iterable<QuestionEntity> findAllByCuisine(String cuisine);
-//get
-        @Query("{'question': ?0,'cuisine': ?1}")
-        Optional<QuestionEntity> findQuestionEntityByQuestionAndCuisine(String question, String cuisine);
+
+    //get
+    @Query("{'question': ?0,'cuisine': ?1}")
+    Optional<QuestionEntity> findQuestionEntityByQuestionAndCuisine(String question, String cuisine);
 }

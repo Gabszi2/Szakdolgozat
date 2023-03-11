@@ -1,11 +1,11 @@
 package hu.uni.miskolc.s9njk6.foodchooser.repository;
 
 
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
+
 @Document("Questions")
 public class QuestionEntity {
     @Id
@@ -14,10 +14,13 @@ public class QuestionEntity {
     private String cuisine;
 
 
-    public QuestionEntity(String question,String cuisine) {
+    public QuestionEntity(String question, String cuisine) {
 
         this.question = question;
-        this.cuisine=cuisine;
+        this.cuisine = cuisine;
+    }
+
+    public QuestionEntity() {
     }
 
     @Override
@@ -56,9 +59,6 @@ public class QuestionEntity {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public QuestionEntity() {
     }
 
     public String getQuestion() {

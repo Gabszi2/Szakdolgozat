@@ -17,29 +17,34 @@ public class AdminCityController {
     public AdminCityController(CityService cityService) {
         this.cityService = cityService;
     }
-    @GetMapping(value = "/cities")
-    ResponseEntity<List<CityDto>> allCities(){
 
-        List<CityDto> out=new ArrayList<>();
-        for (hu.uni.miskolc.s9njk6.foodchooser.service.CityDto cityDto: cityService.allCities()){
+    @GetMapping(value = "/cities")
+    ResponseEntity<List<CityDto>> allCities() {
+
+        List<CityDto> out = new ArrayList<>();
+        for (hu.uni.miskolc.s9njk6.foodchooser.service.CityDto cityDto : cityService.allCities()) {
             out.add(new CityDto(cityDto));
         }
         return new ResponseEntity<>(out, HttpStatus.OK);
     }
+
     @GetMapping(value = "/city/{name}")
-    ResponseEntity<CityDto> getCity(@PathVariable("name")String name){
-        return new ResponseEntity<>(new CityDto(cityService.getCity(name)),HttpStatus.OK);
+    ResponseEntity<CityDto> getCity(@PathVariable("name") String name) {
+        return new ResponseEntity<>(new CityDto(cityService.getCity(name)), HttpStatus.OK);
     }
+
     @DeleteMapping(value = "/city/{name}")
-    void deleteCity(@PathVariable("name")String name){
+    void deleteCity(@PathVariable("name") String name) {
         cityService.deleteCity(name);
     }
-    @PostMapping(value = "/city",consumes = "application/json")
-    ResponseEntity<CityDto> createCity(@RequestBody @Valid CityDto cityDto){
-        return new ResponseEntity<>(new CityDto(cityService.createCity(cityDto.toServiceCityDto())),HttpStatus.CREATED);
+
+    @PostMapping(value = "/city", consumes = "application/json")
+    ResponseEntity<CityDto> createCity(@RequestBody @Valid CityDto cityDto) {
+        return new ResponseEntity<>(new CityDto(cityService.createCity(cityDto.toServiceCityDto())), HttpStatus.CREATED);
     }
+
     @PutMapping(value = "/city")
-    void updateCity(@RequestBody @Valid CityDto cityDto){
+    void updateCity(@RequestBody @Valid CityDto cityDto) {
         cityService.updateCity(cityDto.toServiceCityDto());
     }
 }

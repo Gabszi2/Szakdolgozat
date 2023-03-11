@@ -7,7 +7,10 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+
 import java.util.Arrays;
+import java.util.List;
+
 @SpringBootApplication
 @EnableMongoRepositories
 public class FoodChooserApplication {
@@ -15,12 +18,13 @@ public class FoodChooserApplication {
     public static void main(String[] args) {
         SpringApplication.run(FoodChooserApplication.class, args);
     }
+
     @Bean
     public CorsFilter corsFilter() {
-        String access="Access-Control-Allow-Origin";
+        String access = "Access-Control-Allow-Origin";
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowCredentials(true);
-        corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+        corsConfiguration.setAllowedOrigins(List.of("http://localhost:4200"));
         corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", access, "Content-Type",
                 "Accept", "Authorization", "Origin, Accept", "X-Requested-With",
                 "Access-Control-Request-Method", "Access-Control-Request-Headers"));

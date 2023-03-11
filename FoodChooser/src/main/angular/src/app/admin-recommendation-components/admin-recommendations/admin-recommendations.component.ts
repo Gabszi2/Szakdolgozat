@@ -8,19 +8,22 @@ import {RecommendationModel} from "../../models/recommendation-model";
   styleUrls: ['./admin-recommendations.component.css']
 })
 export class AdminRecommendationsComponent implements OnInit {
-recommendationAll!:RecommendationModel[];
-  constructor(private service:AdminRecommendationService) {
+  recommendationAll!: RecommendationModel[];
+
+  constructor(private service: AdminRecommendationService) {
   }
 
-  async ngOnInit(){
-    this.recommendationAll= await this.service.getAllRecommendations();
+  async ngOnInit() {
+    this.recommendationAll = await this.service.getAllRecommendations();
   }
-async delete(id:number){
+
+  async delete(id: string) {
     await this.service.deleteRecommendation(id);
-    this.recommendationAll= await this.service.getAllRecommendations();
-}
-async approveChange(id:number){
+    this.recommendationAll = await this.service.getAllRecommendations();
+  }
+
+  async approveChange(id: string) {
     await this.service.updateRecommendationApprove(id);
-    this.recommendationAll=await this.service.getAllRecommendations()
-}
+    this.recommendationAll = await this.service.getAllRecommendations()
+  }
 }

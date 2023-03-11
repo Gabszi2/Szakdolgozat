@@ -16,7 +16,10 @@ public class CityDto {
         this.name = cityDto.getName();
         this.cuisines = cityDto.getCuisines();
     }
-    public hu.uni.miskolc.s9njk6.foodchooser.service.CityDto toServiceCityDto(){return new hu.uni.miskolc.s9njk6.foodchooser.service.CityDto(name,cuisines);}
+
+    public hu.uni.miskolc.s9njk6.foodchooser.service.CityDto toServiceCityDto() {
+        return new hu.uni.miskolc.s9njk6.foodchooser.service.CityDto(name, cuisines);
+    }
 
     public String getName() {
         return name;

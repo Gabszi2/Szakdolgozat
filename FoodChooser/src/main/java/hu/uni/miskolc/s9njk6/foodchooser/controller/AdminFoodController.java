@@ -20,30 +20,34 @@ public class AdminFoodController {
     }
 
     @GetMapping("/foods/{town}/{cuisine}")
-    ResponseEntity<List<FoodDto>> allFood(@PathVariable("town") String town, @PathVariable("cuisine") String cuisine){
-        List<FoodDto> out=new ArrayList<>();
-        for (hu.uni.miskolc.s9njk6.foodchooser.service.FoodDto foodDto:foodService.allFood(town, cuisine)
+    ResponseEntity<List<FoodDto>> allFood(@PathVariable("town") String town, @PathVariable("cuisine") String cuisine) {
+        List<FoodDto> out = new ArrayList<>();
+        for (hu.uni.miskolc.s9njk6.foodchooser.service.FoodDto foodDto : foodService.allFood(town, cuisine)
         ) {
             out.add(new FoodDto(foodDto));
         }
         return new ResponseEntity<>(out, HttpStatus.OK);
     }
-    @GetMapping("/food/{town}/{cuisine}/{foodName}")
-    ResponseEntity<FoodDto> getFood(@PathVariable("town") String town,@PathVariable("cuisine") String cuisine,@PathVariable("foodName") String foodName){
 
-        return new ResponseEntity<>(new FoodDto(foodService.getFood(town,cuisine,foodName)),HttpStatus.OK);
+    @GetMapping("/food/{town}/{cuisine}/{foodName}")
+    ResponseEntity<FoodDto> getFood(@PathVariable("town") String town, @PathVariable("cuisine") String cuisine, @PathVariable("foodName") String foodName) {
+
+        return new ResponseEntity<>(new FoodDto(foodService.getFood(town, cuisine, foodName)), HttpStatus.OK);
     }
+
     @DeleteMapping("/food/{town}/{cuisine}")
-    void deleteFood(@RequestBody @Valid FoodDto foodDto, @PathVariable("town") String town, @PathVariable("cuisine") String cuisine){
-        foodService.deleteFood(foodDto.toServiceFoodDto(),town,cuisine);
+    void deleteFood(@RequestBody @Valid FoodDto foodDto, @PathVariable("town") String town, @PathVariable("cuisine") String cuisine) {
+        foodService.deleteFood(foodDto.toServiceFoodDto(), town, cuisine);
     }
-    @PostMapping(value = "/food/{town}/{cuisine}",consumes = "application/json")
-    ResponseEntity<FoodDto> createFood(@RequestBody @Valid FoodDto foodDto,@PathVariable("town") String town,@PathVariable("cuisine") String cuisine) throws EntityAlreadyExistsException {
-        return new ResponseEntity<>(new FoodDto( foodService.createFood(foodDto.toServiceFoodDto(),town,cuisine)),HttpStatus.CREATED);
+
+    @PostMapping(value = "/food/{town}/{cuisine}", consumes = "application/json")
+    ResponseEntity<FoodDto> createFood(@RequestBody @Valid FoodDto foodDto, @PathVariable("town") String town, @PathVariable("cuisine") String cuisine) throws EntityAlreadyExistsException {
+        return new ResponseEntity<>(new FoodDto(foodService.createFood(foodDto.toServiceFoodDto(), town, cuisine)), HttpStatus.CREATED);
     }
+
     @PutMapping("/food/{town}/{cuisine}")
-    void saveFood(@RequestBody @Valid FoodDto foodDto,@PathVariable("town") String town,@PathVariable("cuisine") String cuisine){
-        foodService.saveFood(foodDto.toServiceFoodDto(),town,cuisine);
-}
+    void saveFood(@RequestBody @Valid FoodDto foodDto, @PathVariable("town") String town, @PathVariable("cuisine") String cuisine) {
+        foodService.saveFood(foodDto.toServiceFoodDto(), town, cuisine);
+    }
 }
 

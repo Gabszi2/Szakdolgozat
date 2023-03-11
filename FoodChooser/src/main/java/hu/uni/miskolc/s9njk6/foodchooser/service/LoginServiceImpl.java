@@ -11,17 +11,17 @@ import java.util.Optional;
 
 @Service
 public class LoginServiceImpl implements LoginService {
-   private final UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public LoginServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     @Override
-    public UserDto login(String email, String password)throws NoSuchEntityException {
-       Optional<UserEntity> searched =userRepository.findUserEntityByEmailAndPassword(email, password);
+    public UserDto login(String email, String password) throws NoSuchEntityException {
+        Optional<UserEntity> searched = userRepository.findUserEntityByEmailAndPassword(email, password);
 
-        if (searched.isEmpty()){
+        if (searched.isEmpty()) {
             throw new NoSuchEntityException(email);
         }
         return new UserDto(searched.get());
@@ -30,12 +30,12 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public UserDto register(UserDto newUser)throws EntityAlreadyExistsException {
-        Optional<UserEntity> searched =userRepository.findUserEntityByEmailAndPassword(newUser.getEmail(), newUser.getPassword());
+    public UserDto register(UserDto newUser) throws EntityAlreadyExistsException {
+        Optional<UserEntity> searched = userRepository.findById(newUser.getEmail());
 
-        if (searched.isEmpty()){
+        if (searched.isEmpty()) {
 
-          return new UserDto(userRepository.save(newUser.toEntity()));
+            return new UserDto(userRepository.save(newUser.toEntity()));
         }
         throw new EntityAlreadyExistsException(newUser.getEmail());
 

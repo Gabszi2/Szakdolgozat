@@ -16,20 +16,23 @@ public class AdminUserController {
     public AdminUserController(UserService userService) {
         this.userService = userService;
     }
+
     @GetMapping("/users")
-    ResponseEntity<List<UserDto>> allUsers(){
-        List<UserDto> out=new ArrayList<>();
-        for (hu.uni.miskolc.s9njk6.foodchooser.service.UserDto userDto: userService.allUsers()){
+    ResponseEntity<List<UserDto>> allUsers() {
+        List<UserDto> out = new ArrayList<>();
+        for (hu.uni.miskolc.s9njk6.foodchooser.service.UserDto userDto : userService.allUsers()) {
             out.add(new UserDto(userDto));
         }
         return new ResponseEntity<>(out, HttpStatus.OK);
     }
+
     @DeleteMapping("/user/{email}/{password}")
-    void deleteUser(@PathVariable("email") String email, @PathVariable("password")String password){
+    void deleteUser(@PathVariable("email") String email, @PathVariable("password") String password) {
         userService.deleteUser(email, password);
     }
+
     @PutMapping("/user/{email}/{password}")
-    void updateAdminUser(@PathVariable("email") String email,@PathVariable("password")String password){
-        userService.updateAdminUser(email,password);
+    void updateAdminUser(@PathVariable("email") String email, @PathVariable("password") String password) {
+        userService.updateAdminUser(email, password);
     }
 }

@@ -16,32 +16,37 @@ public class AdminRecommendationController {
     public AdminRecommendationController(RecommendationService recommendationService) {
         this.recommendationService = recommendationService;
     }
+
     @GetMapping("/recommendations")
-    ResponseEntity<List<RecommendationDto>> allRecommendations(){
-        List<RecommendationDto> out=new ArrayList<>();
-        for (hu.uni.miskolc.s9njk6.foodchooser.service.RecommendationDto recommendationDto:recommendationService.allRecommendations()){
+    ResponseEntity<List<RecommendationDto>> allRecommendations() {
+        List<RecommendationDto> out = new ArrayList<>();
+        for (hu.uni.miskolc.s9njk6.foodchooser.service.RecommendationDto recommendationDto : recommendationService.allRecommendations()) {
             out.add(new RecommendationDto(recommendationDto));
         }
         return new ResponseEntity<>(out, HttpStatus.OK);
     }
+
     @GetMapping("/approved-recommendations")
-    ResponseEntity<List<RecommendationDto>> allApprovedRecommendations(){
-        List<RecommendationDto> out=new ArrayList<>();
-        for (hu.uni.miskolc.s9njk6.foodchooser.service.RecommendationDto recommendationDto:recommendationService.allApprovedRecommendation()){
+    ResponseEntity<List<RecommendationDto>> allApprovedRecommendations() {
+        List<RecommendationDto> out = new ArrayList<>();
+        for (hu.uni.miskolc.s9njk6.foodchooser.service.RecommendationDto recommendationDto : recommendationService.allApprovedRecommendation()) {
             out.add(new RecommendationDto(recommendationDto));
         }
-        return new ResponseEntity<>(out,HttpStatus.OK);
+        return new ResponseEntity<>(out, HttpStatus.OK);
     }
+
     @GetMapping("/recommendation/{id}")
-    ResponseEntity<RecommendationDto> getRecommendation(@PathVariable("id")String id){
-        return new ResponseEntity<>(new RecommendationDto(recommendationService.getRecommendation(id)),HttpStatus.OK);
+    ResponseEntity<RecommendationDto> getRecommendation(@PathVariable("id") String id) {
+        return new ResponseEntity<>(new RecommendationDto(recommendationService.getRecommendation(id)), HttpStatus.OK);
     }
+
     @DeleteMapping("/recommendation/{id}")
-    void deleteRecommendation(@PathVariable("id")String id){
+    void deleteRecommendation(@PathVariable("id") String id) {
         recommendationService.deleteRecommendation(id);
     }
+
     @PutMapping("/recommendation/{id}")
-    void updateApprovedRecommendation(@PathVariable("id")String id){
+    void updateApprovedRecommendation(@PathVariable("id") String id) {
         recommendationService.updateApproveRecommendation(id);
     }
 }

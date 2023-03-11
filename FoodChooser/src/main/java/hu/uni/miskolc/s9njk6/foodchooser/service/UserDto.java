@@ -19,15 +19,18 @@ public class UserDto {
         this.password = password;
         this.admin = admin;
     }
+
     public UserDto(UserEntity userEntity) {
         this.email = userEntity.getEmail();
         this.userName = userEntity.getUserName();
         this.password = userEntity.getPassword();
         this.admin = userEntity.isAdmin();
     }
-public UserEntity toEntity(){
-        return new UserEntity(email,userName,password,admin);
-}
+
+    public UserEntity toEntity() {
+        return new UserEntity(email, userName, password, admin);
+    }
+
     public String getEmail() {
         return email;
     }

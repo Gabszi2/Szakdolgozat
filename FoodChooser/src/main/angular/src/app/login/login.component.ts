@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from "../services/user.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {HttpErrorResponse} from "@angular/common/http";
 
 
 @Component({
@@ -17,7 +16,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.userService.isLoggedIn()){
+    if (this.userService.isLoggedIn()) {
       this.userService.logout()
     }
 

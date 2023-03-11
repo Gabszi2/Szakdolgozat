@@ -5,8 +5,12 @@ import hu.uni.miskolc.s9njk6.foodchooser.service.exceptions.NoSuchEntityExceptio
 
 public interface CityService {
     Iterable<CityDto> allCities();
-    CityDto getCity(String name)throws NoSuchEntityException;
+
+    CityDto getCity(String name) throws NoSuchEntityException;
+
     CityDto createCity(CityDto cityDto) throws EntityAlreadyExistsException;
-    void updateCity(CityDto cityDto)throws NoSuchEntityException;
-    void deleteCity(String name)throws NoSuchEntityException;
+
+    void updateCity(CityDto cityDto) throws NoSuchEntityException;
+
+    void deleteCity(String name) throws NoSuchEntityException;
 }

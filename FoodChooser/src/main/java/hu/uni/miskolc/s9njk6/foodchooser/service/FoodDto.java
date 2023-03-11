@@ -18,13 +18,15 @@ public class FoodDto {
         this.foodName = foodName;
         this.restaurants = restaurants;
     }
+
     public FoodDto(FoodEntity foodEntity) {
         this.answer = foodEntity.getAnswer();
         this.foodName = foodEntity.getFoodName();
         this.restaurants = foodEntity.getRestaurants();
     }
-    public FoodEntity toEntity(){
-        return new FoodEntity(foodName,answer,restaurants,null,null);
+
+    public FoodEntity toEntity() {
+        return new FoodEntity(foodName, answer, restaurants, null, null);
     }
 
     public boolean[] getAnswer() {

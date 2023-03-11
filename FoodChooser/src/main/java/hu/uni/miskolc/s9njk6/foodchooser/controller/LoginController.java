@@ -14,12 +14,14 @@ public class LoginController {
     public LoginController(LoginService loginService) {
         this.loginService = loginService;
     }
+
     @GetMapping("/login/{email}/{password}")
-    ResponseEntity<UserDto> login(@PathVariable String email, @PathVariable String password){
-        return new ResponseEntity<>(new UserDto(loginService.login(email,password)), HttpStatus.OK);
+    ResponseEntity<UserDto> login(@PathVariable String email, @PathVariable String password) {
+        return new ResponseEntity<>(new UserDto(loginService.login(email, password)), HttpStatus.OK);
     }
-    @PostMapping(value = "/register",consumes = "application/json")
-    ResponseEntity<UserDto> register(@RequestBody @Valid UserDto userDto){
-        return new ResponseEntity<>(new UserDto(loginService.register(userDto.toServiceUserDto())),HttpStatus.CREATED);
+
+    @PostMapping(value = "/register", consumes = "application/json")
+    ResponseEntity<UserDto> register(@RequestBody @Valid UserDto userDto) {
+        return new ResponseEntity<>(new UserDto(loginService.register(userDto.toServiceUserDto())), HttpStatus.CREATED);
     }
 }

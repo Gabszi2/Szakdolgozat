@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AdminCityModifyComponent } from './admin-city-modify.component';
+import {AdminCityModifyComponent} from './admin-city-modify.component';
 
 describe('AdminCityModifyComponent', () => {
   let component: AdminCityModifyComponent;
@@ -8,9 +8,9 @@ describe('AdminCityModifyComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdminCityModifyComponent ]
+      declarations: [AdminCityModifyComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

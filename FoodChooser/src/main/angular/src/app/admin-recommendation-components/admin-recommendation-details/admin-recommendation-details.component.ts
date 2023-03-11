@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {AdminRecommendationService} from "../../services/admin-recommendation.service";
 import {RecommendationModel} from "../../models/recommendation-model";
@@ -9,16 +9,19 @@ import {RecommendationModel} from "../../models/recommendation-model";
   styleUrls: ['./admin-recommendation-details.component.css']
 })
 export class AdminRecommendationDetailsComponent implements OnInit {
-recommendation!:RecommendationModel
-  constructor(private route: ActivatedRoute,private service:AdminRecommendationService ,private router: Router) { }
+  recommendation!: RecommendationModel
 
- async ngOnInit(){
-
-   const id = parseInt(<string>this.route.snapshot.paramMap.get('id'));
-  this.recommendation=await this.service.getRecommendation(id);
+  constructor(private route: ActivatedRoute, private service: AdminRecommendationService, private router: Router) {
   }
-async delete(id:number){
-  await this.service.deleteRecommendation(id);
-  await this.router.navigate(['/admin/approved-recommendations']);
-}
+
+  async ngOnInit() {
+
+    const id = <string>this.route.snapshot.paramMap.get('id');
+    this.recommendation = await this.service.getRecommendation(id);
+  }
+
+  async delete(id: string) {
+    await this.service.deleteRecommendation(id);
+    await this.router.navigate(['/admin/approved-recommendations']);
+  }
 }

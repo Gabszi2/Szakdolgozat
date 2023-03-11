@@ -10,73 +10,75 @@
         <option *ngFor="let type of types" value="{{type}}">{{type.charAt(0).toUpperCase() + type.slice(1)}}</option>
       </select><br><br>
 
-<div *ngIf="recommendationForm.get('type')?.value=='food'">
+      <div *ngIf="recommendationForm.get('type')?.value=='food'">
 
-  <label for="cuisine">Cuisine the food belongs to:</label>
-  <input class="form-control " formControlName="cuisine" type="text" id="cuisine" required><br>
+        <label for="cuisine">Cuisine the food belongs to:</label>
+        <input class="form-control " formControlName="cuisine" id="cuisine" required type="text"><br>
 
-  <label for="city">City where you can eat this food:</label>
-  <input class="form-control" formControlName="city" type="text" id="city"required><br>
+        <label for="city">City where you can eat this food:</label>
+        <input class="form-control" formControlName="city" id="city" required type="text"><br>
 
-  <label for="foodName">Food's name:</label>
-  <input class="form-control" formControlName="foodName" type="text" id="foodName"required><br>
+        <label for="foodName">Food's name:</label>
+        <input class="form-control" formControlName="foodName" id="foodName" required type="text"><br>
 
-  <label for="restaurant">Restaurant where you can eat it (must be in the city above):</label>
-  <input class="form-control" formControlName="restaurant" type="text" id="restaurant"required><br>
+        <label for="restaurant">Restaurant where you can eat it (must be in the city above):</label>
+        <input class="form-control" formControlName="restaurant" id="restaurant" required type="text"><br>
 
-  <label for="message">Give us a description:</label>
-  <input class="form-control" formControlName="message" type="text" id="message"><br>
-</div>
+        <label for="message">Give us a description:</label>
+        <input class="form-control" formControlName="message" id="message" type="text"><br>
+      </div>
 
 
       <div *ngIf="recommendationForm.get('type')?.value=='question'">
 
         <label for="cuisine">Cuisine the question belongs to:</label>
-        <input class="form-control " formControlName="cuisine" type="text" id="cuisine" required><br>
+        <input class="form-control " formControlName="cuisine" id="cuisine" required type="text"><br>
 
         <label for="message">Give us a description:</label>
-        <input class="form-control" formControlName="message" type="text" id="message" required><br>
+        <input class="form-control" formControlName="message" id="message" required type="text"><br>
       </div>
 
 
       <div *ngIf="recommendationForm.get('type')?.value=='cuisine'">
 
         <label for="cuisine">cuisine's name':</label>
-        <input class="form-control " formControlName="cuisine" type="text" id="cuisine"required><br>
+        <input class="form-control " formControlName="cuisine" id="cuisine" required type="text"><br>
 
         <label for="message">Give us a description:</label>
-        <input class="form-control" formControlName="message" type="text" id="message"required><br>
+        <input class="form-control" formControlName="message" id="message" required type="text"><br>
       </div>
 
 
       <div *ngIf="recommendationForm.get('type')?.value=='restaurant'">
 
         <label for="cuisine">Cuisine the restaurant belongs to:</label>
-        <input class="form-control " formControlName="cuisine" type="text" id="cuisine"required><br>
+        <input class="form-control " formControlName="cuisine" id="cuisine" required type="text"><br>
 
         <label for="city">City where you can find this restaurant:</label>
-        <input class="form-control" formControlName="city" type="text" id="city"required><br>
+        <input class="form-control" formControlName="city" id="city" required type="text"><br>
 
         <label for="restaurant">Restaurant's name:</label>
-        <input class="form-control" formControlName="restaurant" type="text" id="restaurant"required><br>
+        <input class="form-control" formControlName="restaurant" id="restaurant" required type="text"><br>
 
         <label for="message">Give us a description:</label>
-        <input class="form-control" formControlName="message" type="text" id="message"><br>
+        <input class="form-control" formControlName="message" id="message" type="text"><br>
       </div>
 
 
       <div *ngIf="recommendationForm.get('type')?.value=='city'">
 
         <label for="city">City's name'</label>
-        <input class="form-control" formControlName="city" type="text" id="city"><br>
+        <input class="form-control" formControlName="city" id="city" type="text"><br>
 
 
         <label for="message">Give us a description:</label>
-        <input class="form-control" formControlName="message" type="text" id="message"><br>
+        <input class="form-control" formControlName="message" id="message" type="text"><br>
       </div>
 
 
-      <button (click)="recommendationAdd()" [hidden]="recommendationForm.invalid" class="btn btn-sm btn-success">Submit</button>
+      <button (click)="recommendationAdd()" [hidden]="recommendationForm.invalid" class="btn btn-sm btn-success">
+        Submit
+      </button>
     </form>
 
   </div>

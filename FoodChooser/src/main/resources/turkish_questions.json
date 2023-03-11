@@ -1,6 +1,6 @@
 {
   "questions": [
-     {
+    {
       "question": "Do you like meat?"
     },
     {
@@ -21,12 +21,11 @@
     {
       "question": "Do you like rice?"
     },
-     {
+    {
       "question": "Do you like onion?"
     },
     {
       "question": "Do you like hot food?"
     }
-
   ]
 }

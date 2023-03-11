@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 import {Router} from "@angular/router";
@@ -17,11 +17,14 @@ export class AdminCityAddComponent implements OnInit {
     cuisines: this.formBuilder.array([])
 
   })
-  constructor(private service: AdminCityService, private router: Router, private formBuilder: FormBuilder) { }
+
+  constructor(private service: AdminCityService, private router: Router, private formBuilder: FormBuilder) {
+  }
 
   get cuisines(): FormArray {
     return this.cityForm.get("cuisines") as FormArray;
   }
+
   cuisineForm(): FormGroup {
     return this.formBuilder.group({
       cuisine: ['', Validators.required]
@@ -29,27 +32,29 @@ export class AdminCityAddComponent implements OnInit {
   };
 
 
-  async ngOnInit(){
+  async ngOnInit() {
     this.addCuisine()
   }
 
   addCuisine() {
     this.cuisines.push(this.cuisineForm());
   }
+
   delete(index: number) {
     this.cuisines.removeAt(index);
   }
-  async cityAdd(){
-    const city=<CityModel>{};
-    city.name=this.cityForm.get('name')?.value;
+
+  async cityAdd() {
+    const city = <CityModel>{};
+    city.name = this.cityForm.get('name')?.value;
 
     let cuisines = [];
     for (let i = 0; i < this.cuisines.length; i++) {
       const element = this.cuisines.at(i).get("cuisine")?.value;
       cuisines.push(element);
     }
-    city.cuisines=cuisines;
+    city.cuisines = cuisines;
     await this.service.addCity(city);
-  await this.router.navigate(['/admin/cities'])
-}
+    await this.router.navigate(['/admin/cities'])
+  }
 }

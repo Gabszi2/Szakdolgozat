@@ -22,8 +22,9 @@ public class UserDto {
         this.password = userDto.getPassword();
         this.admin = userDto.isAdmin();
     }
-    public hu.uni.miskolc.s9njk6.foodchooser.service.UserDto toServiceUserDto(){
-        return new hu.uni.miskolc.s9njk6.foodchooser.service.UserDto(email,userName,password,admin);
+
+    public hu.uni.miskolc.s9njk6.foodchooser.service.UserDto toServiceUserDto() {
+        return new hu.uni.miskolc.s9njk6.foodchooser.service.UserDto(email, userName, password, admin);
     }
 
     public String getEmail() {

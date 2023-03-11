@@ -35,7 +35,8 @@ export class AdminFoodService {
   async updateFood(town: string, cuisine: string, food: FoodModel) {
     return lastValueFrom(this.http.put(this.adminUrl + '/food/' + town + '/' + cuisine, food));
   }
-  async getCities(){
-    return lastValueFrom(this.http.get<CityModel[]>(this.adminUrl+'/cities'));
+
+  async getCities() {
+    return lastValueFrom(this.http.get<CityModel[]>(this.adminUrl + '/cities'));
   }
 }

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AdminApprovedRecComponent } from './admin-approved-rec.component';
+import {AdminApprovedRecComponent} from './admin-approved-rec.component';
 
 describe('AdminApprovedRecComponent', () => {
   let component: AdminApprovedRecComponent;
@@ -8,9 +8,9 @@ describe('AdminApprovedRecComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdminApprovedRecComponent ]
+      declarations: [AdminApprovedRecComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
