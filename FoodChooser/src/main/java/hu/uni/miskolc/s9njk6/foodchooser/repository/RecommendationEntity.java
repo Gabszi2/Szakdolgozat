@@ -1,9 +1,13 @@
 package hu.uni.miskolc.s9njk6.foodchooser.repository;
 
-import java.util.Objects;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Objects;
+@Document("Recommendations")
 public class RecommendationEntity {
-    private Long id;
+    @Id
+    private String id;
     private String type;
     private String cuisine;
     private String city;
@@ -15,7 +19,7 @@ public class RecommendationEntity {
     public RecommendationEntity() {
     }
 
-    public RecommendationEntity(Long id, String type, String cuisine, String city,String foodName, String restaurant, String message, boolean approved) {
+    public RecommendationEntity(String id, String type, String cuisine, String city,String foodName, String restaurant, String message, boolean approved) {
         this.id = id;
         this.type = type;
         this.cuisine = cuisine;
@@ -34,11 +38,11 @@ public class RecommendationEntity {
         this.foodName = foodName;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

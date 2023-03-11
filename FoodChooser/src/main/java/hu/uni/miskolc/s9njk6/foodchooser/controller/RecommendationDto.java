@@ -4,8 +4,7 @@ import javax.validation.constraints.NotEmpty;
 import java.util.Objects;
 
 public class RecommendationDto {
-    @NotEmpty
-    private Long id;
+    private String id;
     @NotEmpty
     private String type;
     private String cuisine;
@@ -34,11 +33,11 @@ public class RecommendationDto {
     }
 
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

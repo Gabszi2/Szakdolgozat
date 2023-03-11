@@ -25,7 +25,7 @@ public class UserDto {
         this.password = userEntity.getPassword();
         this.admin = userEntity.isAdmin();
     }
-public UserEntity toUserEntity(){
+public UserEntity toEntity(){
         return new UserEntity(email,userName,password,admin);
 }
     public String getEmail() {

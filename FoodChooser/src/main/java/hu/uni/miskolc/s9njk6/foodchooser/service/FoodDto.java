@@ -24,7 +24,7 @@ public class FoodDto {
         this.restaurants = foodEntity.getRestaurants();
     }
     public FoodEntity toEntity(){
-        return new FoodEntity(foodName,answer,restaurants);
+        return new FoodEntity(foodName,answer,restaurants,null,null);
     }
 
     public boolean[] getAnswer() {

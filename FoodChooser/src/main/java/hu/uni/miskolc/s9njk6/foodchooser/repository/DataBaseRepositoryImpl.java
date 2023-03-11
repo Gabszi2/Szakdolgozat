@@ -50,7 +50,7 @@ public class DataBaseRepositoryImpl implements DataBaseRepository {
                 rndId=1 + (long) (Math.random() * (1000000 - 1));
 
             }while (getRecommendation(rndId)!=null);
-            recommendationEntity.setId(rndId);
+            recommendationEntity.setId("rndId");
 
             outToWrite.add(recommendationEntity);
 

@@ -14,9 +14,13 @@ import java.util.List;
 @Service
 public class AdminServiceImpl implements AdminService {
     private final DataBaseRepository dataBaseRepository;
+private final CityRepository cityRepository;
+    private final RecommendationRepository recommendationRepository;
 
-    public AdminServiceImpl(DataBaseRepository dataBaseRepository) {
+    public AdminServiceImpl(DataBaseRepository dataBaseRepository, CityRepository cityRepository, RecommendationRepository recommendationRepository) {
         this.dataBaseRepository = dataBaseRepository;
+        this.cityRepository = cityRepository;
+        this.recommendationRepository = recommendationRepository;
     }
 
 
@@ -121,7 +125,8 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Iterable<RecommendationDto> allApprovedRecommendation() {
         List<RecommendationDto> output=new ArrayList<>();
-        for (RecommendationEntity recommendationEntity:dataBaseRepository.getAllRecommendations(true)
+
+        for (RecommendationEntity recommendationEntity:recommendationRepository.findAllByApproved()
         ) {
             output.add(new RecommendationDto(recommendationEntity));
         }

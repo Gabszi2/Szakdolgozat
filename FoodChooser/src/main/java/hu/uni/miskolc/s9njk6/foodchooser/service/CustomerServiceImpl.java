@@ -4,6 +4,7 @@ import hu.uni.miskolc.s9njk6.foodchooser.repository.*;
 
 import hu.uni.miskolc.s9njk6.foodchooser.service.exceptions.EntityAlreadyExistsException;
 import hu.uni.miskolc.s9njk6.foodchooser.service.exceptions.NoSuchFoodException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService {
     private final DataBaseRepository dataBaseRepository;
 
+    RecommendationRepository recommendationRepository;
     public CustomerServiceImpl(DataBaseRepository dataBaseRepository) {
         this.dataBaseRepository = dataBaseRepository;
     }
@@ -60,7 +62,7 @@ if (food.getAnswer()[i]==customerAnswers[i]){
     @Override
     public RecommendationDto createRecommendation(RecommendationDto recommendationDto) {
 
-           return new RecommendationDto(dataBaseRepository.saveRecommendation(recommendationDto.toRecommendationEntity()));
+           return new RecommendationDto(recommendationRepository.save(recommendationDto.toEntity()));
 
     }
 

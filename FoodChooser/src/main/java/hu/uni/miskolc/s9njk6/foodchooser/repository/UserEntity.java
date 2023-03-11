@@ -1,8 +1,12 @@
 package hu.uni.miskolc.s9njk6.foodchooser.repository;
 
-import java.util.Objects;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Objects;
+@Document("Users")
 public class UserEntity {
+    @Id
     private String email;
     private String userName;
     private String password;
@@ -13,6 +17,29 @@ public class UserEntity {
         this.userName = userName;
         this.password = password;
         this.admin = admin;
+    }
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "email='" + email + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", admin=" + admin +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserEntity that = (UserEntity) o;
+        return admin == that.admin && Objects.equals(email, that.email) && Objects.equals(userName, that.userName) && Objects.equals(password, that.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(email, userName, password, admin);
     }
 
     public UserEntity() {
@@ -50,26 +77,4 @@ public class UserEntity {
         this.admin = admin;
     }
 
-    @Override
-    public String toString() {
-        return "UserEntity{" +
-                "email='" + email + '\'' +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", admin=" + admin +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UserEntity that = (UserEntity) o;
-        return admin == that.admin && Objects.equals(email, that.email) && Objects.equals(userName, that.userName) && Objects.equals(password, that.password);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(email, userName, password, admin);
-    }
 }
