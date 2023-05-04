@@ -9,7 +9,7 @@ import {UserModel} from "../models/user-model";
 })
 export class AdminUsersComponent implements OnInit {
   userAll!: UserModel[];
-  // @ts-ignore TODO ???
+  // @ts-ignore
   currentUser = JSON.parse(localStorage.getItem('user')) as UserModel;
 
   constructor(private service: UserService) {
