@@ -5,12 +5,12 @@
 >
   <div>
     <label for="cuisine">Select a cuisine</label>
-    <select [(ngModel)]="selectedcuisine" class="form-control" id="cuisine">
+    <select [(ngModel)]="selectedCuisine" class="form-control" id="cuisine">
       <option *ngFor="let cuisine of cuisines"
               value="{{cuisine}}">{{cuisine.charAt(0).toUpperCase() + cuisine.slice(1)}}</option>
     </select>
-    <button [hidden]="!selectedcuisine" class="btn btn-primary btn-md"
-            routerLink="/admin/question-list/{{selectedcuisine}}">Select
+    <button [hidden]="!selectedCuisine" class="btn btn-primary btn-md"
+            routerLink="/admin/question-list/{{selectedCuisine}}">Select
     </button>
   </div>
 </div>

@@ -8,7 +8,7 @@ import {AdminQuestionService} from "../../services/admin-question.service";
   styleUrls: ['./admin-question-start.component.css']
 })
 export class AdminQuestionStartComponent implements OnInit {
-  selectedcuisine!: string;
+  selectedCuisine!: string;
   cuisines!: string[];
   cityAll!: CityModel[];
 
@@ -21,16 +21,15 @@ export class AdminQuestionStartComponent implements OnInit {
     this.cuisines = this.cityAll[0].cuisines;
 
     for (let i = 1; i < this.cityAll.length; i++) {
-
-      for (const citycuisine of this.cityAll[i].cuisines) {
-        let notIncuisines = true;
+      for (const cityCuisine of this.cityAll[i].cuisines) {
+        let notInCuisines = true;
         for (const cuisine of this.cuisines) {
-          if (cuisine == citycuisine) {
-            notIncuisines = false;
+          if (cuisine == cityCuisine) {
+            notInCuisines = false;
           }
         }
-        if (notIncuisines) {
-          this.cuisines.push(citycuisine);
+        if (notInCuisines) {
+          this.cuisines.push(cityCuisine);
         }
       }
     }

@@ -8,7 +8,7 @@
       <p>Old question: {{oldQuestion}}</p>
       <label for="question">Type in the modified question:</label>
       <input class="form-control" formControlName="question" id="question" type="text">
-      <button (click)="questionModify()" class="btn btn-primary btn-md">Modify</button>
+      <button (click)="questionModify()" [hidden]="questionForm.invalid" class="btn btn-primary btn-md">Modify</button>
     </form>
   </div>
 </div>

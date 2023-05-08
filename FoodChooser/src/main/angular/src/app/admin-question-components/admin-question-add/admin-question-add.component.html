@@ -7,7 +7,7 @@
     <form [formGroup]="questionForm">
       <label for="question">Type in the question:</label>
       <input class="form-control" formControlName="question" id="question" type="text">
-      <button (click)="questionAdd()" class="btn btn-primary btn-md">Add</button>
+      <button (click)="questionAdd()" [hidden]="questionForm.invalid" class="btn btn-primary btn-md">Add</button>
     </form>
   </div>
 </div>
