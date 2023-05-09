@@ -22,6 +22,6 @@ export class AdminRecommendationDetailsComponent implements OnInit {
 
   async delete(id: string) {
     await this.service.deleteRecommendation(id);
-    await this.router.navigate(['/admin/approved-recommendations']);
+    await this.router.navigate(['/admin/recommendations']);
   }
 }

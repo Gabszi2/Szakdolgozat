@@ -33,6 +33,13 @@ public class RecommendationCreateDto {
         return new RecommendationDto(null, type, cuisine, city, foodName, restaurant, message, approved);
     }
 
+    public String getFoodName() {
+        return foodName;
+    }
+
+    public void setFoodName(String foodName) {
+        this.foodName = foodName;
+    }
 
     public String getType() {
         return type;

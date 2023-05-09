@@ -33,6 +33,13 @@ public class RecommendationDto {
         return new hu.uni.miskolc.s9njk6.foodchooser.service.RecommendationDto(id, type, cuisine, city, foodName, restaurant, message, approved);
     }
 
+    public String getFoodName() {
+        return foodName;
+    }
+
+    public void setFoodName(String foodName) {
+        this.foodName = foodName;
+    }
 
     public String getId() {
         return id;

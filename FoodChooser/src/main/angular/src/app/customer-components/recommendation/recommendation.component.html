@@ -5,6 +5,8 @@
 >
   <div>
     <form [formGroup]="recommendationForm">
+
+
       <br><label for="type">Select the type of recommendation:</label>
       <select class="form-control" formControlName="type" id="type">
         <option *ngFor="let type of types" value="{{type}}">{{type.charAt(0).toUpperCase() + type.slice(1)}}</option>
@@ -34,7 +36,7 @@
         <label for="cuisine">Cuisine the question belongs to:</label>
         <input class="form-control " formControlName="cuisine" id="cuisine" required type="text"><br>
 
-        <label for="message">Give us a description:</label>
+        <label for="message">Give us the question and a description:</label>
         <input class="form-control" formControlName="message" id="message" required type="text"><br>
       </div>
 
@@ -79,6 +81,7 @@
       <button (click)="recommendationAdd()" [hidden]="recommendationForm.invalid" class="btn btn-sm btn-success">
         Submit
       </button>
+
     </form>
 
   </div>

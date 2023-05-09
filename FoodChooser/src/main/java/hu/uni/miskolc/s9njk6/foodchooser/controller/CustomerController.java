@@ -45,7 +45,7 @@ public class CustomerController {
     }
 
     @PostMapping(value = "/customer-recommendation", consumes = "application/json")
-    ResponseEntity<RecommendationDto> createRecommendation(@RequestBody @Valid RecommendationCreateDto recommendationCreateDto) throws EntityAlreadyExistsException {
+    ResponseEntity<RecommendationDto> createRecommendation(@RequestBody  RecommendationCreateDto recommendationCreateDto) throws EntityAlreadyExistsException {
         return new ResponseEntity<>(new RecommendationDto(recommendationService.createRecommendation(recommendationCreateDto.toServiceRecommendationDto())), HttpStatus.CREATED);
     }
 

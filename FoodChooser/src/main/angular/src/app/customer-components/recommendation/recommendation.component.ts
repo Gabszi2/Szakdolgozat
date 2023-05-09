@@ -14,6 +14,7 @@ export class RecommendationComponent implements OnInit {
   recommendationForm!: FormGroup;
   types: string[] = ['food', 'question', 'cuisine', 'restaurant', 'city'];
 
+
   constructor(private service: CustomerService, private formBuilder: FormBuilder, private router: Router) {
   }
 
@@ -26,6 +27,7 @@ export class RecommendationComponent implements OnInit {
       restaurant: [''],
       message: ['', Validators.required],
     })
+
   }
 
   async recommendationAdd() {
