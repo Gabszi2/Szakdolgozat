@@ -23,7 +23,7 @@ export class AdminCityModifyComponent implements OnInit {
     return this.cuisinesForm.get("cuisines") as FormArray;
   }
 
-  restaurantForm(): FormGroup {
+  cuisineForm(): FormGroup {
     return this.fb.group({
       cuisine: ['', Validators.required]
     })
@@ -33,17 +33,15 @@ export class AdminCityModifyComponent implements OnInit {
     this.town = <string>this.route.snapshot.paramMap.get('town');
     this.city = await this.service.getCity(this.town);
 
-    for (let cuisine in this.city.cuisines) {
-      this.addCuisine();
-    }
-    for (let i = 0; i < this.cuisines.length; i++) {
-      this.cuisines.at(i).get("cuisine")?.setValue(this.city.cuisines[i]);
 
+    for (let i=0;i<this.city.cuisines.length;i++){
+      this.addCuisine();
+      this.cuisines.at(i).get("cuisine")?.setValue(this.city.cuisines[i]);
     }
   }
 
   addCuisine() {
-    this.cuisines.push(this.restaurantForm());
+    this.cuisines.push(this.cuisineForm());
   }
 
   delete(index: number) {
